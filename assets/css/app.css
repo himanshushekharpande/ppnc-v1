@@ -5,10 +5,22 @@
 @import "./custom.css";
 
 @layer components {
-  /* use existing named colors instead of primary/accent/surface */
-  .btn-primary { @apply px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition; }
-  .btn-ghost   { @apply px-5 py-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20; }
-  .chip        { @apply inline-flex items-center px-3 py-1 rounded-full bg-argentinian-blue/10 text-celestial-blue; }
-  .card        { @apply p-6 bg-white rounded-xl border border-gray-200 shadow-sm; }
-  .kicker      { @apply uppercase tracking-widest text-sm text-white/80; }
+  .container-site { @apply mx-auto w-full max-w-7xl px-6; }
+
+  .section     { @apply py-12 sm:py-16; }
+  .section-alt { @apply py-12 sm:py-16 bg-gradient-to-b from-white to-[#F8FAFC]; }
+
+  .card        { @apply bg-white rounded-2xl border border-gray-100 shadow-card; }
+  .card-padded { @apply card p-6 md:p-8; }
+
+  .kicker      { @apply uppercase tracking-[0.18em] text-xs font-semibold text-marian-blue/80; }
+
+  .btn         { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition; }
+  .btn-primary { @apply btn bg-marian-blue text-white hover:bg-resolution-blue shadow-btn; }
+  .btn-ghost   { @apply btn bg-white/10 border border-white/30 text-white hover:bg-white/20; }
+  .btn-soft    { @apply btn bg-argentinian-blue/15 text-marian-blue hover:bg-argentinian-blue/25; }
+
+  .chip        { @apply inline-flex items-center gap-2 rounded-full bg-argentinian-blue/15 text-marian-blue px-3 py-1 text-sm; }
+  .stat        { @apply text-3xl md:text-4xl font-extrabold text-marian-blue; }
+  .stat-sub    { @apply text-sm text-gray-500; }
 }

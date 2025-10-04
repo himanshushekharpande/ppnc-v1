@@ -38,7 +38,19 @@ module.exports = {
       dropShadow: {
         DEFAULT: '0 2px 4px rgba(0,0,0,0.5)',
         lg: '0 4px 8px rgba(0,0,0,0.7)',
-      }
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+      },
+      borderRadius: {
+        '2xl': '1rem',
+        '3xl': '1.25rem',
+      },
+      boxShadow: {
+        soft: '0 8px 24px rgba(0,0,0,.08)',
+        card: '0 10px 20px rgba(39,42,76,.06)',
+        btn: '0 6px 12px rgba(28,67,131,.18)',
+      },
     },
   },
   plugins: [],

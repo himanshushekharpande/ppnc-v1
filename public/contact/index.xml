@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Contact on Pranav Paramedical and Nursing College</title>
-    <link>http://localhost:1313/contact/</link>
-    <description>Recent content in Contact on Pranav Paramedical and Nursing College</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <atom:link href="http://localhost:1313/contact/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Thanks for contacting us</title>
-      <link>http://localhost:1313/contact/thank-you/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/contact/thank-you/</guid>
-      <description>&lt;p&gt;Thank you for contacting us! We’ll get back to you shortly.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contact on Pranav Paramedical and Nursing College</title><link>https://pranavtrust.netlify.app/contact/</link><description>Recent content in Contact on Pranav Paramedical and Nursing College</description><generator>Hugo</generator><language>en</language><atom:link href="https://pranavtrust.netlify.app/contact/index.xml" rel="self" type="application/rss+xml"/><item><title>Thanks for contacting us</title><link>https://pranavtrust.netlify.app/contact/thank-you/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pranavtrust.netlify.app/contact/thank-you/</guid><description>&lt;p&gt;Thank you for contacting us! We’ll get back to you shortly.&lt;/p&gt;</description></item></channel></rss>

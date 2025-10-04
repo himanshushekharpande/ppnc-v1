@@ -1,0 +1,8 @@
+[build]
+  publish = "public"
+  command = "npm ci && npm run build"
+
+[build.environment]
+  HUGO_VERSION = "0.150.1"
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--include=dev"

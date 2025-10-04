@@ -1,9 +1,14 @@
 <div class="max-w-3xl mx-auto my-12 px-6">
   <h2 class="text-2xl font-bold mb-4 text-marian-blue">Contact Us</h2>
 
-  <form action="https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec" method="POST"
+  <iframe name="contact_target" class="hidden" style="display:none;"></iframe>
+
+  <form id="contact-form"
+        action="https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec"
+        method="POST"
+        target="contact_target"
         class="space-y-6 bg-white p-6 rounded-lg shadow-md border border-gray-200">
-    <!-- hidden identifiers -->
+
     <input type="hidden" name="form_type" value="contact">
     <input type="hidden" name="redirect" value="{{ "contact/thank-you/" | absURL }}">
     <input type="hidden" name="referer" id="referer-contact" value="">
@@ -44,21 +49,21 @@
     <!-- Submit -->
     <div>
       <button type="submit"
-              class="w-full px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition">
-        Send Message
+            class="w-full px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition">
+      Send Message
       </button>
     </div>
   </form>
 
   <script>
-    // Fill hidden anti-spam + tracking fields
-    (function(){
-      const r = document.getElementById('referer-contact');
-      const t = document.getElementById('t0-contact');
-      if (r && t) {
-        r.value = location.href;
-        t.value = Date.now();
-      }
+    (function () {
+      document.getElementById('referer-contact').value = location.href;
+      document.getElementById('t0-contact').value = Date.now();
+      var form = document.getElementById('contact-form');
+      form.addEventListener('submit', function () {
+        var thanks = "{{ "contact/thank-you/" | absURL }}";
+        setTimeout(function () { window.location.href = thanks; }, 300);
+      });
     })();
   </script>
 </div>

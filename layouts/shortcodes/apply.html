@@ -1,13 +1,17 @@
 <div class="max-w-3xl mx-auto my-12 px-6">
   <h2 class="text-2xl font-bold mb-4 text-marian-blue">Application Form</h2>
 
-  <form action="https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec" method="POST"
+  <!-- Hidden target so the page never leaves your domain -->
+  <iframe name="app_target" class="hidden" style="display:none;"></iframe>
+
+  <form id="apply-form"
+        action="https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec"
+        method="POST"
+        target="app_target"
         class="space-y-6 bg-white p-6 rounded-lg shadow-md border border-gray-200">
-    <!-- identify form -->
+
     <input type="hidden" name="form_type" value="application">
-    <!-- redirect after success -->
     <input type="hidden" name="redirect" value="{{ "admissions/thank-you/" | absURL }}">
-    <!-- referrer + anti-spam -->
     <input type="hidden" name="referer" id="referer-apply" value="">
     <input type="hidden" name="t0" id="t0-apply" value="">
     <div class="hidden">
@@ -58,10 +62,17 @@
   </form>
 
   <script>
-    // Fill hidden fields at runtime
-    (function(){
+    (function () {
       document.getElementById('referer-apply').value = location.href;
       document.getElementById('t0-apply').value = Date.now();
+
+      // user-initiated, guaranteed redirect of the TOP window
+      var form = document.getElementById('apply-form');
+      form.addEventListener('submit', function () {
+        var thanks = "{{ "admissions/thank-you/" | absURL }}";
+        // give the POST a moment to fire, then leave
+        setTimeout(function () { window.location.href = thanks; }, 300);
+      });
     })();
   </script>
 </div>

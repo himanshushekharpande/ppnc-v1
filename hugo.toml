@@ -1,0 +1,121 @@
+baseURL = "https://www.pranavtrust.com/"
+title = "Pranav Paramedical and Nursing College"
+author = "Pranav Paramedical and Nursing College"
+languageCode = "en"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+theme = "tella"
+enableRobotsTXT = true
+
+[params]
+  description = "Established 2025 • First Academic Session 2025–2026"
+  showBlog = false                  # we’ll use News instead of “Blog”
+  mainSections = ['news']           # tella uses this to pick list pages
+  googleFonts = true                # turn off if you host fonts locally
+
+  # Turnstile + API for forms (Step 3 will use these)
+  turnstileSiteKey = "YOUR_TURNSTILE_SITE_KEY"
+  collegeApi = "https://your-api.example.com"   # e.g., Workers/Lambda URL
+
+  [params.logo]
+    main = "img/logo/ppnc-logo.webp"      # put your logo in /static/img/logo/logo.svg
+    alt = "Pranav Paramedical and Nursing College"
+    size = "h-10 md:h-12 w-auto object-contain"
+
+  [params.site]
+    name = "Pranav Paramedical and Nursing College"
+
+  [params.icon]
+    fontawesome = true
+
+  [params.homepage_meta_tags]
+    meta_description = "Nursing & Paramedical education. Established 2025. First Academic Session 2025–2026."
+    meta_og_title = "Pranav Paramedical and Nursing College"
+    meta_og_type = "website"
+    meta_og_url = "https://www.pranavtrust.com/"
+    meta_og_image = "/img/og/og-image.png"   # add a 1200x630 image in /static/img/og/
+    meta_og_description = "Admissions open for 2025–26: GNM and B.Sc Nursing."
+    meta_twitter_card = "summary_large_image"
+    meta_twitter_site = "@"
+    meta_twitter_creator = "@"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "programs"
+    name = "Programs"
+    url = "/programs/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "faculty"
+    name = "Faculty"
+    url = "/faculty/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "admissions"
+    name = "Admissions"
+    url = "/admissions/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "news"
+    name = "News"
+    url = "/news/"
+    weight = 5
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 6
+
+  # Footer
+  [[menu.footer]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.footer]]
+    name = "Programs"
+    url = "/programs/"
+    weight = 2
+  [[menu.footer]]
+    name = "Admissions"
+    url = "/admissions/"
+    weight = 3
+  [[menu.footer]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 4
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[privacy]
+  [privacy.vimeo]
+    disabled = false
+    simple = true
+  [privacy.twitter]
+    disabled = false
+    enableDNT = true
+    simple = true
+    disableInlineCSS = true
+  [privacy.instagram]
+    disabled = false
+    simple = true
+  [privacy.youtube]
+    disabled = false
+    privacyEnhanced = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

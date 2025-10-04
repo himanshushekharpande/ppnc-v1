@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./custom.css";
+
+@layer components {
+  /* use existing named colors instead of primary/accent/surface */
+  .btn-primary { @apply px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition; }
+  .btn-ghost   { @apply px-5 py-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20; }
+  .chip        { @apply inline-flex items-center px-3 py-1 rounded-full bg-argentinian-blue/10 text-celestial-blue; }
+  .card        { @apply p-6 bg-white rounded-xl border border-gray-200 shadow-sm; }
+  .kicker      { @apply uppercase tracking-widest text-sm text-white/80; }
+}

@@ -1,39 +1,56 @@
-<section class="relative w-full overflow-hidden">
-  <!-- Fixed height wrapper -->
+<section class="relative w-full overflow-hidden pt-20"> <!-- Added pt-20 for fixed header -->
+  <!-- Fixed-height wrapper (uses your h-hero/min-h-hero/max-h-hero tokens) -->
   <div class="relative w-full h-hero min-h-hero max-h-hero">
-    
-    <!-- Background image -->
-    <img src="{{ "img/hero/hero-cover-1.webp" | relURL }}"
-         alt="Pranav Paramedical & Nursing College"
-         class="absolute inset-0 w-full h-full object-cover z-0"
-         loading="eager" decoding="async" />
 
-    <!-- Bottom fade scrim -->
-    <div class="absolute inset-x-0 bottom-0 h-2/3
-            bg-gradient-to-t from-black/80 via-black/50 to-transparent
-            z-10 pointer-events-none"></div>
+    <!-- Background image (replace path if needed) -->
+    <img
+      src="{{ "img/hero/hero-cover-1.webp" | relURL }}"
+      alt="Pranav Paramedical & Nursing College"
+      class="absolute inset-0 w-full h-full object-cover z-0"
+      loading="eager" decoding="async" />
 
-<!-- Content overlay (force white text) -->
-    <figcaption class="absolute inset-0 z-20 flex items-end text-white">
-      <div class="mx-auto w-full max-w-7xl px-6 pb-10">
+    <!-- Readability scrim (bottom fade) -->
+    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Optional soft accent blob -->
+    <div class="pointer-events-none absolute -right-24 -top-24 w-80 h-80 bg-celestial-blue/30 blur-3xl rounded-full z-10"></div>
+
+    <!-- Content overlay -->
+    <div class="absolute inset-0 z-20 flex items-end text-white">
+      <div class="container-site pb-10">
         <div class="max-w-2xl drop-shadow-lg">
-            <p class="uppercase tracking-widest text-sm text-white/90">Admissions 2025–26</p>
-            <h1 class="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-lg">
-              General Nursing &amp; Midwifery · B.Sc Nursing
-            </h1>
-            <p class="mt-3 text-lg text-white/90">
-              Learn with real clinical exposure, compassionate training, and industry-ready skills.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-3">
-              <a href="/admissions/apply/"
-                class="px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition">Apply Now</a>
-              <a href="tel:+919050208060"
-                class="px-5 py-3 rounded-lg bg-argentinian-blue text-black font-semibold hover:bg-celestial-blue transition">Call</a>
-              <a href="mailto:ppnc@pranavtrust.com"
-                class="px-5 py-3 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Email</a>
-            </div>
+          <p class="kicker text-white/90">Admissions 2025–26</p>
+
+          <h1 class="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+            General Nursing &amp; Midwifery · B.Sc Nursing
+          </h1>
+
+          <p class="mt-3 text-lg text-white/90">
+            Learn with real clinical exposure, compassionate training, and industry-ready skills.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <!-- Primary CTA (uses DaisyUI theme primary color) -->
+            <a href="/admissions/apply/"
+               class="btn btn-primary shadow-btn">
+              Apply Now
+            </a>
+
+            <!-- Secondary / Accent CTA (uses DaisyUI accent color) -->
+            <a href="tel:+919050208060"
+               class="btn btn-accent">
+              Call
+            </a>
+
+            <!-- Ghost CTA for less visual weight -->
+            <a href="mailto:ppnc@pranavtrust.com"
+               class="btn btn-ghost border border-white/30 text-white">
+              Email
+            </a>
           </div>
         </div>
-    </figcaption>
+      </div>
+    </div>
+
   </div>
 </section>

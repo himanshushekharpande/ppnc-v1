@@ -1,26 +1,181 @@
+/* assets/css/app.css
+ *
+ * Tailwind + DaisyUI friendly app stylesheet
+ * - Uses Tailwind layers
+ * - Provides CSS variables for JS-theme toggling or fallbacks
+ * - Provides lightweight component wrappers mapped to DaisyUI classes
+ *
+ * Notes:
+ * - DaisyUI plugin + theme should be registered in tailwind.config.cjs (recommended).
+ * - Once templates are migrated, you can remove many of these wrapper classes and
+ *   use DaisyUI classes directly (e.g. `btn btn-primary`, `card`, etc.).
+ */
+/* Import your additional overrides last so they can override the component layer */
+/* @import "./custom.css"; */
+
+/* Tailwind core layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "./custom.css";
+/* ---------------------------
+   CSS variables (JS-toggle friendly)
+   ---------------------------
+   Useful when toggling themes via `document.documentElement.classList`
+   or when you need runtime access to theme colors.
+*/
+:root {
+  /* primary palette */
+  --ppnc-primary: #1C4383;           /* marian-blue */
+  --ppnc-primary-content: #ffffff;
 
+  --ppnc-secondary: #2A9ED5;         /* celestial-blue */
+  --ppnc-secondary-content: #072030;
+
+  --ppnc-accent: #69B4E4;            /* argentinian-blue */
+  --ppnc-accent-content: #072030;
+
+  --ppnc-neutral: #272A4C;           /* space-cadet */
+  --ppnc-neutral-content: #ffffff;
+
+  --ppnc-base-100: #ffffff;
+  --ppnc-base-200: #F5F7FA;
+  --ppnc-base-300: #E5E7EB;
+
+  --ppnc-info: #2A9ED5;
+  --ppnc-success: #22C55E;
+  --ppnc-warning: #F59E0B;
+  --ppnc-error: #EF4444;
+}
+
+/* Optional: theme class (if you toggle themes via class)
+   Example usage: <html class="theme-ppnc"> ... </html>
+*/
+.theme-ppnc {
+  --color-primary: var(--ppnc-primary);
+  --color-primary-content: var(--ppnc-primary-content);
+
+  --color-secondary: var(--ppnc-secondary);
+  --color-secondary-content: var(--ppnc-secondary-content);
+
+  --color-accent: var(--ppnc-accent);
+  --color-accent-content: var(--ppnc-accent-content);
+
+  --color-neutral: var(--ppnc-neutral);
+  --color-neutral-content: var(--ppnc-neutral-content);
+
+  --color-base-100: var(--ppnc-base-100);
+  --color-base-200: var(--ppnc-base-200);
+  --color-base-300: var(--ppnc-base-300);
+}
+
+/* ---------------------------
+   Component layer: wrapper classes that play nice with DaisyUI
+   - Keep these while migrating. They provide consistent spacing,
+     radii, and shadows while DaisyUI supplies color/states.
+   - Use DaisyUI classes directly in new templates.
+   --------------------------- */
 @layer components {
-  .container-site { @apply mx-auto w-full max-w-7xl px-6; }
+  /* Page container */
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-6;
+  }
 
-  .section     { @apply py-12 sm:py-16; }
-  .section-alt { @apply py-12 sm:py-16 bg-gradient-to-b from-white to-[#F8FAFC]; }
+  /* Sections */
+  .section {
+    @apply py-12 sm:py-16;
+    background-color: var(--ppnc-base-100);
+  }
+  .section-alt {
+    @apply py-12 sm:py-16;
+    background-image: linear-gradient(to bottom, var(--ppnc-base-100), #F8FAFC);
+  }
 
-  .card        { @apply bg-white rounded-2xl border border-gray-100 shadow-card; }
-  .card-padded { @apply card p-6 md:p-8; }
+  /* Card primitives: uses DaisyUI's base classes for color, ours for spacing/shadow */
+  .card {
+    /* keep DaisyUI's card color classes available (bg-base-100 etc.) */
+    @apply rounded-2xl border border-gray-100;
+    box-shadow: var(--tw-shadow, 0 10px 20px rgba(39,42,76,.06));
+    background-color: var(--ppnc-base-100);
+  }
+  .card-padded {
+    @apply p-6 md:p-8;
+  }
 
-  .kicker      { @apply uppercase tracking-[0.18em] text-xs font-semibold text-marian-blue/80; }
+  /* Kicker (small uppercase label) */
+  .kicker {
+    @apply uppercase tracking-[0.18em] text-xs font-semibold;
+    color: color-mix(in srgb, var(--ppnc-primary) 80%, transparent);
+  }
 
-  .btn         { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition; }
-  .btn-primary { @apply btn bg-marian-blue text-white hover:bg-resolution-blue shadow-btn; }
-  .btn-ghost   { @apply btn bg-white/10 border border-white/30 text-white hover:bg-white/20; }
-  .btn-soft    { @apply btn bg-argentinian-blue/15 text-marian-blue hover:bg-argentinian-blue/25; }
+  /* Buttons
+     - Prefer DaisyUI classes `btn`, `btn-primary`, `btn-ghost`, etc. in markup.
+     - These wrappers keep your previous markup stable while adopting Daisy's color tokens.
+  */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition;
+    /* micro fallback for browsers that don't pick up DaisyUI theme immediately */
+    --btn-bg-fallback: var(--ppnc-primary);
+  }
+  /* Primary: prefer using `btn btn-primary` in markup (DaisyUI will handle colors) */
+  .btn-primary {
+    @apply btn;
+    @apply shadow-btn;
+    /* If you want a hard-coded fallback background (rare): */
+    background-color: var(--ppnc-primary);
+    color: var(--ppnc-primary-content);
+  }
+  .btn-ghost {
+    @apply btn bg-white/10 border border-white/30 text-white hover:bg-white/20;
+  }
+  .btn-soft {
+    @apply btn;
+    background-color: color-mix(in srgb, var(--ppnc-accent) 15%, white);
+    color: var(--ppnc-primary);
+  }
 
-  .chip        { @apply inline-flex items-center gap-2 rounded-full bg-argentinian-blue/15 text-marian-blue px-3 py-1 text-sm; }
-  .stat        { @apply text-3xl md:text-4xl font-extrabold text-marian-blue; }
-  .stat-sub    { @apply text-sm text-gray-500; }
+  /* Chip */
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm;
+    background-color: color-mix(in srgb, var(--ppnc-accent) 15%, white);
+    color: var(--ppnc-primary);
+  }
+
+  /* Stats */
+  .stat {
+    @apply text-3xl md:text-4xl font-extrabold;
+    color: var(--ppnc-primary);
+  }
+  .stat-sub {
+    @apply text-sm text-gray-500;
+  }
+
+  /* Utility shadow tokens for convenience */
+  .shadow-card {
+    box-shadow: 0 10px 20px rgba(39,42,76,.06);
+  }
+  .shadow-btn {
+    box-shadow: 0 6px 12px rgba(28,67,131,.18);
+  }
+}
+
+/* ---------------------------
+   Small accessibility helpers
+   --------------------------- */
+/* Focus visible ring tuned to primary color */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ppnc-primary) 12%, transparent);
+  border-radius: 0.375rem;
+}
+
+/* ---------------------------
+   Utilities / helpers you might keep
+   - If you prefer using aliases like .text-marian-blue, add here.
+   - Keep these minimal to avoid duplication with Tailwind utilities.
+   --------------------------- */
+@layer utilities {
+  .text-marian-blue { color: #1C4383; }
+  .bg-marian-blue { background-color: #1C4383; }
+  .bg-argentinian-blue-15 { background-color: color-mix(in srgb, #69B4E4 15%, white); }
 }

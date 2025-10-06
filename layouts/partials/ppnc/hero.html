@@ -1,8 +1,6 @@
-<section class="relative w-full overflow-hidden pt-20"> <!-- Added pt-20 for fixed header -->
-  <!-- Fixed-height wrapper (uses your h-hero/min-h-hero/max-h-hero tokens) -->
-  <div class="relative w-full h-hero min-h-hero max-h-hero">
-
-    <!-- Background image (replace path if needed) -->
+<section class="relative w-full overflow-hidden pt-20 md:pt-24">
+  <div class="relative w-full h-[50vh] md:h-hero min-h-[400px] md:min-h-hero max-h-[600px] md:max-h-hero">
+    <!-- Background image -->
     <img
       src="{{ "img/hero/hero-cover-1.webp" | relURL }}"
       alt="Pranav Paramedical & Nursing College"
@@ -17,34 +15,33 @@
 
     <!-- Content overlay -->
     <div class="absolute inset-0 z-20 flex items-end text-white">
-      <div class="container-site pb-10">
+      <div class="container-site pb-6 md:pb-10">
         <div class="max-w-2xl drop-shadow-lg">
-          <p class="kicker text-white/90">Admissions 2025–26</p>
+          <p class="kicker text-white/90 text-sm">Admissions 2025–26</p>
 
-          <h1 class="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
-            General Nursing &amp; Midwifery · B.Sc Nursing
+          <!-- Mobile-optimized heading -->
+          <h1 class="mt-2 text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">
+            General Nursing<br class="md:hidden">& Midwifery<br class="md:hidden">· B.Sc Nursing
           </h1>
 
-          <p class="mt-3 text-lg text-white/90">
+          <p class="mt-3 text-base md:text-lg text-white/90 leading-relaxed">
             Learn with real clinical exposure, compassionate training, and industry-ready skills.
           </p>
 
-          <div class="mt-6 flex flex-wrap gap-3">
-            <!-- Primary CTA (uses DaisyUI theme primary color) -->
+          <!-- Mobile-optimized buttons -->
+          <div class="mt-4 md:mt-6 flex flex-wrap gap-2 md:gap-3">
             <a href="/admissions/apply/"
-               class="btn btn-primary shadow-btn">
+               class="btn btn-primary shadow-btn text-sm px-4 py-2 md:px-6 md:py-3">
               Apply Now
             </a>
 
-            <!-- Secondary / Accent CTA (uses DaisyUI accent color) -->
             <a href="tel:+919050208060"
-               class="btn btn-accent">
+               class="btn btn-accent text-sm px-4 py-2 md:px-6 md:py-3">
               Call
             </a>
 
-            <!-- Ghost CTA for less visual weight -->
             <a href="mailto:ppnc@pranavtrust.com"
-               class="btn btn-ghost border border-white/30 text-white">
+               class="btn btn-ghost border border-white/30 text-white text-sm px-4 py-2 md:px-6 md:py-3">
               Email
             </a>
           </div>

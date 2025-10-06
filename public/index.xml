@@ -1,79 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pranav Paramedical and Nursing College</title><link>https://pranavtrust.netlify.app/</link><description>Recent content on Pranav Paramedical and Nursing College</description><generator>Hugo</generator><language>en</language><atom:link href="https://pranavtrust.netlify.app/index.xml" rel="self" type="application/rss+xml"/><item><title>General Nursing and Midwifery (GNM)</title><link>https://pranavtrust.netlify.app/programs/gnm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pranavtrust.netlify.app/programs/gnm/</guid><description>&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; Foundational nursing, midwifery, patient care, community health.&lt;/p&gt;</description></item><item><title>B.Sc Nursing</title><link>https://pranavtrust.netlify.app/programs/bsc-nursing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pranavtrust.netlify.app/programs/bsc-nursing/</guid><description>&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; Comprehensive theory, clinical training, research exposure.&lt;/p&gt;</description></item><item><title>Application Received</title><link>https://pranavtrust.netlify.app/admissions/thank-you/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pranavtrust.netlify.app/admissions/thank-you/</guid><description>&lt;p&gt;Thank you! Your application has been received. Our admissions team will contact you soon.&lt;/p&gt;</description></item><item><title>Apply</title><link>https://pranavtrust.netlify.app/admissions/apply/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pranavtrust.netlify.app/admissions/apply/</guid><description>&lt;p&gt;Please complete the application below.&lt;/p&gt;
-&lt;div class="max-w-3xl mx-auto my-12 px-6"&gt;
- &lt;h2 class="text-2xl font-bold mb-4 text-marian-blue"&gt;Application Form&lt;/h2&gt;
-
- 
- &lt;iframe name="app_target" class="hidden" style="display:none;"&gt;&lt;/iframe&gt;
-
- &lt;form id="apply-form"
- action="https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec"
- method="POST"
- target="app_target"
- class="space-y-6 bg-white p-6 rounded-lg shadow-md border border-gray-200"&gt;
-
- &lt;input type="hidden" name="form_type" value="application"&gt;
- &lt;input type="hidden" name="redirect" value="https://pranavtrust.netlify.app/admissions/thank-you/"&gt;
- &lt;input type="hidden" name="referer" id="referer-apply" value=""&gt;
- &lt;input type="hidden" name="t0" id="t0-apply" value=""&gt;
- &lt;div class="hidden"&gt;
- &lt;label&gt;Leave this field empty&lt;/label&gt;
- &lt;input type="text" name="website" autocomplete="off"&gt;
- &lt;/div&gt;
-
- 
- &lt;div&gt;
- &lt;label for="name" class="block text-sm font-medium text-gray-700"&gt;Full Name&lt;/label&gt;
- &lt;input id="name" name="name" required
- class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm"&gt;
- &lt;/div&gt;
-
- &lt;div class="grid sm:grid-cols-2 gap-4"&gt;
- &lt;div&gt;
- &lt;label for="email" class="block text-sm font-medium text-gray-700"&gt;Email&lt;/label&gt;
- &lt;input id="email" type="email" name="email" required
- class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm"&gt;
- &lt;/div&gt;
- &lt;div&gt;
- &lt;label for="phone" class="block text-sm font-medium text-gray-700"&gt;Phone&lt;/label&gt;
- &lt;input id="phone" type="tel" name="phone" required
- class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm"&gt;
- &lt;/div&gt;
- &lt;/div&gt;
-
- &lt;div&gt;
- &lt;label for="program" class="block text-sm font-medium text-gray-700"&gt;Program&lt;/label&gt;
- &lt;select id="program" name="program" required
- class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm"&gt;
- &lt;option value=""&gt;Select&lt;/option&gt;
- &lt;option value="GNM"&gt;General Nursing &amp;amp; Midwifery&lt;/option&gt;
- &lt;option value="BSc Nursing"&gt;B.Sc Nursing&lt;/option&gt;
- &lt;/select&gt;
- &lt;/div&gt;
-
- &lt;div&gt;
- &lt;label for="message" class="block text-sm font-medium text-gray-700"&gt;Additional Information&lt;/label&gt;
- &lt;textarea id="message" name="message" rows="4"
- class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm"&gt;&lt;/textarea&gt;
- &lt;/div&gt;
-
- &lt;button type="submit"
- class="w-full px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition"&gt;
- Submit Application
- &lt;/button&gt;
- &lt;/form&gt;
-
- &lt;script&gt;
- (function () {
- document.getElementById('referer-apply').value = location.href;
- document.getElementById('t0-apply').value = Date.now();
-
- 
- var form = document.getElementById('apply-form');
- form.addEventListener('submit', function () {
- var thanks = "https:\/\/pranavtrust.netlify.app\/admissions\/thank-you\/";
- 
- setTimeout(function () { window.location.href = thanks; }, 300);
- });
- })();
- &lt;/script&gt;
-&lt;/div&gt;</description></item><item><title>Ms. Jane Doe</title><link>https://pranavtrust.netlify.app/faculty/faculty-a/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pranavtrust.netlify.app/faculty/faculty-a/</guid><description>&lt;p&gt;Bio coming soon.&lt;/p&gt;</description></item><item><title>Thanks for contacting us</title><link>https://pranavtrust.netlify.app/contact/thank-you/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pranavtrust.netlify.app/contact/thank-you/</guid><description>&lt;p&gt;Thank you for contacting us! We’ll get back to you shortly.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pranav Paramedical and Nursing College</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Pranav Paramedical and Nursing College</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>General Nursing and Midwifery (GNM)</title>
+      <link>http://localhost:1313/programs/gnm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/programs/gnm/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; Foundational nursing, midwifery, patient care, community health.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>B.Sc Nursing</title>
+      <link>http://localhost:1313/programs/bsc-nursing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/programs/bsc-nursing/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; Comprehensive theory, clinical training, research exposure.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Application Received</title>
+      <link>http://localhost:1313/admissions/thank-you/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/admissions/thank-you/</guid>
+      <description>&lt;p&gt;Thank you! Your application has been received. Our admissions team will contact you soon.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Apply</title>
+      <link>http://localhost:1313/admissions/apply/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/admissions/apply/</guid>
+      <description>&lt;p&gt;Please complete the application below.&lt;/p&gt;&#xA;&lt;div class=&#34;max-w-3xl mx-auto my-12 px-6&#34;&gt;&#xA;  &lt;h2 class=&#34;text-2xl font-bold mb-4 text-marian-blue&#34;&gt;Application Form&lt;/h2&gt;&#xA;&#xA;  &#xA;  &lt;iframe name=&#34;app_target&#34; class=&#34;hidden&#34; style=&#34;display:none;&#34;&gt;&lt;/iframe&gt;&#xA;&#xA;  &lt;form id=&#34;apply-form&#34;&#xA;        action=&#34;https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec&#34;&#xA;        method=&#34;POST&#34;&#xA;        target=&#34;app_target&#34;&#xA;        class=&#34;space-y-6 bg-white p-6 rounded-lg shadow-md border border-gray-200&#34;&gt;&#xA;&#xA;    &lt;input type=&#34;hidden&#34; name=&#34;form_type&#34; value=&#34;application&#34;&gt;&#xA;    &lt;input type=&#34;hidden&#34; name=&#34;redirect&#34; value=&#34;http://localhost:1313/admissions/thank-you/&#34;&gt;&#xA;    &lt;input type=&#34;hidden&#34; name=&#34;referer&#34; id=&#34;referer-apply&#34; value=&#34;&#34;&gt;&#xA;    &lt;input type=&#34;hidden&#34; name=&#34;t0&#34; id=&#34;t0-apply&#34; value=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;hidden&#34;&gt;&#xA;      &lt;label&gt;Leave this field empty&lt;/label&gt;&#xA;      &lt;input type=&#34;text&#34; name=&#34;website&#34; autocomplete=&#34;off&#34;&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;    &#xA;    &lt;div&gt;&#xA;      &lt;label for=&#34;name&#34; class=&#34;block text-sm font-medium text-gray-700&#34;&gt;Full Name&lt;/label&gt;&#xA;      &lt;input id=&#34;name&#34; name=&#34;name&#34; required&#xA;             class=&#34;mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm&#34;&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;    &lt;div class=&#34;grid sm:grid-cols-2 gap-4&#34;&gt;&#xA;      &lt;div&gt;&#xA;        &lt;label for=&#34;email&#34; class=&#34;block text-sm font-medium text-gray-700&#34;&gt;Email&lt;/label&gt;&#xA;        &lt;input id=&#34;email&#34; type=&#34;email&#34; name=&#34;email&#34; required&#xA;               class=&#34;mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm&#34;&gt;&#xA;      &lt;/div&gt;&#xA;      &lt;div&gt;&#xA;        &lt;label for=&#34;phone&#34; class=&#34;block text-sm font-medium text-gray-700&#34;&gt;Phone&lt;/label&gt;&#xA;        &lt;input id=&#34;phone&#34; type=&#34;tel&#34; name=&#34;phone&#34; required&#xA;               class=&#34;mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm&#34;&gt;&#xA;      &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;    &lt;div&gt;&#xA;      &lt;label for=&#34;program&#34; class=&#34;block text-sm font-medium text-gray-700&#34;&gt;Program&lt;/label&gt;&#xA;      &lt;select id=&#34;program&#34; name=&#34;program&#34; required&#xA;              class=&#34;mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm&#34;&gt;&#xA;        &lt;option value=&#34;&#34;&gt;Select&lt;/option&gt;&#xA;        &lt;option value=&#34;GNM&#34;&gt;General Nursing &amp;amp; Midwifery&lt;/option&gt;&#xA;        &lt;option value=&#34;BSc Nursing&#34;&gt;B.Sc Nursing&lt;/option&gt;&#xA;      &lt;/select&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;    &lt;div&gt;&#xA;      &lt;label for=&#34;message&#34; class=&#34;block text-sm font-medium text-gray-700&#34;&gt;Additional Information&lt;/label&gt;&#xA;      &lt;textarea id=&#34;message&#34; name=&#34;message&#34; rows=&#34;4&#34;&#xA;                class=&#34;mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm&#34;&gt;&lt;/textarea&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;    &lt;button type=&#34;submit&#34;&#xA;            class=&#34;w-full px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition&#34;&gt;&#xA;      Submit Application&#xA;    &lt;/button&gt;&#xA;  &lt;/form&gt;&#xA;&#xA;  &lt;script&gt;&#xA;    (function () {&#xA;      document.getElementById(&#39;referer-apply&#39;).value = location.href;&#xA;      document.getElementById(&#39;t0-apply&#39;).value = Date.now();&#xA;&#xA;      &#xA;      var form = document.getElementById(&#39;apply-form&#39;);&#xA;      form.addEventListener(&#39;submit&#39;, function () {&#xA;        var thanks = &#34;http:\/\/localhost:1313\/admissions\/thank-you\/&#34;;&#xA;        &#xA;        setTimeout(function () { window.location.href = thanks; }, 300);&#xA;      });&#xA;    })();&#xA;  &lt;/script&gt;&#xA;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Ms. Jane Doe</title>
+      <link>http://localhost:1313/faculty/faculty-a/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/faculty/faculty-a/</guid>
+      <description>&lt;p&gt;Bio coming soon.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Thanks for contacting us</title>
+      <link>http://localhost:1313/contact/thank-you/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact/thank-you/</guid>
+      <description>&lt;p&gt;Thank you for contacting us! We’ll get back to you shortly.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

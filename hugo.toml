@@ -52,29 +52,79 @@ enableRobotsTXT = true
     url = "/programs/"
     weight = 2
 
-  [[menu.main]]
-    identifier = "faculty"
-    name = "Faculty"
-    url = "/faculty/"
-    weight = 3
+    [[menu.main]]
+      identifier = "bsc-nursing"
+      name = "B.Sc Nursing"
+      url = "/programs/bsc-nursing/"
+      weight = 1
+      parent = "programs"
+
+    [[menu.main]]
+      identifier = "gnm"
+      name = "GNM"
+      url = "/programs/gnm/"
+      weight = 2
+      parent = "programs"
 
   [[menu.main]]
     identifier = "admissions"
     name = "Admissions"
     url = "/admissions/"
-    weight = 4
+    weight = 3
+
+    [[menu.main]]
+      identifier = "application-process"
+      name = "Application Process"
+      url = "/admissions/application-process/"
+      weight = 1
+      parent = "admissions"
+
+    [[menu.main]]
+      identifier = "fee-structure"
+      name = "Fee Structure"
+      url = "/admissions/fee-structure/"
+      weight = 2
+      parent = "admissions"
+
+    [[menu.main]]
+      identifier = "scholarships"
+      name = "Scholarships"
+      url = "/admissions/scholarships/"
+      weight = 3
+      parent = "admissions"
+
+    [[menu.main]]
+      identifier = "student-feedback"
+      name = "Student Feedback Form"
+      url = "/admissions/student-feedback/"
+      weight = 4
+      parent = "admissions"
 
   [[menu.main]]
     identifier = "news"
     name = "News"
     url = "/news/"
-    weight = 5
+    weight = 4
+
+    [[menu.main]]
+      identifier = "notices"
+      name = "Notices"
+      url = "/news/notices/"
+      weight = 1
+      parent = "news"
+
+    [[menu.main]]
+      identifier = "career"
+      name = "Career @ PPNC"
+      url = "/news/career/"
+      weight = 2
+      parent = "news"  
 
   [[menu.main]]
     identifier = "contact"
     name = "Contact"
     url = "/contact/"
-    weight = 6
+    weight = 5
 
   # Footer
   [[menu.footer]]

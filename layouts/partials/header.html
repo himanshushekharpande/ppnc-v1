@@ -1,4 +1,4 @@
-{{/* layouts/partials/header.html — FORCED MOBILE BUTTON VISIBILITY */}}
+{{/* layouts/partials/header.html — FIXED DROPDOWN GAP ISSUE */}}
 <header class="fixed top-0 left-0 w-full bg-white shadow-sm border-b border-gray-200 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-3">
@@ -17,22 +17,45 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center space-x-8">
+      <!-- Desktop Navigation with Dropdowns -->
+      <nav class="hidden lg:flex items-center space-x-1">
+        {{ $currentPage := . }}
         {{ range .Site.Menus.main }}
-          <a href="{{ .URL | safeURL }}" class="text-gray-700 hover:text-primary font-medium">
-            {{ .Name }}
-          </a>
+          {{ if .HasChildren }}
+            <div class="nav-dropdown group relative">
+              <!-- Increased padding to create larger hover area -->
+              <a href="{{ .URL | safeURL }}" class="flex items-center px-4 py-3 text-gray-700 hover:text-primary font-medium transition-colors relative z-10">
+                {{ .Name }}
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </a>
+              <!-- Added padding-top to bridge the gap -->
+              <div class="nav-dropdown-menu absolute top-full left-0 w-56 bg-white rounded-lg shadow-xl border border-gray-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pt-2">
+                <div class="py-2">
+                  {{ range .Children }}
+                  <a href="{{ .URL | safeURL }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors first:rounded-t-lg last:rounded-b-lg mx-2">
+                    {{ .Name }}
+                  </a>
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+          {{ else }}
+            <a href="{{ .URL | safeURL }}" class="px-4 py-3 text-gray-700 hover:text-primary font-medium transition-colors">
+              {{ .Name }}
+            </a>
+          {{ end }}
         {{ end }}
-        <a href="/admissions/apply/" class="btn btn-primary px-4 py-2 text-sm">
+        <a href="/admissions/apply/" class="btn btn-primary px-4 py-2 text-sm ml-4">
           Apply Now
         </a>
       </nav>
 
-      <!-- Mobile Menu Button - FORCE VISIBLE -->
-      <div class="flex items-center lg:!hidden" style="display: flex !important;">
-        <button id="mobileMenuButton" class="p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors border border-gray-300 bg-white shadow-sm" style="display: flex !important;">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: block !important;">
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center lg:hidden">
+        <button id="mobileMenuButton" class="p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors border border-gray-300 bg-white shadow-sm">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
@@ -40,14 +63,33 @@
     </div>
   </div>
 
-  <!-- Mobile Menu - Simple Dropdown -->
-  <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-200 shadow-lg" style="display: none;">
+  <!-- Mobile Menu with Submenu Support -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-200 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="space-y-3">
+      <div class="space-y-1">
+        {{ $currentPage := . }}
         {{ range .Site.Menus.main }}
-          <a href="{{ .URL | safeURL }}" class="block py-2 text-gray-700 hover:text-primary font-medium border-b border-gray-100 last:border-b-0">
-            {{ .Name }}
-          </a>
+          {{ if .HasChildren }}
+            <div class="mobile-menu-group border-b border-gray-100">
+              <button type="button" class="mobile-menu-header w-full flex justify-between items-center py-3 text-gray-700 hover:text-primary font-medium text-left">
+                <span>{{ .Name }}</span>
+                <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="mobile-menu-subitems hidden pl-4 pb-2 space-y-1">
+                {{ range .Children }}
+                <a href="{{ .URL | safeURL }}" class="block py-2 text-sm text-gray-600 hover:text-primary font-medium">
+                  {{ .Name }}
+                </a>
+                {{ end }}
+              </div>
+            </div>
+          {{ else }}
+            <a href="{{ .URL | safeURL }}" class="block py-3 text-gray-700 hover:text-primary font-medium border-b border-gray-100">
+              {{ .Name }}
+            </a>
+          {{ end }}
         {{ end }}
       </div>
       <div class="mt-4 pt-4 border-t border-gray-200">
@@ -56,8 +98,8 @@
         </a>
       </div>
       <div class="mt-4 text-center text-sm text-gray-600">
-        <p>+91 9050 208 060</p>
-        <p>ppnc@pranavtrust.com</p>
+        <p>+91 9050 402 070</p>
+        <p>info@ppnc.in</p>
       </div>
     </div>
   </div>
@@ -68,20 +110,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuButton = document.getElementById('mobileMenuButton');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  console.log('Mobile menu script loaded');
-  console.log('Menu button:', menuButton);
-  console.log('Mobile menu:', mobileMenu);
+  // Ensure all mobile submenus start closed
+  document.querySelectorAll('.mobile-menu-subitems').forEach(submenu => {
+    submenu.classList.add('hidden');
+  });
 
+  // Mobile menu toggle
   if (menuButton && mobileMenu) {
     menuButton.addEventListener('click', function(e) {
-      console.log('Menu button clicked');
       e.stopPropagation();
       
-      // Toggle mobile menu visibility
-      if (mobileMenu.style.display === 'none' || mobileMenu.classList.contains('hidden')) {
+      if (mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.remove('hidden');
-        mobileMenu.style.display = 'block';
-        // Change icon to X
         menuButton.innerHTML = `
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -89,30 +129,71 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
       } else {
         mobileMenu.classList.add('hidden');
-        mobileMenu.style.display = 'none';
-        // Change icon back to hamburger
         menuButton.innerHTML = `
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         `;
+        
+        // Close all submenus when closing main menu
+        document.querySelectorAll('.mobile-menu-subitems').forEach(submenu => {
+          submenu.classList.add('hidden');
+        });
+        document.querySelectorAll('.mobile-menu-header svg').forEach(arrow => {
+          arrow.style.transform = 'rotate(0deg)';
+        });
       }
+    });
+
+    // Mobile submenu toggle
+    document.querySelectorAll('.mobile-menu-header').forEach(header => {
+      header.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const submenu = this.nextElementSibling;
+        const arrow = this.querySelector('svg');
+        
+        if (submenu.classList.contains('hidden')) {
+          // Close other open submenus first
+          document.querySelectorAll('.mobile-menu-subitems').forEach(otherSubmenu => {
+            if (otherSubmenu !== submenu) {
+              otherSubmenu.classList.add('hidden');
+            }
+          });
+          document.querySelectorAll('.mobile-menu-header svg').forEach(otherArrow => {
+            if (otherArrow !== arrow) {
+              otherArrow.style.transform = 'rotate(0deg)';
+            }
+          });
+          
+          // Open current submenu
+          submenu.classList.remove('hidden');
+          arrow.style.transform = 'rotate(180deg)';
+        } else {
+          submenu.classList.add('hidden');
+          arrow.style.transform = 'rotate(0deg)';
+        }
+      });
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-      if (mobileMenu.style.display !== 'none' && !menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+      if (!menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');
-        mobileMenu.style.display = 'none';
         menuButton.innerHTML = `
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         `;
+        
+        // Close all submenus
+        document.querySelectorAll('.mobile-menu-subitems').forEach(submenu => {
+          submenu.classList.add('hidden');
+        });
+        document.querySelectorAll('.mobile-menu-header svg').forEach(arrow => {
+          arrow.style.transform = 'rotate(0deg)';
+        });
       }
     });
-  } else {
-    console.error('Mobile menu elements not found');
   }
 });
 </script>

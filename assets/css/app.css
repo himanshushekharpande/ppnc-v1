@@ -112,27 +112,33 @@
      - Prefer DaisyUI classes `btn`, `btn-primary`, `btn-ghost`, etc. in markup.
      - These wrappers keep your previous markup stable while adopting Daisy's color tokens.
   */
-  .btn {
+  /* Base button primitives for your wrappers */
+  .btn,
+  .btn-primary,
+  .btn-ghost,
+  .btn-soft {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition;
-    /* micro fallback for browsers that don't pick up DaisyUI theme immediately */
+    /* micro fallback for browsers before theme paints */
     --btn-bg-fallback: var(--ppnc-primary);
   }
-  /* Primary: prefer using `btn btn-primary` in markup (DaisyUI will handle colors) */
+
+  /* Variants (no @apply btn here) */
   .btn-primary {
-    @apply btn;
     @apply shadow-btn;
-    /* If you want a hard-coded fallback background (rare): */
     background-color: var(--ppnc-primary);
     color: var(--ppnc-primary-content);
   }
+
   .btn-ghost {
-    @apply btn bg-white/10 border border-white/30 text-white hover:bg-white/20;
+    /* keep using Tailwind core utilities only */
+    @apply bg-white/10 border border-white/30 text-white hover:bg-white/20;
   }
+
   .btn-soft {
-    @apply btn;
     background-color: color-mix(in srgb, var(--ppnc-accent) 15%, white);
     color: var(--ppnc-primary);
   }
+
 
   /* Chip */
   .chip {
@@ -157,6 +163,156 @@
   .shadow-btn {
     box-shadow: 0 6px 12px rgba(28,67,131,.18);
   }
+
+  /* Dropdown animations */
+  .dropdown-content {
+    animation: dropdownFade 0.2s ease-out;
+  }
+
+  @keyframes dropdownFade {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile submenu transitions */
+  .mobile-menu-subitems {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .mobile-menu-header svg {
+    transition: transform 0.3s ease;
+  }
+
+  /* Active state improvements */
+  .mobile-menu-group.active .mobile-menu-subitems {
+    display: block;
+  }
+
+  /* Ensure dropdowns appear above other content */
+  .dropdown {
+    z-index: 40;
+  }
+
+  .dropdown-content {
+    z-index: 50;
+  }
+}
+
+/* ---------------------------
+   Enhanced Dropdown Styles
+   --------------------------- */
+/* Enhanced Dropdown Styles - Fixed Gap Issue */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-menu {
+  transform: translateY(-10px);
+  transition: all 0.2s ease-in-out;
+  /* Strong shadow for better visibility */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5e7eb !important;
+  /* Bridge the gap between menu and dropdown */
+  margin-top: 0 !important;
+}
+
+/* Create an invisible bridge to prevent hover gap */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  z-index: 49;
+}
+
+.group:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Ensure dropdowns stand out against white background */
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  transform: rotate(45deg);
+  border-top: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+  z-index: -1;
+}
+
+/* Hover states for dropdown items */
+.nav-dropdown-menu a {
+  position: relative;
+  z-index: 1;
+  margin: 0 8px;
+  border-radius: 6px;
+}
+
+.nav-dropdown-menu a:hover {
+  background-color: var(--ppnc-primary) !important;
+  color: white !important;
+}
+
+/* Ensure dropdowns don't affect layout when hidden */
+.nav-dropdown-menu {
+  pointer-events: none;
+}
+
+.group:hover .nav-dropdown-menu {
+  pointer-events: auto;
+}
+
+/* Improved group hover behavior */
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Mobile menu improvements */
+.mobile-menu-subitems {
+  transition: max-height 0.3s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.mobile-menu-subitems:not(.hidden) {
+  max-height: 500px; /* Adjust based on your content */
+}
+
+.mobile-menu-subitems a {
+  border-radius: 6px;
+  margin: 0 4px;
+}
+
+.mobile-menu-subitems a:hover {
+  background-color: var(--ppnc-primary);
+  color: white;
+}
+
+/* Prevent flash of expanded content */
+.mobile-menu-group {
+  position: relative;
 }
 
 /* ---------------------------
@@ -178,4 +334,66 @@
   .text-marian-blue { color: #1C4383; }
   .bg-marian-blue { background-color: #1C4383; }
   .bg-argentinian-blue-15 { background-color: color-mix(in srgb, #69B4E4 15%, white); }
+  
+  /* Additional utility for dropdown spacing */
+  .dropdown-shadow {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* ---------------------------------
+Prose styles
+---------------------------------*/
+/* Improved spacing for markdown content */
+.prose {
+  max-width: none;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold text-marian-blue mb-8 mt-12;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold text-marian-blue mb-6 mt-10;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold text-gray-800 mb-4 mt-8;
+}
+
+.prose p {
+  @apply mb-6 text-gray-700 leading-relaxed;
+}
+
+.prose ul, .prose ol {
+  @apply mb-6;
+}
+
+.prose li {
+  @apply mb-3 text-gray-700;
+}
+
+/* Custom step styling */
+.steps-container {
+  counter-reset: step-counter;
+}
+
+.step-number {
+  @apply flex-shrink-0;
+}
+
+/* Improved card spacing */
+.card-padded {
+  @apply p-8;
+}
+
+/* Better table styling */
+.table-zebra tbody tr:nth-child(even) {
+  /* use your own CSS var, already defined at :root */
+  background-color: var(--ppnc-base-200);
+}
+
+/* Enhanced list styling */
+.list-inside li {
+  @apply pl-4;
 }

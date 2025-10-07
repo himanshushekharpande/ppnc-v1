@@ -1,5 +1,6 @@
 ---
-title: "Programs"
+title: "Our Programs"
+description: "Comprehensive nursing education with real clinical exposure and industry-ready training"
 ---
 
-Explore our programs for the 2025–2026 session.
+{{< programs-overview >}}

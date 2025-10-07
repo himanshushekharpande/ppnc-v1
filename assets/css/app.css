@@ -397,3 +397,22 @@ Prose styles
 .list-inside li {
   @apply pl-4;
 }
+
+@layer components {
+  /* Roomy card without touching default .card */
+  .card-roomy .card-body { @apply p-8 md:p-12 lg:p-14; }
+  .card-comfy .card-body { @apply p-6 md:p-8; }       /* medium option */
+  .card-tight .card-body { @apply p-4 md:p-6; }       /* for dense lists */
+
+  /* Big hero padding (use on top hero block) */
+  .pad-hero { @apply p-8 md:p-12 lg:p-16; }
+
+  /* Vertical spacing between stacked blocks */
+  .stack > * + * { @apply mt-8 md:mt-10 lg:mt-12; }
+
+  /* Optional: horizontal breathing room when needed */
+  .pad-x-roomy { @apply px-6 md:px-10 lg:px-12; }
+
+  /* Optional: larger vertical rhythm for a single section */
+  .pad-y-roomy { @apply py-16 md:py-20 lg:py-24; }
+}

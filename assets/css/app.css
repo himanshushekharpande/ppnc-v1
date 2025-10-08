@@ -416,3 +416,43 @@ Prose styles
   /* Optional: larger vertical rhythm for a single section */
   .pad-y-roomy { @apply py-16 md:py-20 lg:py-24; }
 }
+
+/* Hero Slider Styles */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slider controls */
+.slider-dot.active {
+  background-color: white !important;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 768px) {
+  .slider-prev,
+  .slider-next {
+    display: none;
+  }
+}

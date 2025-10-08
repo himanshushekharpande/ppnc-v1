@@ -1,4 +1,4 @@
-baseURL = "https://pranavtrust.netlify.app"
+baseURL = "https://www.ppnc.in"
 title = "Pranav Paramedical and Nursing College"
 author = "Pranav Paramedical and Nursing College"
 languageCode = "en"
@@ -32,7 +32,7 @@ enableRobotsTXT = true
     meta_description = "Nursing & Paramedical education. Established 2025. First Academic Session 2025–2026."
     meta_og_title = "Pranav Paramedical and Nursing College"
     meta_og_type = "website"
-    meta_og_url = "https://www.pranavtrust.com/"
+    meta_og_url = "https://www.ppnc.in"
     meta_og_image = "/img/og/og-image.png"   # add a 1200x630 image in /static/img/og/
     meta_og_description = "Admissions open for 2025–26: GNM and B.Sc Nursing."
     meta_twitter_card = "summary_large_image"

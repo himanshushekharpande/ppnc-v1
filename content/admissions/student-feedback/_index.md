@@ -137,7 +137,8 @@ Your opinion matters! Help us enhance your learning experience by sharing valuab
   </div>
 </div>
 {{< /raw >}}
-</br>  
+</br>
+  
 ## 🔒 Privacy Assurance
 </br>
 ✅ Your feedback is completely anonymous unless you choose to share contact details </br>

@@ -4,7 +4,6 @@ type: "program"
 duration: "4 years"
 eligibility: "10+2 with Physics, Chemistry, Biology and English (45% aggregate)"
 selection: "Based on entrance examination and counseling"
-affiliation: "University of Health Sciences"
 recognition: "Indian Nursing Council, Tripura Nursing Council"
 weight: 2
 ---
@@ -19,8 +18,7 @@ weight: 2
         <div class="flex flex-wrap items-center gap-3 mb-6">
           <span class="badge badge-primary badge-lg">B.Sc Nursing</span>
           <span class="badge badge-outline">Duration: 4 years</span>
-          <span class="badge badge-outline">Affiliation: University of Health Sciences</span>
-          <span class="badge badge-outline">Recognition: INC, Tripura Nursing Council</span>
+          <span class="badge badge-outline">Recognition: Tripura Nursing Council • Govt. of Tripura</span>
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-4">Become a Professional Nurse & Healthcare Leader</h1>
         <p class="mt-2 text-lg md:text-xl text-base-content/80">

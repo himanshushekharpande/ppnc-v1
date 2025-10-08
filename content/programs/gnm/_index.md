@@ -4,7 +4,7 @@ type: "program"
 duration: "3 years (including internship)"
 eligibility: "10+2 in any stream with 40% aggregate and English"
 age_limit: "17-27 years"
-recognition: "Indian Nursing Council, Tripura Nursing Council, Government of Tripura"
+recognition: "Tripura Nursing Council, Government of Tripura"
 intake: "As per regulatory norms"
 weight: 1
 ---
@@ -19,7 +19,7 @@ weight: 1
         <div class="flex flex-wrap items-center gap-3 mb-6">
           <span class="badge badge-primary badge-lg">GNM Diploma</span>
           <span class="badge badge-outline">Duration: 3 years (incl. internship)</span>
-          <span class="badge badge-outline">Recognition: INC • TNC • Govt. of Tripura</span>
+          <span class="badge badge-outline">Recognition: Tripura Nursing Council • Govt. of Tripura</span>
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-4">Practice-Ready General Nursing & Midwifery</h1>
         <p class="mt-2 text-lg md:text-xl text-base-content/80">

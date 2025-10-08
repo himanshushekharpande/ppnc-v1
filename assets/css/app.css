@@ -387,6 +387,48 @@ Prose styles
   @apply p-8;
 }
 
+/* Fee structure specific styles */
+.fee-structure-content h2 {
+  @apply text-3xl font-bold text-marian-blue mb-6 mt-10;
+}
+
+.fee-structure-content h3 {
+  @apply text-xl font-bold text-marian-blue mb-4 mt-6;
+}
+
+.fee-structure-content p {
+  @apply mb-6 text-gray-700 leading-relaxed text-lg;
+}
+
+.fee-structure-content ul {
+  @apply space-y-3 mb-6;
+}
+
+.fee-structure-content li {
+  @apply text-gray-700 leading-relaxed;
+}
+
+.text-lead {
+  @apply text-xl text-gray-600 leading-relaxed;
+}
+
+.section-spacing {
+  @apply mb-12;
+}
+
+/* Enhanced table styling */
+.table-zebra {
+  @apply w-full border-collapse;
+}
+
+.table-zebra th {
+  @apply px-4 py-3 text-left font-semibold;
+}
+
+.table-zebra td {
+  @apply px-4 py-3 border-t border-gray-200;
+}
+
 /* Better table styling */
 .table-zebra tbody tr:nth-child(even) {
   /* use your own CSS var, already defined at :root */

@@ -160,7 +160,8 @@
       Submit Application
     </button>
   </form>
-
+  
+  <div id="recaptcha-container"></div>
   <!-- Firebase SDK - LOAD THESE SCRIPTS -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
@@ -171,7 +172,7 @@
       apiKey: "AIzaSyBHPEUN3Ixj4yxnaSCQyF585VB1ktpDhW0",
       authDomain: "ppnc-admissions.firebaseapp.com",
       projectId: "ppnc-admissions",
-      storageBucket: "ppnc-admissions.firebasestorage.app", // Your exact value
+      storageBucket: "ppnc-admissions.appspot.com", // Your exact value
       messagingSenderId: "826820848957",
       appId: "1:826820848957:web:8dacb29345c8b8531f2954"
     };
@@ -180,78 +181,115 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    let confirmationResult;
     let recaptchaVerifier;
+    let verifierRendered = false;
+    let confirmationResult;
+
+    // 10-digit India numbers, starting 6–9
+    function phoneOK(v){ return /^[6-9]\d{9}$/.test(String(v||"").trim()); }
+
+    // Render recaptcha ONCE inside #recaptcha-container
+    async function ensureRecaptcha() {
+      if (!recaptchaVerifier) {
+        recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', { size: 'invisible' });
+      }
+      if (!verifierRendered) {
+        await recaptchaVerifier.render();
+        verifierRendered = true;
+      }
+      return recaptchaVerifier;
+    }
+
+    function logAlert(prefix, err) {
+      const code = err?.code || '(no-code)';
+      const msg  = err?.message || String(err);
+      console.error(prefix, code, msg, err);
+      alert(`${prefix}: ${code}`);
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
+      // Init hidden fields
       document.getElementById('referer-apply').value = location.href;
       document.getElementById('t0-apply').value = Date.now();
 
-      recaptchaVerifier = new firebase.auth.RecaptchaVerifier('send-otp', {
-        'size': 'invisible'
+      const sendBtn   = document.getElementById('send-otp');
+      const verifyBox = document.getElementById('verify-otp-section');
+      const otpInput  = document.getElementById('otp');
+      const phoneEl   = document.getElementById('phone');
+
+      // 1) Send OTP
+      sendBtn.addEventListener('click', async () => {
+        const p10 = phoneEl.value.trim();
+        if (!phoneOK(p10)) { alert('Please enter valid 10-digit Indian number (starts 6–9)'); return; }
+
+        try {
+          await ensureRecaptcha();
+          confirmationResult = await auth.signInWithPhoneNumber('+91' + p10, recaptchaVerifier);
+
+          verifyBox.classList.remove('hidden');
+          sendBtn.textContent = 'OTP Sent!';
+          sendBtn.disabled = true;
+        } catch (e) {
+          // Common: auth/operation-not-allowed, auth/invalid-app-credential, auth/too-many-requests
+          logAlert('Error sending OTP', e);
+          try { recaptchaVerifier.clear(); } catch(_) {}
+          recaptchaVerifier = null;
+          verifierRendered = false;
+        }
       });
 
-      document.getElementById('send-otp').addEventListener('click', () => {
-        const phone = document.getElementById('phone').value;
-        if (!phone.match(/^[6-9]\d{9}$/)) {
-          alert('Please enter valid 10-digit Indian number');
-          return;
-        }
-        
-        const internationalPhone = '+91' + phone;
-        sendOTP(internationalPhone);
-      });
+      // 2) Verify OTP
+      document.getElementById('verify-otp').addEventListener('click', async () => {
+        const code = otpInput.value.trim();
+        if (!/^\d{6}$/.test(code)) { alert('Please enter 6-digit OTP'); return; }
 
-      document.getElementById('verify-otp').addEventListener('click', () => {
-        const otp = document.getElementById('otp').value;
-        if (!otp.match(/^\d{6}$/)) {
-          alert('Please enter 6-digit OTP');
-          return;
-        }
+        try {
+          const result = await confirmationResult.confirm(code);
+          const phoneE164 = result.user.phoneNumber; // +91XXXXXXXXXX
 
-        confirmationResult.confirm(otp).then((result) => {
-          document.getElementById('verified-phone').value = result.user.phoneNumber;
-          document.getElementById('verified-phone-display').value = result.user.phoneNumber.replace('+91', '');
+          // Fill verified phone into your hidden + display fields
+          document.getElementById('verified-phone').value = phoneE164;
+          document.getElementById('verified-phone-display').value = phoneE164.replace('+91', '');
+
+          // Move to the full form
           document.getElementById('otp-step').classList.add('hidden');
           document.getElementById('apply-form').classList.remove('hidden');
-        }).catch((error) => {
-          alert('Invalid OTP');
-        });
+        } catch (e) {
+          logAlert('Invalid OTP', e);
+        }
       });
 
-      document.getElementById('resend-otp').addEventListener('click', () => {
-        const phone = document.getElementById('phone').value;
-        const internationalPhone = '+91' + phone;
-        sendOTP(internationalPhone);
-        alert('OTP sent again!');
+      // 3) Resend OTP
+      document.getElementById('resend-otp').addEventListener('click', async () => {
+        const p10 = phoneEl.value.trim();
+        if (!phoneOK(p10)) return;
+        try {
+          await ensureRecaptcha();
+          confirmationResult = await auth.signInWithPhoneNumber('+91' + p10, recaptchaVerifier);
+          alert('OTP sent again!');
+        } catch (e) {
+          logAlert('Resend failed', e);
+        }
       });
 
-      document.getElementById('apply-form').addEventListener('submit', function(e) {
+      // 4) Submit (CURRENTLY: direct-to-GAS; see Part B to harden)
+      document.getElementById('apply-form').addEventListener('submit', async function (e) {
         e.preventDefault();
+
+        // You can optionally enforce verified phone presence:
+        const e164 = (document.getElementById('verified-phone').value||'').trim();
+        if (!e164.startsWith('+91')) { alert('Phone not verified.'); return; }
+
         const formData = new FormData(this);
-        
         fetch('https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec', {
           method: 'POST',
           body: formData
         }).then(() => {
           window.location.href = "{{ "admissions/thank-you/" | absURL }}";
+        }).catch(err => {
+          logAlert('Submission failed', err);
         });
       });
     });
-
-    function sendOTP(phone) {
-      auth.signInWithPhoneNumber(phone, recaptchaVerifier)
-        .then((result) => {
-          confirmationResult = result;
-          document.getElementById('verify-otp-section').classList.remove('hidden');
-          document.getElementById('send-otp').textContent = 'OTP Sent!';
-          document.getElementById('send-otp').disabled = true;
-        })
-        .catch((error) => {
-          alert('Error sending OTP');
-          recaptchaVerifier.clear();
-          recaptchaVerifier = new firebase.auth.RecaptchaVerifier('send-otp', {'size': 'invisible'});
-        });
-    }
   </script>
 </div>

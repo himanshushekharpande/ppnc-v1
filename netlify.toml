@@ -6,3 +6,20 @@
   HUGO_VERSION = "0.150.1"
   NODE_VERSION = "20"
   NPM_FLAGS = "--include=dev"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Proxy /api/* to Netlify Functions (/.netlify/functions/*)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# CSP to allow Firebase Phone Auth + reCAPTCHA + fonts
+[[headers]]
+  for = "/*"
+  [headers.values]
+  # Keep as a single line in your file:
+  Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.google.com https://www.googletagmanager.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.gstatic.com https://www.google-analytics.com; img-src 'self' data: https://www.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com; child-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com;"

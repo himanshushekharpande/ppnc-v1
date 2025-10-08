@@ -8,6 +8,9 @@
     "build:css": "cross-env NODE_ENV=production tailwindcss -i ./assets/css/app.css -o ./static/css/style.css --minify",
     "build": "npm run build:css && hugo --minify"
   },
+  "dependencies": {
+    "firebase-admin": "^12.5.0"
+  },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.12",
     "autoprefixer": "^10.4.19",

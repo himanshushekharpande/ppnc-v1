@@ -4,4 +4,4 @@ title: "Apply"
 
 Please complete the application below.
 
-{{< apply >}}
+{{< apply-otp >}}

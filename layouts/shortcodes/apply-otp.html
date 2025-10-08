@@ -1,0 +1,257 @@
+<div class="max-w-3xl mx-auto my-12 px-6">
+  <h2 class="text-2xl font-bold mb-6 text-marian-blue">Application Form</h2>
+
+  <!-- OTP Verification Step -->
+  <div id="otp-step" class="space-y-6 bg-white p-6 rounded-lg shadow-md border border-gray-200 mb-6">
+    <h3 class="text-lg font-semibold text-gray-800">Mobile Verification</h3>
+    
+    <div>
+      <label for="phone" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+      <input id="phone" type="tel" required 
+             pattern="[6-9][0-9]{9}" 
+             placeholder="98XXXXXX20"
+             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm">
+      <p class="text-xs text-gray-500 mt-1">10-digit Indian mobile number</p>
+    </div>
+    
+    <button type="button" id="send-otp" 
+            class="w-full px-4 py-2 bg-marian-blue text-white rounded-md hover:bg-resolution-blue transition">
+      Send OTP
+    </button>
+
+    <div id="verify-otp-section" class="hidden space-y-4">
+      <div>
+        <label for="otp" class="block text-sm font-medium text-gray-700">Enter OTP</label>
+        <input id="otp" type="text" pattern="[0-9]{6}" maxlength="6" placeholder="000000"
+               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm text-center text-lg font-semibold">
+      </div>
+      
+      <div class="flex gap-2">
+        <button type="button" id="verify-otp" 
+                class="flex-1 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+          Verify OTP
+        </button>
+        <button type="button" id="resend-otp" 
+                class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">
+          Resend
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Form -->
+  <form id="apply-form" class="hidden space-y-6 bg-white p-6 rounded-lg shadow-md border border-gray-200">
+    <input type="hidden" name="form_type" value="application">
+    <input type="hidden" name="verified_phone" id="verified-phone">
+    <input type="hidden" name="redirect" value="{{ "admissions/thank-you/" | absURL }}">
+    <input type="hidden" name="referer" id="referer-apply">
+    <input type="hidden" name="t0" id="t0-apply">
+
+    <!-- Honeypot -->
+    <div class="hidden">
+      <label>Leave this field empty</label>
+      <input type="text" name="website" autocomplete="off">
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Full Name *</label>
+        <input id="name" name="name" required
+               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Verified Mobile</label>
+        <input type="text" id="verified-phone-display" disabled
+               class="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 sm:text-sm">
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+        <input id="email" type="email" name="email" required
+               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm">
+      </div>
+      <!-- Parent's Mobile removed as requested -->
+    </div>
+
+    <!-- NEW: State of Residence -->
+    <div>
+      <label for="state" class="block text-sm font-medium text-gray-700">State of Residence *</label>
+      <select id="state" name="state" required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm">
+        <option value="">Select</option>
+        <!-- States (28) -->
+        <option>Andhra Pradesh</option>
+        <option>Arunachal Pradesh</option>
+        <option>Assam</option>
+        <option>Bihar</option>
+        <option>Chhattisgarh</option>
+        <option>Goa</option>
+        <option>Gujarat</option>
+        <option>Haryana</option>
+        <option>Himachal Pradesh</option>
+        <option>Jharkhand</option>
+        <option>Karnataka</option>
+        <option>Kerala</option>
+        <option>Madhya Pradesh</option>
+        <option>Maharashtra</option>
+        <option>Manipur</option>
+        <option>Meghalaya</option>
+        <option>Mizoram</option>
+        <option>Nagaland</option>
+        <option>Odisha</option>
+        <option>Punjab</option>
+        <option>Rajasthan</option>
+        <option>Sikkim</option>
+        <option>Tamil Nadu</option>
+        <option>Telangana</option>
+        <option>Tripura</option>
+        <option>Uttar Pradesh</option>
+        <option>Uttarakhand</option>
+        <option>West Bengal</option>
+        <!-- Union Territories (8) -->
+        <option>Andaman and Nicobar Islands</option>
+        <option>Chandigarh</option>
+        <option>Dadra and Nagar Haveli and Daman and Diu</option>
+        <option>Delhi</option>
+        <option>Jammu and Kashmir</option>
+        <option>Ladakh</option>
+        <option>Lakshadweep</option>
+        <option>Puducherry</option>
+      </select>
+    </div>
+
+    <div class="border-t pt-6">
+      <h4 class="text-lg font-semibold text-marian-blue mb-4">Educational Details</h4>
+      
+      <div class="space-y-4">
+        <div>
+          <label for="qualification" class="block text-sm font-medium text-gray-700">Highest Qualification *</label>
+          <select id="qualification" name="qualification" required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm">
+            <option value="">Select</option>
+            <option value="10th">10th Standard</option>
+            <option value="12th">12th Standard</option>
+            <!-- "Graduate" removed as requested -->
+          </select>
+        </div>
+
+        <div>
+          <label for="program" class="block text-sm font-medium text-gray-700">Program *</label>
+          <select id="program" name="program" required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm">
+            <option value="">Select</option>
+            <option value="GNM">GNM Nursing</option>
+            <option value="BSc Nursing">B.Sc Nursing</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="message" class="block text-sm font-medium text-gray-700">Additional Information</label>
+      <textarea id="message" name="message" rows="4"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm"></textarea>
+    </div>
+
+    <button type="submit"
+            class="w-full px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition">
+      Submit Application
+    </button>
+  </form>
+
+  <!-- Firebase SDK - LOAD THESE SCRIPTS -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  
+  <script>
+    // 🔥 USE YOUR EXACT CONFIG VALUES HERE:
+    const firebaseConfig = {
+      apiKey: "AIzaSyBHPEUN3Ixj4yxnaSCQyF585VB1ktpDhW0",
+      authDomain: "ppnc-admissions.firebaseapp.com",
+      projectId: "ppnc-admissions",
+      storageBucket: "ppnc-admissions.firebasestorage.app", // Your exact value
+      messagingSenderId: "826820848957",
+      appId: "1:826820848957:web:8dacb29345c8b8531f2954"
+    };
+
+    // ✅ INITIALIZE FIREBASE THIS WAY (not with imports)
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    let confirmationResult;
+    let recaptchaVerifier;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('referer-apply').value = location.href;
+      document.getElementById('t0-apply').value = Date.now();
+
+      recaptchaVerifier = new firebase.auth.RecaptchaVerifier('send-otp', {
+        'size': 'invisible'
+      });
+
+      document.getElementById('send-otp').addEventListener('click', () => {
+        const phone = document.getElementById('phone').value;
+        if (!phone.match(/^[6-9]\d{9}$/)) {
+          alert('Please enter valid 10-digit Indian number');
+          return;
+        }
+        
+        const internationalPhone = '+91' + phone;
+        sendOTP(internationalPhone);
+      });
+
+      document.getElementById('verify-otp').addEventListener('click', () => {
+        const otp = document.getElementById('otp').value;
+        if (!otp.match(/^\d{6}$/)) {
+          alert('Please enter 6-digit OTP');
+          return;
+        }
+
+        confirmationResult.confirm(otp).then((result) => {
+          document.getElementById('verified-phone').value = result.user.phoneNumber;
+          document.getElementById('verified-phone-display').value = result.user.phoneNumber.replace('+91', '');
+          document.getElementById('otp-step').classList.add('hidden');
+          document.getElementById('apply-form').classList.remove('hidden');
+        }).catch((error) => {
+          alert('Invalid OTP');
+        });
+      });
+
+      document.getElementById('resend-otp').addEventListener('click', () => {
+        const phone = document.getElementById('phone').value;
+        const internationalPhone = '+91' + phone;
+        sendOTP(internationalPhone);
+        alert('OTP sent again!');
+      });
+
+      document.getElementById('apply-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        
+        fetch('https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec', {
+          method: 'POST',
+          body: formData
+        }).then(() => {
+          window.location.href = "{{ "admissions/thank-you/" | absURL }}";
+        });
+      });
+    });
+
+    function sendOTP(phone) {
+      auth.signInWithPhoneNumber(phone, recaptchaVerifier)
+        .then((result) => {
+          confirmationResult = result;
+          document.getElementById('verify-otp-section').classList.remove('hidden');
+          document.getElementById('send-otp').textContent = 'OTP Sent!';
+          document.getElementById('send-otp').disabled = true;
+        })
+        .catch((error) => {
+          alert('Error sending OTP');
+          recaptchaVerifier.clear();
+          recaptchaVerifier = new firebase.auth.RecaptchaVerifier('send-otp', {'size': 'invisible'});
+        });
+    }
+  </script>
+</div>

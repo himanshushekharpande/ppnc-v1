@@ -18,7 +18,7 @@ enableRobotsTXT = true
   collegeApi = "https://your-api.example.com"   # e.g., Workers/Lambda URL
 
   [params.logo]
-    main = "img/logo/ppnc-logo.webp"      # put your logo in /static/img/logo/logo.svg
+    main = "img/logo/logo-1.webp"      # put your logo in /static/img/logo/logo.svg
     alt = "Pranav Paramedical and Nursing College"
     size = "h-10 md:h-12 w-auto object-contain"
 
@@ -33,11 +33,89 @@ enableRobotsTXT = true
     meta_og_title = "Pranav Paramedical and Nursing College"
     meta_og_type = "website"
     meta_og_url = "https://www.ppnc.in"
-    meta_og_image = "/img/og/og-image.png"   # add a 1200x630 image in /static/img/og/
+    meta_og_image = "/img/og/logo-1.webp"   # add a 1200x630 image in /static/img/og/
     meta_og_description = "Admissions open for 2025–26: GNM and B.Sc Nursing."
     meta_twitter_card = "summary_large_image"
     meta_twitter_site = "@"
     meta_twitter_creator = "@"
+
+  [params.hero]
+
+  # Homepage slider (story flow)
+  [[params.hero.slides]]
+    desktop = "img/hero/cover_05_desktop.webp"
+    tablet  = "img/hero/cover_05_tablet.webp"
+    mobile  = "img/hero/cover_05_mobile.webp"
+    title   = "Admissions Open 2025"
+    text    = "B.Sc Nursing & GNM · Apply Online Today"
+    ctaText = "Apply Now"
+    ctaLink = "/admissions/apply/"
+
+  [[params.hero.slides]]
+    desktop = "img/hero/cover_06_desktop.webp"
+    tablet  = "img/hero/cover_06_tablet.webp"
+    mobile  = "img/hero/cover_06_mobile.webp"
+    title   = "Programs in Nursing & Paramedical"
+    text    = "Build your career with B.Sc Nursing & GNM"
+    ctaText = "Explore Programs"
+    ctaLink = "/programs/"
+
+  [[params.hero.slides]]
+    desktop = "img/hero/cover_07_desktop.webp"
+    tablet  = "img/hero/cover_07_tablet.webp"
+    mobile  = "img/hero/cover_07_mobile.webp"
+    title   = "Student-Friendly Campus"
+    text    = "Safe, modern infrastructure with clinical training exposure"
+    ctaText = "Campus Life"
+    ctaLink = "/news/"
+
+  [[params.hero.slides]]
+    desktop = "img/hero/cover_08_desktop.webp"
+    tablet  = "img/hero/cover_08_tablet.webp"
+    mobile  = "img/hero/cover_08_mobile.webp"
+    title   = "Join the Future of Healthcare"
+    text    = "Get in touch for admissions, scholarships, and careers"
+    ctaText = "Contact Us"
+    ctaLink = "/contact/"
+
+  # Hero covers for individual menu pages
+  [params.hero.pages]
+
+  [params.hero.pages.home]
+    desktop = "img/hero/cover_05_desktop.webp"
+    tablet  = "img/hero/cover_05_tablet.webp"
+    mobile  = "img/hero/cover_05_mobile.webp"
+    title   = "Welcome to PPNC"
+    text    = "Nursing & Paramedical Education • Established 2025"
+
+  [params.hero.pages.programs]
+    desktop = "img/hero/cover_06_desktop.webp"
+    tablet  = "img/hero/cover_06_tablet.webp"
+    mobile  = "img/hero/cover_06_mobile.webp"
+    title   = "Programs"
+    text    = "B.Sc Nursing · GNM"
+
+  [params.hero.pages.admissions]
+    desktop = "img/hero/cover_05_desktop.webp"
+    tablet  = "img/hero/cover_05_tablet.webp"
+    mobile  = "img/hero/cover_05_mobile.webp"
+    title   = "Admissions"
+    text    = "Apply for the Academic Session 2025"
+
+  [params.hero.pages.news]
+    desktop = "img/hero/cover_07_desktop.webp"
+    tablet  = "img/hero/cover_07_tablet.webp"
+    mobile  = "img/hero/cover_07_mobile.webp"
+    title   = "News & Updates"
+    text    = "Notices • Events • Career @ PPNC"
+
+  [params.hero.pages.contact]
+    desktop = "img/hero/cover_08_desktop.webp"
+    tablet  = "img/hero/cover_08_tablet.webp"
+    mobile  = "img/hero/cover_08_mobile.webp"
+    title   = "Contact Us"
+    text    = "Get in touch for Admissions and Support"
+
 
 [menu]
   [[menu.main]]

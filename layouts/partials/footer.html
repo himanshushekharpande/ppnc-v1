@@ -1,10 +1,17 @@
 <footer class="mt-10 border-t border-gray-100">
   <div class="container-site py-10 grid gap-8 md:grid-cols-4">
+    <!-- Brand -->
     <div>
-      <div class="text-xl font-extrabold text-space-cadet">PPNC</div>
+      <img src="/img/logo/ppnc-logo.webp" 
+           alt="PPNC Logo" 
+           class="h-12 w-auto mb-3" 
+           loading="lazy" decoding="async">
+      <!-- <div class="text-xl font-extrabold text-space-cadet">PPNC</div> -->
       <p class="mt-2 text-gray-600">Pranav Paramedical & Nursing College</p>
       <p class="mt-2 text-gray-500 text-sm">Agartala, Tripura (West)</p>
     </div>
+
+    <!-- Programs -->
     <div>
       <div class="kicker">Programs</div>
       <ul class="mt-3 space-y-2 text-gray-600">
@@ -12,6 +19,8 @@
         <li><a class="hover:text-marian-blue" href="/programs/bsc-nursing/">B.Sc Nursing</a></li>
       </ul>
     </div>
+
+    <!-- Admissions -->
     <div>
       <div class="kicker">Admissions</div>
       <ul class="mt-3 space-y-2 text-gray-600">
@@ -19,18 +28,28 @@
         <li><a class="hover:text-marian-blue" href="/admissions/apply/">Online Application</a></li>
       </ul>
     </div>
+
+    <!-- Contact -->
     <div>
       <div class="kicker">Contact</div>
       <ul class="mt-3 space-y-2 text-gray-600">
-        <li><a class="hover:text-marian-blue" href="tel:+919050208060">+91 9050 402 070</a></li>
-        <li><a class="hover:text-marian-blue" href="mailto:ppnc@pranavtrust.com">info@ppnc.in</a></li>
+        <li><a class="hover:text-marian-blue" href="tel:+919050402070">+91 9050 402 070</a></li>
+        <li><a class="hover:text-marian-blue" href="mailto:info@ppnc.in">info@ppnc.in</a></li>
         <li><a class="hover:text-marian-blue" href="/contact/">Contact Form</a></li>
       </ul>
+      <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+        Damdamia, P.O.- Lembucherra, P.S.- Lefunga,<br/>
+        Near Fatima Convent School,<br/>
+        Debendra Chandra Nagar,<br/>
+        Agartala, Tripura (W) - 799210
+      </p>
     </div>
   </div>
+
   <div class="border-t border-gray-100">
-    <div class="container-site py-6 text-sm text-gray-500 flex items-center justify-between">
+    <div class="container-site py-6 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-2">
       <span>© {{ now.Year }} PPNC. All rights reserved.</span>
+      <!-- <span>Made with ❤️ in Tripura</span> -->
     </div>
   </div>
 </footer>

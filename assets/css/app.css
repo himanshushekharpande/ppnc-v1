@@ -1,17 +1,10 @@
 /* assets/css/app.css
  *
- * Tailwind + DaisyUI friendly app stylesheet
+ * Tailwind + DaisyUI friendly stylesheet
  * - Uses Tailwind layers
- * - Provides CSS variables for JS-theme toggling or fallbacks
- * - Provides lightweight component wrappers mapped to DaisyUI classes
- *
- * Notes:
- * - DaisyUI plugin + theme should be registered in tailwind.config.cjs (recommended).
- * - Once templates are migrated, you can remove many of these wrapper classes and
- *   use DaisyUI classes directly (e.g. `btn btn-primary`, `card`, etc.).
+ * - Provides CSS variables for theme colors
+ * - Avoids @apply on DaisyUI theme classes (bg-base-100, text-primary, etc.)
  */
-/* Import your additional overrides last so they can override the component layer */
-/* @import "./custom.css"; */
 
 /* Tailwind core layers */
 @tailwind base;
@@ -19,13 +12,9 @@
 @tailwind utilities;
 
 /* ---------------------------
-   CSS variables (JS-toggle friendly)
-   ---------------------------
-   Useful when toggling themes via `document.documentElement.classList`
-   or when you need runtime access to theme colors.
-*/
+   CSS variables (theme colors)
+--------------------------- */
 :root {
-  /* primary palette */
   --ppnc-primary: #1C4383;           /* marian-blue */
   --ppnc-primary-content: #ffffff;
 
@@ -48,9 +37,7 @@
   --ppnc-error: #EF4444;
 }
 
-/* Optional: theme class (if you toggle themes via class)
-   Example usage: <html class="theme-ppnc"> ... </html>
-*/
+/* Optional theme class for runtime toggling */
 .theme-ppnc {
   --color-primary: var(--ppnc-primary);
   --color-primary-content: var(--ppnc-primary-content);
@@ -70,11 +57,8 @@
 }
 
 /* ---------------------------
-   Component layer: wrapper classes that play nice with DaisyUI
-   - Keep these while migrating. They provide consistent spacing,
-     radii, and shadows while DaisyUI supplies color/states.
-   - Use DaisyUI classes directly in new templates.
-   --------------------------- */
+   Components Layer
+--------------------------- */
 @layer components {
   /* Page container */
   .container-site {
@@ -91,38 +75,49 @@
     background-image: linear-gradient(to bottom, var(--ppnc-base-100), #F8FAFC);
   }
 
-  /* Card primitives: uses DaisyUI's base classes for color, ours for spacing/shadow */
+  /* Card overrides */
   .card {
-    /* keep DaisyUI's card color classes available (bg-base-100 etc.) */
-    @apply rounded-2xl border border-gray-100;
-    box-shadow: var(--tw-shadow, 0 10px 20px rgba(39,42,76,.06));
+    @apply rounded-2xl shadow-card;
+    border: 1px solid var(--ppnc-base-300);
     background-color: var(--ppnc-base-100);
   }
-  .card-padded {
+  .card-body {
     @apply p-6 md:p-8;
   }
 
-  /* Kicker (small uppercase label) */
-  .kicker {
-    @apply uppercase tracking-[0.18em] text-xs font-semibold;
-    color: color-mix(in srgb, var(--ppnc-primary) 80%, transparent);
+  /* Hover lift effect */
+  .card:hover {
+    transform: translateY(-2px);
+    transition: transform .2s ease;
   }
 
-  /* Buttons
-     - Prefer DaisyUI classes `btn`, `btn-primary`, `btn-ghost`, etc. in markup.
-     - These wrappers keep your previous markup stable while adopting Daisy's color tokens.
-  */
-  /* Base button primitives for your wrappers */
+  /* Chip */
+  chip {
+  @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium;
+  background-color: color-mix(in srgb, var(--ppnc-accent) 15%, white);
+  color: var(--ppnc-primary);
+}
+
+  /* Allow overriding with Tailwind classes like bg-primary, bg-secondary */
+  .chip.bg-primary,
+  .chip.bg-secondary,
+  .chip.bg-accent,
+  .chip.bg-info,
+  .chip.bg-success,
+  .chip.bg-warning,
+  .chip.bg-error {
+    background-color: unset; /* let Tailwind/DaisyUI set it */
+    color: unset;
+  }
+
+  /* Buttons */
   .btn,
   .btn-primary,
   .btn-ghost,
   .btn-soft {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition;
-    /* micro fallback for browsers before theme paints */
-    --btn-bg-fallback: var(--ppnc-primary);
   }
 
-  /* Variants (no @apply btn here) */
   .btn-primary {
     @apply shadow-btn;
     background-color: var(--ppnc-primary);
@@ -130,19 +125,13 @@
   }
 
   .btn-ghost {
-    /* keep using Tailwind core utilities only */
-    @apply bg-white/10 border border-white/30 text-white hover:bg-white/20;
+    @apply border;
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+    color: white;
   }
 
   .btn-soft {
-    background-color: color-mix(in srgb, var(--ppnc-accent) 15%, white);
-    color: var(--ppnc-primary);
-  }
-
-
-  /* Chip */
-  .chip {
-    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm;
     background-color: color-mix(in srgb, var(--ppnc-accent) 15%, white);
     color: var(--ppnc-primary);
   }
@@ -153,10 +142,11 @@
     color: var(--ppnc-primary);
   }
   .stat-sub {
-    @apply text-sm text-gray-500;
+    @apply text-sm;
+    color: #6b7280; /* gray-500 */
   }
 
-  /* Utility shadow tokens for convenience */
+  /* Shadows */
   .shadow-card {
     box-shadow: 0 10px 20px rgba(39,42,76,.06);
   }
@@ -164,83 +154,33 @@
     box-shadow: 0 6px 12px rgba(28,67,131,.18);
   }
 
-  /* Dropdown animations */
-  .dropdown-content {
-    animation: dropdownFade 0.2s ease-out;
-  }
-
-  @keyframes dropdownFade {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Mobile submenu transitions */
-  .mobile-menu-subitems {
-    transition: all 0.3s ease-in-out;
-  }
-
-  .mobile-menu-header svg {
-    transition: transform 0.3s ease;
-  }
-
-  /* Active state improvements */
-  .mobile-menu-group.active .mobile-menu-subitems {
-    display: block;
-  }
-
-  /* Ensure dropdowns appear above other content */
-  .dropdown {
-    z-index: 40;
-  }
-
-  .dropdown-content {
-    z-index: 50;
+  /* Kicker */
+  .kicker {
+    @apply uppercase tracking-[0.18em] text-xs font-semibold;
+    color: color-mix(in srgb, var(--ppnc-primary) 80%, transparent);
   }
 }
 
 /* ---------------------------
-   Enhanced Dropdown Styles
-   --------------------------- */
-/* Enhanced Dropdown Styles - Fixed Gap Issue */
+   Dropdown Styles
+--------------------------- */
 .nav-dropdown {
   position: relative;
 }
-
 .nav-dropdown-menu {
   transform: translateY(-10px);
   transition: all 0.2s ease-in-out;
-  /* Strong shadow for better visibility */
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
   border: 1px solid #e5e7eb !important;
-  /* Bridge the gap between menu and dropdown */
   margin-top: 0 !important;
+  pointer-events: none;
 }
-
-/* Create an invisible bridge to prevent hover gap */
-.nav-dropdown::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background: transparent;
-  z-index: 49;
-}
-
 .group:hover .nav-dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto;
 }
-
-/* Ensure dropdowns stand out against white background */
 .nav-dropdown-menu::before {
   content: '';
   position: absolute;
@@ -254,38 +194,20 @@
   border-left: 1px solid #e5e7eb;
   z-index: -1;
 }
-
-/* Hover states for dropdown items */
-.nav-dropdown-menu a {
-  position: relative;
-  z-index: 1;
-  margin: 0 8px;
-  border-radius: 6px;
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  z-index: 49;
 }
 
-.nav-dropdown-menu a:hover {
-  background-color: var(--ppnc-primary) !important;
-  color: white !important;
-}
-
-/* Ensure dropdowns don't affect layout when hidden */
-.nav-dropdown-menu {
-  pointer-events: none;
-}
-
-.group:hover .nav-dropdown-menu {
-  pointer-events: auto;
-}
-
-/* Improved group hover behavior */
-.nav-dropdown:hover .nav-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* Mobile menu improvements */
+/* ---------------------------
+   Mobile menu
+--------------------------- */
 .mobile-menu-subitems {
   transition: max-height 0.3s ease-in-out;
   max-height: 0;
@@ -295,30 +217,21 @@
   margin-top: 4px;
   margin-bottom: 4px;
 }
-
 .mobile-menu-subitems:not(.hidden) {
-  max-height: 500px; /* Adjust based on your content */
+  max-height: 500px;
 }
-
 .mobile-menu-subitems a {
   border-radius: 6px;
   margin: 0 4px;
 }
-
 .mobile-menu-subitems a:hover {
   background-color: var(--ppnc-primary);
   color: white;
 }
 
-/* Prevent flash of expanded content */
-.mobile-menu-group {
-  position: relative;
-}
-
 /* ---------------------------
-   Small accessibility helpers
-   --------------------------- */
-/* Focus visible ring tuned to primary color */
+   Accessibility
+--------------------------- */
 :focus-visible {
   outline: none;
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--ppnc-primary) 12%, transparent);
@@ -326,175 +239,48 @@
 }
 
 /* ---------------------------
-   Utilities / helpers you might keep
-   - If you prefer using aliases like .text-marian-blue, add here.
-   - Keep these minimal to avoid duplication with Tailwind utilities.
-   --------------------------- */
+   Utilities
+--------------------------- */
 @layer utilities {
   .text-marian-blue { color: #1C4383; }
   .bg-marian-blue { background-color: #1C4383; }
   .bg-argentinian-blue-15 { background-color: color-mix(in srgb, #69B4E4 15%, white); }
-  
-  /* Additional utility for dropdown spacing */
   .dropdown-shadow {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
   }
 }
 
-/* ---------------------------------
-Prose styles
----------------------------------*/
-/* Improved spacing for markdown content */
-.prose {
-  max-width: none;
-}
+/* ---------------------------
+   Prose styles
+--------------------------- */
+.prose { max-width: none; }
+.prose h1 { @apply text-4xl font-bold mb-8 mt-12; color: var(--ppnc-primary); }
+.prose h2 { @apply text-3xl font-bold mb-6 mt-10; color: var(--ppnc-primary); }
+.prose h3 { @apply text-2xl font-semibold mb-4 mt-8; color: #1f2937; } /* gray-800 */
+.prose p  { @apply mb-6 leading-relaxed; color: #374151; } /* gray-700 */
+.prose ul, .prose ol { @apply mb-6; }
+.prose li { @apply mb-3; color: #374151; }
 
-.prose h1 {
-  @apply text-4xl font-bold text-marian-blue mb-8 mt-12;
-}
-
-.prose h2 {
-  @apply text-3xl font-bold text-marian-blue mb-6 mt-10;
-}
-
-.prose h3 {
-  @apply text-2xl font-semibold text-gray-800 mb-4 mt-8;
-}
-
-.prose p {
-  @apply mb-6 text-gray-700 leading-relaxed;
-}
-
-.prose ul, .prose ol {
-  @apply mb-6;
-}
-
-.prose li {
-  @apply mb-3 text-gray-700;
-}
-
-/* Custom step styling */
-.steps-container {
-  counter-reset: step-counter;
-}
-
-.step-number {
-  @apply flex-shrink-0;
-}
-
-/* Improved card spacing */
-.card-padded {
-  @apply p-8;
-}
-
-/* Fee structure specific styles */
-.fee-structure-content h2 {
-  @apply text-3xl font-bold text-marian-blue mb-6 mt-10;
-}
-
-.fee-structure-content h3 {
-  @apply text-xl font-bold text-marian-blue mb-4 mt-6;
-}
-
-.fee-structure-content p {
-  @apply mb-6 text-gray-700 leading-relaxed text-lg;
-}
-
-.fee-structure-content ul {
-  @apply space-y-3 mb-6;
-}
-
-.fee-structure-content li {
-  @apply text-gray-700 leading-relaxed;
-}
-
-.text-lead {
-  @apply text-xl text-gray-600 leading-relaxed;
-}
-
-.section-spacing {
-  @apply mb-12;
-}
-
-/* Enhanced table styling */
-.table-zebra {
-  @apply w-full border-collapse;
-}
-
-.table-zebra th {
-  @apply px-4 py-3 text-left font-semibold;
-}
-
-.table-zebra td {
-  @apply px-4 py-3 border-t border-gray-200;
-}
-
-/* Better table styling */
-.table-zebra tbody tr:nth-child(even) {
-  /* use your own CSS var, already defined at :root */
-  background-color: var(--ppnc-base-200);
-}
-
-/* Enhanced list styling */
-.list-inside li {
-  @apply pl-4;
-}
-
-@layer components {
-  /* Roomy card without touching default .card */
-  .card-roomy .card-body { @apply p-8 md:p-12 lg:p-14; }
-  .card-comfy .card-body { @apply p-6 md:p-8; }       /* medium option */
-  .card-tight .card-body { @apply p-4 md:p-6; }       /* for dense lists */
-
-  /* Big hero padding (use on top hero block) */
-  .pad-hero { @apply p-8 md:p-12 lg:p-16; }
-
-  /* Vertical spacing between stacked blocks */
-  .stack > * + * { @apply mt-8 md:mt-10 lg:mt-12; }
-
-  /* Optional: horizontal breathing room when needed */
-  .pad-x-roomy { @apply px-6 md:px-10 lg:px-12; }
-
-  /* Optional: larger vertical rhythm for a single section */
-  .pad-y-roomy { @apply py-16 md:py-20 lg:py-24; }
-}
-
-/* Hero Slider Styles */
+/* ---------------------------
+   Hero Slider
+--------------------------- */
 .hero-slider {
   position: relative;
   width: 100%;
   height: 100%;
 }
-
 .hero-slide {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
-
-.hero-slide.active {
-  opacity: 1;
-}
-
-.hero-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Slider controls */
-.slider-dot.active {
-  background-color: white !important;
-}
+.hero-slide.active { opacity: 1; }
+.hero-slide img { @apply w-full h-full object-cover; }
+.slider-dot.active { background-color: white !important; }
 
 /* Hide arrows on mobile */
 @media (max-width: 768px) {
-  .slider-prev,
-  .slider-next {
-    display: none;
-  }
+  .slider-prev, .slider-next { display: none; }
 }

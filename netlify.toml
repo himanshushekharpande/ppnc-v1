@@ -11,15 +11,14 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
-# Proxy /api/* to Netlify Functions (/.netlify/functions/*)
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
-# CSP to allow Firebase Phone Auth + reCAPTCHA + fonts
+# Broad CSP so Tailwind + daisyUI + Google Fonts + Firebase + (any https CDN) load fine
 [[headers]]
   for = "/*"
   [headers.values]
-  # Keep as a single line in your file:
-  Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.google.com https://www.googletagmanager.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.gstatic.com https://www.google-analytics.com; img-src 'self' data: https://www.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com; child-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com;"
+  # keep on ONE line
+  Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; frame-src https:;"

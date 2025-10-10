@@ -2,20 +2,15 @@
 <header class="fixed top-0 left-0 w-full bg-white shadow-sm border-b border-gray-200 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-3">
-      <!-- Logo + Text -->
-      <a href="{{ "/" | relURL }}" class="flex items-center space-x-3 flex-shrink-0 min-w-0 max-w-[70%]">
+      <!-- Logo Only -->
+      <a href="{{ "/" | relURL }}" class="flex items-center flex-shrink-0 min-w-0">
         {{ with .Site.Params.logo.main }}
-          <img src="{{ . | relURL }}" alt="{{ $.Site.Params.logo.alt }}" class="h-10 w-auto">
+          <img src="{{ . | relURL }}"
+              alt="{{ $.Site.Params.logo.alt }}"
+              class="h-16 lg:h-20 w-auto max-w-none" />
         {{ end }}
-        <div class="flex flex-col min-w-0">
-          <span class="text-sm font-bold text-gray-900 truncate leading-tight">
-            PRANAV PARAMEDICAL & NURSING COLLEGE
-          </span>
-          <span class="text-xs text-gray-600 truncate leading-tight">
-            Managed by PRANAV WELFARE TRUST
-          </span>
-        </div>
       </a>
+
 
       <!-- Desktop Navigation with Dropdowns -->
       <nav class="hidden lg:flex items-center space-x-1">

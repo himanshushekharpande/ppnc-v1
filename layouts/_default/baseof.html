@@ -6,9 +6,10 @@
 <body class="flex flex-col min-h-screen">
   {{ partial "header.html" . }}
   
-  <main class="flex-grow pt-20"> <!-- Added pt-20 for fixed header spacing -->
-    {{ block "main" . }}{{ end }}
-  </main>
+<main class="flex-grow">
+  {{ partial "ppnc/hero.html" . }}
+  {{ block "main" . }}{{ end }}
+</main>
   
   {{ partial "footer.html" . }}
 </body>

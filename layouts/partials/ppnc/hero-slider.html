@@ -1,54 +1,41 @@
 <section class="relative w-full overflow-hidden pt-20 md:pt-24">
   <div class="relative w-full h-[50vh] md:h-hero min-h-[400px] md:min-h-hero max-h-[600px] md:max-h-hero">
     
-    <!-- Hero Slider Container -->
     <div class="hero-slider absolute inset-0 z-0">
-      <!-- Slide 1 -->
-      <div class="hero-slide active">
+      {{ $slides := site.Params.hero.slides }}
+      {{ range $i, $slide := $slides }}
+      <div class="hero-slide {{ if eq $i 0 }}active{{ end }}">
         <picture>
-          <source media="(max-width: 768px)" srcset="{{ "img/hero/cover_01_mobile.webp" | relURL }}">
-          <source media="(max-width: 1024px)" srcset="{{ "img/hero/cover_01_tablet.webp" | relURL }}">
-          <img src="{{ "img/hero/cover_01_desktop.webp" | relURL }}" 
-               alt="Pranav Paramedical & Nursing College - Nursing Programs"
-               class="w-full h-full object-cover"
-               loading="eager" decoding="async">
+          <source media="(max-width: 768px)" srcset="{{ $slide.mobile | relURL }}">
+          <source media="(max-width: 1024px)" srcset="{{ $slide.tablet | relURL }}">
+          <img src="{{ $slide.desktop | relURL }}"
+              alt="{{ $slide.title }}"
+              class="w-full h-full object-cover"
+              {{ if eq $i 0 }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}
+              decoding="async">
         </picture>
-      </div>
-      
-      <!-- Slide 2 -->
-      <div class="hero-slide">
-        <picture>
-          <source media="(max-width: 768px)" srcset="{{ "img/hero/cover_02_mobile.webp" | relURL }}">
-          <source media="(max-width: 1024px)" srcset="{{ "img/hero/cover_02_tablet.webp" | relURL }}">
-          <img src="{{ "img/hero/cover_02_desktop.webp" | relURL }}" 
-               alt="Pranav Paramedical & Nursing College - Clinical Training"
-               class="w-full h-full object-cover"
-               loading="lazy" decoding="async">
-        </picture>
-      </div>
-      
-      <!-- Slide 3 -->
-      <div class="hero-slide">
-        <picture>
-          <source media="(max-width: 768px)" srcset="{{ "img/hero/cover_03_mobile.webp" | relURL }}">
-          <source media="(max-width: 1024px)" srcset="{{ "img/hero/cover_03_tablet.webp" | relURL }}">
-          <img src="{{ "img/hero/cover_03_desktop.webp" | relURL }}" 
-               alt="Pranav Paramedical & Nursing College - Campus Life"
-               class="w-full h-full object-cover"
-               loading="lazy" decoding="async">
-        </picture>
-      </div>
-    </div>
 
-    <!-- Readability scrim -->
-    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-10 pointer-events-none"></div>
+        <!-- Content overlay -->
+        <div class="absolute inset-0 z-20 flex items-end text-white">
+          <div class="container-site pb-6 md:pb-10">
+            <div class="max-w-2xl drop-shadow-lg">
+              <h1 class="mt-2 text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">{{ $slide.title }}</h1>
+              <p class="mt-3 text-base md:text-lg text-white/90 leading-relaxed">{{ $slide.text }}</p>
+              <a href="{{ $slide.ctaLink }}" class="btn btn-primary mt-4">{{ $slide.ctaText }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
 
     <!-- Slider Controls -->
     <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
-      <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-colors active" data-slide="0"></button>
-      <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-colors" data-slide="1"></button>
-      <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-colors" data-slide="2"></button>
+      {{ range $i, $_ := $slides }}
+      <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-colors {{ if eq $i 0 }}active{{ end }}" data-slide="{{ $i }}"></button>
+      {{ end }}
     </div>
+
 
     <!-- Navigation Arrows -->
     <button class="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-all slider-prev">
@@ -66,7 +53,7 @@
     <div class="absolute inset-0 z-20 flex items-end text-white">
       <div class="container-site pb-6 md:pb-10">
         <div class="max-w-2xl drop-shadow-lg">
-          <p class="kicker text-white/90 text-sm">Admissions Open!</p>
+          <!-- <p class="kicker text-white/90 text-sm">Admissions Open!</p> -->
 
           <!-- <h1 class="mt-2 text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">
             General Nursing<br class="md:hidden">& Midwifery<br class="md:hidden">· B.Sc Nursing

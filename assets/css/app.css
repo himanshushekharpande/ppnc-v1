@@ -284,3 +284,71 @@
 @media (max-width: 768px) {
   .slider-prev, .slider-next { display: none; }
 }
+
+/* PPNC Tabs — navy/black on white background */
+.tabs.tabs-ppnc {
+  @apply relative overflow-x-auto whitespace-nowrap py-2 px-2 rounded-xl;
+  background-color: transparent; /* keep page white */
+}
+
+/* tab button */
+.tabs.tabs-ppnc .tab {
+  @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md transition;
+  color: #0f172a; /* blackish (gray-900) for legibility on white */
+  background: transparent;
+  border: 1px solid transparent;
+  margin-right: 8px;
+}
+
+/* hover and focus */
+.tabs.tabs-ppnc .tab:hover {
+  @apply shadow-sm;
+  color: var(--ppnc-primary); /* navy on hover */
+  transform: translateY(-1px);
+}
+.tabs.tabs-ppnc .tab:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ppnc-primary) 10%, transparent);
+}
+
+/* active tab visual */
+.tabs.tabs-ppnc .tab[aria-selected="true"],
+.tabs.tabs-ppnc .tab.tab-active {
+  background: color-mix(in srgb, var(--ppnc-primary) 8%, white);
+  color: var(--ppnc-primary); /* navy text for active */
+  border-color: color-mix(in srgb, var(--ppnc-primary) 14%, transparent);
+  box-shadow: 0 6px 14px rgba(28,67,131,0.08);
+}
+
+/* subtle indicator bar */
+.tabs.tabs-ppnc .tab-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  left: 0;
+  width: 0;
+  background: linear-gradient(90deg, var(--ppnc-accent), var(--ppnc-primary));
+  border-radius: 999px;
+  transition: left 220ms cubic-bezier(.2,.9,.3,1), width 220ms cubic-bezier(.2,.9,.3,1);
+  z-index: 10;
+}
+
+/* Prose and card colors — ensure text is dark on white */
+.card {
+  @apply rounded-2xl shadow-card;
+  border: 1px solid var(--ppnc-base-300);
+  background-color: var(--ppnc-base-100);
+}
+.card-body { @apply p-6 md:p-8; color: #0f172a; } /* ensure main text is dark */
+.prose p, .prose li { color: #0f172a; } /* force prose text to dark for readability */
+
+/* Smaller screens: compact tab spacing */
+@media (max-width: 640px) {
+  .tabs.tabs-ppnc .tab { @apply px-3 py-2 text-sm rounded-md; margin-right:6px; }
+  .tabs.tabs-ppnc { padding: 6px; }
+}
+
+/* keep the slider arrow rule you had (optional) */
+@media (max-width: 768px) {
+  .slider-prev, .slider-next { display: none; }
+}

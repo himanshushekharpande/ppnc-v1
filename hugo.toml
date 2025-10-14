@@ -82,11 +82,18 @@ enableRobotsTXT = true
   [params.hero.pages]
 
   [params.hero.pages.home]
-    desktop = "img/hero/cover_05_desktop.webp"
-    tablet  = "img/hero/cover_05_tablet.webp"
-    mobile  = "img/hero/cover_05_mobile.webp"
+    desktop = "img/hero/cover_0801_desktop.webp"
+    tablet  = "img/hero/cover_0801_tablet.webp"
+    mobile  = "img/hero/cover_0801_mobile.webp"
     title   = "Welcome to PPNC"
     text    = "Nursing & Paramedical Education • Established 2025"
+
+  [params.hero.pages.about]
+    desktop = "img/hero/cover_0802_desktop.webp"
+    tablet  = "img/hero/cover_0802_tablet.webp"
+    mobile  = "img/hero/cover_0802_mobile.webp"
+    title   = "About PPNC"
+    text    = "Compassion • Competence • Community"
 
   [params.hero.pages.programs]
     desktop = "img/hero/cover_06_desktop.webp"
@@ -125,10 +132,31 @@ enableRobotsTXT = true
     weight = 1
 
   [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+    [[menu.main]]
+      identifier = "background"
+      name = "Background"
+      url = "/about/background/"
+      weight = 1
+      parent = "about"
+
+    [[menu.main]]
+      identifier = "Vision"
+      name = "Mission, Vision & Director"
+      url = "/about/vision/"
+      weight = 2
+      parent = "about"
+
+
+  [[menu.main]]
     identifier = "programs"
     name = "Programs"
     url = "/programs/"
-    weight = 2
+    weight = 3
 
     [[menu.main]]
       identifier = "bsc-nursing"
@@ -148,7 +176,7 @@ enableRobotsTXT = true
     identifier = "admissions"
     name = "Admissions"
     url = "/admissions/"
-    weight = 3
+    weight = 4
 
     [[menu.main]]
       identifier = "application-process"
@@ -182,7 +210,7 @@ enableRobotsTXT = true
     identifier = "news"
     name = "News"
     url = "/news/"
-    weight = 4
+    weight = 5
 
     [[menu.main]]
       identifier = "notices"
@@ -193,7 +221,7 @@ enableRobotsTXT = true
 
     [[menu.main]]
       identifier = "career"
-      name = "Career @ PPNC"
+      name = "Career"
       url = "/news/career/"
       weight = 2
       parent = "news"  
@@ -202,7 +230,7 @@ enableRobotsTXT = true
     identifier = "contact"
     name = "Contact"
     url = "/contact/"
-    weight = 5
+    weight = 6
 
   # Footer
   [[menu.footer]]

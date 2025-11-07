@@ -167,129 +167,201 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   
   <script>
-    // 🔥 USE YOUR EXACT CONFIG VALUES HERE:
-    const firebaseConfig = {
-      apiKey: "AIzaSyBHPEUN3Ixj4yxnaSCQyF585VB1ktpDhW0",
-      authDomain: "ppnc-admissions.firebaseapp.com",
-      projectId: "ppnc-admissions",
-      storageBucket: "ppnc-admissions.appspot.com", // Your exact value
-      messagingSenderId: "826820848957",
-      appId: "1:826820848957:web:8dacb29345c8b8531f2954"
-    };
+    (function(){
 
-    // ✅ INITIALIZE FIREBASE THIS WAY (not with imports)
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    let recaptchaVerifier;
-    let verifierRendered = false;
-    let confirmationResult;
-
-    // 10-digit India numbers, starting 6–9
+    // Helpers
     function phoneOK(v){ return /^[6-9]\d{9}$/.test(String(v||"").trim()); }
-
-    // Render recaptcha ONCE inside #recaptcha-container
-    async function ensureRecaptcha() {
-      if (!recaptchaVerifier) {
-        recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', { size: 'invisible' });
-      }
-      if (!verifierRendered) {
-        await recaptchaVerifier.render();
-        verifierRendered = true;
-      }
-      return recaptchaVerifier;
+    function e164FromLocal(p10){ return '+91' + p10.replace(/\D/g,'').slice(-10); }
+    async function postJSON(url, obj) {
+      const res = await fetch(url, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(obj) });
+      const txt = await res.text();
+      try { return JSON.parse(txt); } catch(e){ return { ok:false, status: res.status, raw: txt }; }
     }
 
-    function logAlert(prefix, err) {
-      const code = err?.code || '(no-code)';
-      const msg  = err?.message || String(err);
-      console.error(prefix, code, msg, err);
-      alert(`${prefix}: ${code}`);
-    }
+    // UI elements (ensure IDs match your HTML)
+    const sendBtnId = 'send-otp';
+    const resendBtnId = 'resend-otp';
+    const verifyBtnId = 'verify-otp';
+    const phoneId = 'phone';
+    const otpId = 'otp';
+    const verifySectionId = 'verify-otp-section';
+    const otpStepId = 'otp-step';
+    const applyFormId = 'apply-form';
+    const verifiedPhoneInputId = 'verified-phone';
+    const verifiedPhoneDisplayId = 'verified-phone-display';
+    const refererId = 'referer-apply';
+    const t0Id = 't0-apply';
 
-    document.addEventListener('DOMContentLoaded', function() {
-      // Init hidden fields
-      document.getElementById('referer-apply').value = location.href;
-      document.getElementById('t0-apply').value = Date.now();
+    let currentTx = null;
+    let lastPhoneSent = null;
 
-      const sendBtn   = document.getElementById('send-otp');
-      const verifyBox = document.getElementById('verify-otp-section');
-      const otpInput  = document.getElementById('otp');
-      const phoneEl   = document.getElementById('phone');
+    // DOM ready
+    document.addEventListener('DOMContentLoaded', function(){
 
-      // 1) Send OTP
+      // init hidden fields
+      const refererEl = document.getElementById(refererId);
+      const t0El = document.getElementById(t0Id);
+      if (refererEl) refererEl.value = location.href;
+      if (t0El) t0El.value = Date.now();
+
+      const sendBtn = document.getElementById(sendBtnId);
+      const resendBtn = document.getElementById(resendBtnId);
+      const verifyBtn = document.getElementById(verifyBtnId);
+      const phoneEl = document.getElementById(phoneId);
+      const otpEl = document.getElementById(otpId);
+      const verifySection = document.getElementById(verifySectionId);
+      const otpStep = document.getElementById(otpStepId);
+      const applyForm = document.getElementById(applyFormId);
+      const verifiedHidden = document.getElementById(verifiedPhoneInputId);
+      const verifiedDisplay = document.getElementById(verifiedPhoneDisplayId);
+
+      // Safety: ensure expected elements exist
+      if (!sendBtn || !verifyBtn || !phoneEl || !otpEl || !verifiedHidden || !verifiedDisplay) {
+        console.warn('OTP script: missing expected DOM elements. Check IDs.');
+        return;
+      }
+
+      // Clean UI state
+      if (verifySection) verifySection.classList.add('hidden');
+      if (applyForm) applyForm.classList.add('hidden');
+
+      // Send OTP handler
       sendBtn.addEventListener('click', async () => {
         const p10 = phoneEl.value.trim();
         if (!phoneOK(p10)) { alert('Please enter valid 10-digit Indian number (starts 6–9)'); return; }
 
-        try {
-          await ensureRecaptcha();
-          confirmationResult = await auth.signInWithPhoneNumber('+91' + p10, recaptchaVerifier);
+        sendBtn.disabled = true;
+        const prevText = sendBtn.textContent;
+        sendBtn.textContent = 'Sending...';
 
-          verifyBox.classList.remove('hidden');
-          sendBtn.textContent = 'OTP Sent!';
-          sendBtn.disabled = true;
-        } catch (e) {
-          // Common: auth/operation-not-allowed, auth/invalid-app-credential, auth/too-many-requests
-          logAlert('Error sending OTP', e);
-          try { recaptchaVerifier.clear(); } catch(_) {}
-          recaptchaVerifier = null;
-          verifierRendered = false;
+        const phoneFull = '91' + p10;
+        const resp = await postJSON('/api/send-otp', { phone: phoneFull });
+
+        if (!resp || !resp.ok) {
+          const msg = (resp && (resp.error || resp.message)) || 'Failed to send OTP. Try again later.';
+          alert('Send OTP failed: ' + msg);
+          sendBtn.disabled = false;
+          sendBtn.textContent = prevText;
+          return;
+        }
+
+        // success
+        currentTx = resp.tx || resp.result?.tx || null;
+        lastPhoneSent = phoneFull;
+        if (verifySection) verifySection.classList.remove('hidden');
+        sendBtn.textContent = 'OTP Sent';
+        // enable resend after short delay
+        if (resendBtn) {
+          resendBtn.disabled = true;
+          setTimeout(()=> { if(resendBtn) resendBtn.disabled = false; }, 15000); // 15s before allowed resend
         }
       });
 
-      // 2) Verify OTP
-      document.getElementById('verify-otp').addEventListener('click', async () => {
-        const code = otpInput.value.trim();
-        if (!/^\d{6}$/.test(code)) { alert('Please enter 6-digit OTP'); return; }
+      // Resend handler (calls same endpoint again)
+      if (resendBtn) {
+        resendBtn.addEventListener('click', async () => {
+          const p10 = phoneEl.value.trim();
+          if (!phoneOK(p10)) { alert('Please enter valid 10-digit Indian number'); return; }
+          resendBtn.disabled = true;
+          resendBtn.textContent = 'Resending...';
 
-        try {
-          const result = await confirmationResult.confirm(code);
-          const phoneE164 = result.user.phoneNumber; // +91XXXXXXXXXX
+          const phoneFull = '91' + p10;
+          // optional: if lastPhoneSent !== phoneFull, reset currentTx
+          if (lastPhoneSent && lastPhoneSent !== phoneFull) currentTx = null;
 
-          // Fill verified phone into your hidden + display fields
-          document.getElementById('verified-phone').value = phoneE164;
-          document.getElementById('verified-phone-display').value = phoneE164.replace('+91', '');
+          const resp = await postJSON('/api/send-otp', { phone: phoneFull });
+          if (!resp || !resp.ok) {
+            alert('Resend failed: ' + (resp.error || JSON.stringify(resp)));
+            resendBtn.disabled = false;
+            resendBtn.textContent = 'Resend';
+            return;
+          }
 
-          // Move to the full form
-          document.getElementById('otp-step').classList.add('hidden');
-          document.getElementById('apply-form').classList.remove('hidden');
-        } catch (e) {
-          logAlert('Invalid OTP', e);
-        }
-      });
-
-      // 3) Resend OTP
-      document.getElementById('resend-otp').addEventListener('click', async () => {
-        const p10 = phoneEl.value.trim();
-        if (!phoneOK(p10)) return;
-        try {
-          await ensureRecaptcha();
-          confirmationResult = await auth.signInWithPhoneNumber('+91' + p10, recaptchaVerifier);
-          alert('OTP sent again!');
-        } catch (e) {
-          logAlert('Resend failed', e);
-        }
-      });
-
-      // 4) Submit (CURRENTLY: direct-to-GAS; see Part B to harden)
-      document.getElementById('apply-form').addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        // You can optionally enforce verified phone presence:
-        const e164 = (document.getElementById('verified-phone').value||'').trim();
-        if (!e164.startsWith('+91')) { alert('Phone not verified.'); return; }
-
-        const formData = new FormData(this);
-        fetch('https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec', {
-          method: 'POST',
-          body: formData
-        }).then(() => {
-          window.location.href = "{{ "admissions/thank-you/" | absURL }}";
-        }).catch(err => {
-          logAlert('Submission failed', err);
+          currentTx = resp.tx || currentTx;
+          lastPhoneSent = phoneFull;
+          resendBtn.textContent = 'OTP Sent';
+          setTimeout(()=> { if(resendBtn) { resendBtn.disabled = false; resendBtn.textContent = 'Resend'; } }, 15000);
         });
+      }
+
+      // Verify handler
+      verifyBtn.addEventListener('click', async () => {
+        const code = otpEl.value.trim();
+        if (!/^\d{6}$/.test(code)) { alert('Please enter 6-digit OTP'); return; }
+        if (!currentTx) { alert('No OTP transaction found. Please send OTP first.'); return; }
+
+        verifyBtn.disabled = true;
+        const prevText = verifyBtn.textContent;
+        verifyBtn.textContent = 'Verifying...';
+
+        const resp = await postJSON('/api/verify-otp', { tx: currentTx, otp: code });
+
+        if (!resp || !resp.ok) {
+          const errMsg = (resp && (resp.error || resp.message)) || 'Verification failed.';
+          alert('OTP verify failed: ' + errMsg);
+          verifyBtn.disabled = false;
+          verifyBtn.textContent = prevText;
+          return;
+        }
+
+        // success: resp.phone expected in E.164 (e.g. +919812345678)
+        const phoneE164 = resp.phone || ('+' + lastPhoneSent);
+        verifiedHidden.value = phoneE164;
+        verifiedDisplay.value = phoneE164.replace('+91','');
+
+        // advance UI
+        if (otpStep) otpStep.classList.add('hidden');
+        if (applyForm) applyForm.classList.remove('hidden');
+
+        // clear sensitive variables
+        currentTx = null;
+        lastPhoneSent = null;
+        verifyBtn.disabled = false;
+        verifyBtn.textContent = prevText;
       });
-    });
-  </script>
+
+      // Form submission: keep your existing GAS submission
+      if (applyForm) {
+        applyForm.addEventListener('submit', async function(e){
+          e.preventDefault();
+
+          // Ensure phone verified
+          const e164 = (document.getElementById(verifiedPhoneInputId).value||'').trim();
+          if (!e164.startsWith('+91')) { alert('Phone not verified.'); return; }
+
+          // Create FormData and submit to your Apps Script
+          const formData = new FormData(this);
+          try {
+            const res = await fetch('{{ .Site.Params.googleFormEndpoint }}', {
+            method: 'POST',
+            body: formData
+          });
+
+          // Always read text to handle JSON or plain text
+          const text = await res.text();
+          let data = null;
+          try { data = JSON.parse(text); } catch (_) {}
+
+          if (res.ok && data && data.ok) {
+            // ✅ Successful JSON response
+            const redirect = data.redirect || '{{ "admissions/thank-you/" | absURL }}';
+            window.location.href = redirect;
+          } else if (res.ok && !data) {
+            // Fallback: HTML success response (Apps Script older version)
+            window.location.href = '{{ "admissions/thank-you/" | absURL }}';
+          } else {
+            console.error('Submission failed', { status: res.status, body: text });
+            alert('Submission failed. Try again later.');
+          }
+          } catch (err) {
+            console.error('Submission error', err);
+            alert('Submission failed. Try again later.');
+          }
+        });
+      }
+
+    }); // DOMContentLoaded end
+
+  })(); // IIFE end
+</script>
 </div>

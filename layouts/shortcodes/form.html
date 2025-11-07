@@ -1,12 +1,7 @@
 <div class="max-w-3xl mx-auto my-12 px-6">
   <h2 class="text-2xl font-bold mb-4 text-marian-blue">Contact Us</h2>
 
-  <iframe name="contact_target" class="hidden" style="display:none;"></iframe>
-
   <form id="contact-form"
-        action="https://script.google.com/macros/s/AKfycby_599O4A1hGHYOXJb4i8fMCInXMriYve7ux5W-vwQ3KPA_cW_6V0iP2pzLmmw-AQaK/exec"
-        method="POST"
-        target="contact_target"
         class="space-y-6 bg-white p-6 rounded-lg shadow-md border border-gray-200">
 
     <input type="hidden" name="form_type" value="contact">
@@ -48,7 +43,7 @@
 
     <!-- Submit -->
     <div>
-      <button type="submit"
+      <button type="submit" id="contact-submit"
             class="w-full px-5 py-3 rounded-lg bg-marian-blue text-white font-semibold hover:bg-resolution-blue transition">
       Send Message
       </button>
@@ -56,14 +51,67 @@
   </form>
 
   <script>
-    (function () {
-      document.getElementById('referer-contact').value = location.href;
-      document.getElementById('t0-contact').value = Date.now();
-      var form = document.getElementById('contact-form');
-      form.addEventListener('submit', function () {
-        var thanks = "{{ "contact/thank-you/" | absURL }}";
-        setTimeout(function () { window.location.href = thanks; }, 300);
-      });
-    })();
+  (function () {
+    // Fill hidden fields
+    const refererEl = document.getElementById('referer-contact');
+    const t0El = document.getElementById('t0-contact');
+    if (refererEl) refererEl.value = location.href;
+    if (t0El) t0El.value = Date.now();
+
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('contact-submit');
+
+    // Use the endpoint from your Hugo config param to avoid hardcoding:
+    const endpoint = '{{ .Site.Params.googleFormEndpoint }}'; 
+    // If you haven't added the param, replace the above with your Apps Script url string.
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // basic UI lock
+      submitBtn.disabled = true;
+      const prevText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+
+      // honeypot quick-check client-side (helps UX)
+      if (form.website && form.website.value) {
+        console.warn('Honeypot filled — aborting submit.');
+        submitBtn.disabled = false; submitBtn.textContent = prevText;
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: formData });
+        const text = await res.text().catch(()=>null);
+        let data = null;
+        try { data = JSON.parse(text); } catch(_) { data = null; }
+
+        if (res.ok && data && data.ok) {
+          // Use redirect sent by Apps Script, else fallback to site redirect
+          const redirect = data.redirect || '{{ "contact/thank-you/" | absURL }}';
+          window.location.href = redirect;
+          return;
+        }
+
+        if (res.ok && !data) {
+          // older Apps Script HTML redirect behaviour — fallback to static redirect
+          window.location.href = '{{ "contact/thank-you/" | absURL }}';
+          return;
+        }
+
+        // non-OK
+        console.error('Contact submit failed', { status: res.status, body: text });
+        alert('Submission failed. Try again later.');
+      } catch (err) {
+        console.error('Network/submit error', err);
+        alert('Network error. Please try again.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = prevText;
+      }
+    });
+  })();
   </script>
 </div>

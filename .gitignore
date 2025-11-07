@@ -13,3 +13,9 @@ node_modules/
 # OS/editor junk
 .DS_Store
 Thumbs.db
+
+# Local Netlify folder
+.netlify
+
+# env variables
+.env

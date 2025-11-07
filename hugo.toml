@@ -12,6 +12,7 @@ enableRobotsTXT = true
   showBlog = false                  # we’ll use News instead of “Blog”
   mainSections = ['news']           # tella uses this to pick list pages
   googleFonts = true                # turn off if you host fonts locally
+  googleFormEndpoint = "https://script.google.com/macros/s/AKfycbzbb0VR1M5qkkQwjRLPy9_hWS5WZCvqR6nUfDR98mJIDbZykMZxm7dCHXgHhctjNnMj/exec"
 
   # Turnstile + API for forms (Step 3 will use these)
   turnstileSiteKey = "YOUR_TURNSTILE_SITE_KEY"
@@ -122,6 +123,8 @@ enableRobotsTXT = true
     mobile  = "img/hero/cover_08_mobile.webp"
     title   = "Contact Us"
     text    = "Get in touch for Admissions and Support"
+
+
 
 
 [menu]

@@ -162,67 +162,146 @@
 }
 
 /* ---------------------------
-   Leadership page components
+   Leadership page components (clean, structured)
+   Replace the old leadership block with this modular version.
 --------------------------- */
-/* ---------- Leadership visual refinements (Tailwind-safe) ---------- */
+
 @layer components {
-  /* Section accent underline below heading */
+  /* --- color tokens specific to leadership (fallback to root variables) --- */
+  :root {
+    --lead-name-color: var(--ppnc-primary); /* 1C4383 */
+    --lead-designation-color: #2B6CB0;      /* reliable lighter blue for designations */
+    --lead-previous-color: #64748B;         /* muted slate */
+    --lead-card-bg: var(--ppnc-base-100);
+    --lead-card-border: var(--ppnc-base-300);
+    --lead-divider-opacity: 0.7;
+  }
+
+  /* --- container & global layout --- */
+  .leader-row {
+    @apply py-10 md:py-14 relative;
+  }
+
+  .leader-row + .leader-row {
+    @apply mt-6;
+  }
+
+  .leader-bg-alt {
+    @apply bg-white; /* keep it subtle; visual alternation is handled by card borders and divider */
+  }
+
+  /* --- heading underline (keeps original visual) --- */
   .section-underline {
     @apply w-24 h-1 rounded-full mx-auto mt-3;
     background: linear-gradient(90deg, var(--ppnc-accent), var(--ppnc-primary));
   }
 
-  /* Leader container spacing */
-  .leader-row { @apply mb-10; }
-
-  /* Card */
-  .leader-card {
-    @apply p-6 rounded-2xl shadow-card;
-    background-color: var(--ppnc-base-100);
-    border: 1px solid var(--ppnc-base-300);
-  }
-
-  /* Name & role */
-  .lead-name { @apply font-extrabold text-lg; color: var(--ppnc-primary); letter-spacing: -0.01em; }
-  .lead-role { @apply text-sm mt-1; color: #6b7280; }
-
-  /* Paragraphs */
-  .lead-body p { @apply text-gray-700 leading-relaxed mb-4; }
-  .lead-body p strong { color: var(--ppnc-primary); }
-
-  /* Portrait visuals */
+  /* --- portrait / image wrapper (preserves original Option A) --- */
   .portrait-outer {
     @apply overflow-hidden rounded-3xl shadow-md mx-auto;
-    /* keep a consistent max-width for layout control */
     max-width: 480px;
     width: 100%;
-    /* small transform smoothing for parallax */
     will-change: transform;
     transition: transform .48s cubic-bezier(.2,.9,.25,1);
   }
-
   .portrait-img {
     display: block;
     width: 100%;
-    height: auto;           /* important — preserves original aspect ratio and prevents cropping */
-    object-fit: none;       /* avoid cover/contain behaviour — rely on intrinsic image */
+    height: auto;
+    object-fit: none;
     border-radius: inherit;
     transition: transform .6s cubic-bezier(.2,.9,.25,1);
   }
-
-  /* hover (subtle scale) — scale the image rather than cropping */
   .portrait-outer:hover .portrait-img { transform: scale(1.03); }
   .portrait-outer:focus { transform: translateY(-6px); outline: none; }
 
-  /* Accent background alternation helper */
-  .leader-bg-alt { background-color: color-mix(in srgb, var(--ppnc-base-200) 55%, white); }
+  /* --- card --- */
+  .leader-card {
+    @apply p-6 rounded-2xl;
+    background-color: var(--lead-card-bg);
+    border: 1px solid var(--lead-card-border);
+    box-shadow: 0 12px 40px rgba(16,24,40,0.06);
+  }
 
-  /* Reveal */
+  /* --- typographic hierarchy --- */
+  .lead-name {
+    @apply font-extrabold;
+    color: var(--lead-name-color);
+    letter-spacing: -0.01em;
+    font-size: 1.25rem; /* base 20px */
+  }
+  @media (min-width: 768px) {
+    .lead-name { font-size: 1.625rem; } /* md: ~26px */
+  }
+
+  /* Designation (CMD / CEO / Principal) */
+  .lead-designation {
+    @apply font-semibold;
+    color: var(--lead-designation-color);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    font-size: 0.95rem;
+  }
+  @media (min-width: 768px) {
+    .lead-designation { font-size: 1.05rem; }
+  }
+
+  /* Previous post (subtle, italic) */
+  .lead-previous {
+    @apply italic text-sm;
+    color: var(--lead-previous-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  /* --- paragraph styling: justified but no indent (natural flow) --- */
+  .lead-body p {
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    padding-right: 0.5rem; /* soft rag on right edge to avoid overly tight word spacing */
+    text-indent: 0;
+    color: #1f2937; /* neutral dark for legibility */
+  }
+
+  /* ensure there is no first-line indent anywhere */
+  .lead-body p + p { text-indent: 0; }
+
+  /* --- subtle gradient divider between sections (non-invasive) --- */
+  .leader-row:not(:last-of-type)::after {
+    content: "";
+    display: block;
+    margin: 3rem auto 0;
+    height: 2px;
+    width: 80%;
+    border-radius: 9999px;
+    background: linear-gradient(
+      90deg,
+      rgba(28,67,131, var(--lead-divider-opacity)),
+      rgba(105,180,228, var(--lead-divider-opacity)),
+      transparent
+    );
+    opacity: var(--lead-divider-opacity);
+  }
+
+  /* responsive adjustments for mobile */
+  @media (max-width: 768px) {
+    .lead-body p { padding-right: 0.25rem; }
+    .leader-row:not(:last-of-type)::after { margin-top: 2rem; width: 90%; }
+  }
+
+  /* --- accessibility / reveal animation (keeps previous behavior) --- */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2,.9,.25,1), transform .6s cubic-bezier(.2,.9,.25,1); }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* small utility */
-  .shadow-card { box-shadow: 0 12px 40px rgba(16,24,40,0.06); }
+  /* Quick reliable override so designation reliably shows the blue */
+  .leader-card .lead-designation {
+    color: #2B6CB0; /* lighter blue for designation */
+    -webkit-text-fill-color: #2B6CB0;
+  }
 }
 
 /* ---------------------------

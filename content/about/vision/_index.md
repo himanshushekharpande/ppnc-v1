@@ -35,9 +35,12 @@ keywords:
         </div>
 
         <!-- Text column -->
-        <div class="leader-card lead-body">
-          <h2 id="cmd-heading" class="lead-name">Ayush Kumar Tiwari</h2>
-          <div class="lead-role">President / Settlor of Trust — Chairman cum Managing Director</div>
+        <div class="leader-card lead-body prose prose-slate">
+          <h2 id="cmd-heading" class="lead-name text-2xl md:text-3xl font-bold text-marian-blue">Ayush Kumar Tiwari</h2>
+          <!-- Primary current designation -->
+          <p class="lead-designation mt-1">Chairman cum Managing Director</p>
+          <!-- Previous role (lighter / italic / smaller) -->
+          <p class="lead-previous mb-4">President &amp; Settlor of Trust</p>
 
           <p>Welcome to Pranav Paramedical & Nursing College in Agartala, Tripura, where we are shaping the future of healthcare education with vision and dedication in the heart of Northeast India.</p>
 
@@ -63,9 +66,10 @@ keywords:
           </div>
         </div>
 
-        <div class="leader-card lead-body">
+        <div class="leader-card lead-body prose prose-slate">
           <h2 id="ceo-heading" class="lead-name">Nihar Ranjan Das</h2>
-          <div class="lead-role">Retired TCS Officer — CEO cum Administrative Officer</div>
+          <p class="lead-designation mt-1">CEO cum Administrative Officer</p>
+          <p class="lead-previous mb-4">Retired TCS Officer</p>
 
           <p>At PPNC we are dedicated to operational excellence, creating a nurturing environment for the next generation of healthcare leaders in Northeast India.</p>
 
@@ -91,9 +95,10 @@ keywords:
           </div>
         </div>
 
-        <div class="leader-card lead-body">
+        <div class="leader-card lead-body prose prose-slate">
           <h2 id="principal-heading" class="lead-name">Alaka Saha</h2>
-          <div class="lead-role">Retired Vice Principal, Agartala Government Nursing College — Principal</div>
+          <p class="lead-designation mt-1">Principal</p>
+          <p class="lead-previous mb-4">Retired Vice Principal, Agartala Government Nursing College</p>
 
           <p>PPNC is committed to cultivating compassionate, skilled healthcare professionals who serve the unique needs of Northeast India.</p>
 

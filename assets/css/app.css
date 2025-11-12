@@ -291,7 +291,7 @@
     margin-bottom: 1rem;
   }
 
-  /* Leadership paragraphs — justified, clean, readable on all devices */
+    /* Leadership paragraphs — fully justified and optimized for all devices */
   .lead-body p {
     text-align: justify;
     text-justify: inter-word;
@@ -301,24 +301,25 @@
     overflow-wrap: break-word;
     line-height: 1.75;
     margin-bottom: 1rem;
-    text-indent: 0;              /* no first-line indent */
-    padding-right: 0.5rem;       /* soft rag edge */
-    color: #1f2937;              /* neutral readable text */
-    max-width: 60ch;             /* ideal line length (~60 characters) */
+    text-indent: 0;
+    color: #1f2937;
+    padding-right: 0.5rem;     /* soft right edge */
+    padding-left: 0.25rem;     /* subtle left rhythm */
+    max-width: 60ch;           /* balanced reading width on large screens */
     margin-left: auto;
-    margin-right: auto;          /* center block inside column */
+    margin-right: auto;
   }
 
-  /* Tweak justification for narrow viewports (avoid spacing gaps) */
+  /* Responsive optimization — allow natural flow on smaller screens */
   @media (max-width: 768px) {
     .lead-body p {
-      text-align: left;          /* switch to left-align for small screens */
-      text-justify: auto;
+      max-width: 100%;         /* full width on mobile */
       padding-right: 0.25rem;
-      max-width: 100%;           /* allow full width for mobile */
+      padding-left: 0.25rem;
+      text-align: justify;     /* still justified */
+      text-justify: inter-word;
     }
   }
-
 
   /* --- subtle gradient divider between sections (non-invasive) --- */
   .leader-row:not(:last-of-type)::after {

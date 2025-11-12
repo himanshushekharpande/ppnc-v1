@@ -211,9 +211,44 @@
     object-fit: none;
     border-radius: inherit;
     transition: transform .6s cubic-bezier(.2,.9,.25,1);
+    }
+    /* Portrait - ensure pre-cropped images are never cropped (mobile included) */
+  .leader-card .portrait-outer,
+  .portrait-outer {
+    width: 100%;
+    max-width: 480px;   /* keep your layout cap */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: visible;  /* allow full image to show (no clipping) */
   }
-  .portrait-outer:hover .portrait-img { transform: scale(1.03); }
-  .portrait-outer:focus { transform: translateY(-6px); outline: none; }
+
+  /* Force image to use intrinsic aspect ratio; never use object-cover */
+  .leader-card .portrait-img,
+  .portrait-img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;          /* <-- preserves original 1:1 ratio */
+    object-fit: none !important;      /* <-- don't crop / scale to cover */
+    object-position: center center;
+    border-radius: inherit;
+    max-width: 480px;
+  }
+
+  /* If any parent accidentally forces a fixed height on small screens, neutralize it */
+  .leader-card .portrait-outer[style],
+  .portrait-outer[style] {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Small screens — small max-width and no cropping */
+  @media (max-width: 640px) {
+    .portrait-outer { max-width: 360px; }
+    .portrait-img { max-width: 360px; }
+  }
+
+    .portrait-outer:hover .portrait-img { transform: scale(1.03); }
+    .portrait-outer:focus { transform: translateY(-6px); outline: none; }
 
   /* --- card --- */
   .leader-card {
@@ -256,19 +291,34 @@
     margin-bottom: 1rem;
   }
 
-  /* --- paragraph styling: justified but no indent (natural flow) --- */
+  /* Leadership paragraphs — justified, clean, readable on all devices */
   .lead-body p {
     text-align: justify;
     text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
     line-height: 1.75;
     margin-bottom: 1rem;
-    padding-right: 0.5rem; /* soft rag on right edge to avoid overly tight word spacing */
-    text-indent: 0;
-    color: #1f2937; /* neutral dark for legibility */
+    text-indent: 0;              /* no first-line indent */
+    padding-right: 0.5rem;       /* soft rag edge */
+    color: #1f2937;              /* neutral readable text */
+    max-width: 60ch;             /* ideal line length (~60 characters) */
+    margin-left: auto;
+    margin-right: auto;          /* center block inside column */
   }
 
-  /* ensure there is no first-line indent anywhere */
-  .lead-body p + p { text-indent: 0; }
+  /* Tweak justification for narrow viewports (avoid spacing gaps) */
+  @media (max-width: 768px) {
+    .lead-body p {
+      text-align: left;          /* switch to left-align for small screens */
+      text-justify: auto;
+      padding-right: 0.25rem;
+      max-width: 100%;           /* allow full width for mobile */
+    }
+  }
+
 
   /* --- subtle gradient divider between sections (non-invasive) --- */
   .leader-row:not(:last-of-type)::after {
@@ -289,7 +339,6 @@
 
   /* responsive adjustments for mobile */
   @media (max-width: 768px) {
-    .lead-body p { padding-right: 0.25rem; }
     .leader-row:not(:last-of-type)::after { margin-top: 2rem; width: 90%; }
   }
 

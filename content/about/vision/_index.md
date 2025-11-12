@@ -46,7 +46,7 @@ keywords:
 
           <p><strong>Vision:</strong> To establish Pranav as a global beacon of healthcare education, producing innovative, ethical, and highly skilled professionals who transform lives through compassionate care, addressing the unique healthcare challenges of Tripura and the Northeast.</p>
 
-          <p><strong>Mission:</strong> I am committed to leading the institution toward excellence by fostering strategic growth, integrating advanced medical technologies, and nurturing a culture of research and innovation — while prioritizing community health initiatives for Tripura’s rural and tribal areas.</p>
+          <p><strong>Mission:</strong> As Chairman cum Managing Director and President / Settlor of the Trust, my mission is to lead the institution toward excellence by fostering strategic growth, integrating advanced medical technologies, and nurturing a culture of research and innovation. I am committed to aligning our programs with global healthcare standards while prioritizing community health initiatives in Tripura’s rural and tribal areas. Through partnerships with local hospitals, the Government of Tripura, and health organizations, we equip students with the knowledge, skills, and values to address regional challenges such as infectious diseases and maternal care, creating a transformative impact on healthcare delivery in Northeast India and beyond. Together, let us forge a healthier future through education rooted in excellence and empathy.</p>
         </div>
       </div>
     </section>
@@ -71,11 +71,12 @@ keywords:
           <p class="lead-designation mt-1">CEO cum Administrative Officer</p>
           <p class="lead-previous mb-4">Retired TCS Officer</p>
 
-          <p>At PPNC we are dedicated to operational excellence, creating a nurturing environment for the next generation of healthcare leaders in Northeast India.</p>
+          <p>At Pranav Paramedical & Nursing College in Agartala, Tripura, we are dedicated to operational excellence, creating a nurturing environment for the next generation of healthcare leaders in Northeast India.</p>
 
-          <p><strong>Vision:</strong> To build a sustainable, inclusive institution that sets benchmarks in administrative efficiency and accessibility for Tripura's diverse communities.</p>
+          <p><strong>Vision:</strong> To build a sustainable, inclusive institution that sets benchmarks in administrative efficiency, supporting world-class paramedical and nursing education tailored to the diverse needs of Tripura’s communities.</p>
 
-          <p><strong>Mission:</strong> Leveraging my corporate experience to ensure seamless operations through strategic resource management, technology integration, and focused outreach to remote regions.</p>
+          <p><strong>Mission:</strong> As CEO cum Administrative Officer, leveraging my extensive experience as a retired TCS officer, my mission is to ensure seamless operations through innovative administrative practices, strategic resource management, and technology integration. I focus on enhancing accessibility for students from Tripura’s remote and tribal regions by streamlining admissions, upgrading facilities like simulation labs and hostels, and fostering inclusivity. Through collaboration with Tripura University, local health authorities, and stakeholders, we create a supportive ecosystem that empowers students and faculty to excel. Our goal is to drive institutional growth while contributing to Tripura’s healthcare landscape through efficient, community-focused administration.
+          Join us in shaping a legacy of impactful education and service in Agartala.</p>
         </div>
       </div>
     </section>
@@ -100,11 +101,12 @@ keywords:
           <p class="lead-designation mt-1">Principal</p>
           <p class="lead-previous mb-4">Retired Vice Principal, Agartala Government Nursing College</p>
 
-          <p>PPNC is committed to cultivating compassionate, skilled healthcare professionals who serve the unique needs of Northeast India.</p>
+          <p>Pranav Paramedical & Nursing College in Agartala, Tripura, is committed to cultivating compassionate, skilled healthcare professionals who excel in serving the unique needs of Northeast India.</p>
 
-          <p><strong>Vision:</strong> To be a premier institution redefining nursing and paramedical education through innovation, ethics, and holistic development.</p>
+          <p><strong>Vision:</strong> To be a premier institution redefining nursing and paramedical education through innovation, ethical practice, and holistic development, addressing health disparities in Tripura’s rural and indigenous communities.</p>
 
-          <p><strong>Mission:</strong> To foster an evidence-based, hands-on learning environment with strong community engagement and partnerships with local hospitals to prepare students for regional healthcare challenges.</p>
+          <p><strong>Mission:</strong> As Principal, drawing on my decades of experience as a retired Vice Principal from Agartala Government Nursing College, Tripura, my mission is to foster an academic environment that integrates evidence-based learning, hands-on training, and community engagement to prepare students for Tripura’s evolving healthcare needs. By leveraging advanced teaching methods, such as simulation-based training, and partnerships with local hospitals, we equip students with technical expertise and compassionate values. Our focus on interdisciplinary collaboration and outreach programs in tribal areas ensures graduates are ready to tackle regional challenges like preventive care and emergency response, driving positive change in Northeast India’s healthcare landscape.
+          Let us inspire and empower the healthcare leaders of tomorrow from the vibrant city of Agartala.</p>
         </div>
       </div>
     </section>

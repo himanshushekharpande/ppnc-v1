@@ -187,24 +187,34 @@
     background: linear-gradient(90deg, var(--ppnc-accent), var(--ppnc-primary));
   }
 
-  /* --- portrait wrapper & image (preserve pre-cropped square) --- */
+  /* Leadership portraits — preserve entire pre-cropped image (no clipping) */
+
+  /* Wrapper is a controlled square using aspect-ratio so layout is stable */
   .portrait-outer {
-    @apply overflow-hidden rounded-3xl shadow-md mx-auto;
+    @apply rounded-3xl shadow-md mx-auto;
     box-sizing: border-box;
     width: 100%;
     max-width: 480px;
+    aspect-ratio: 1 / 1;          /* keep square container */
+    overflow: hidden;             /* keep rounded corners but don't crop image content because we use contain */
     transition: transform .48s cubic-bezier(.2,.9,.25,1);
   }
+
+  /* Image fills the square, but uses contain so entire image is visible and centered */
   .portrait-img {
     display: block;
     width: 100%;
-    height: auto;               /* preserve intrinsic aspect */
-    object-fit: none;           /* respect pre-cropped image */
+    height: 100%;                 /* fill the wrapper square */
+    object-fit: contain;          /* show entire image (no crop) */
     object-position: center;
     border-radius: inherit;
     transition: transform .5s cubic-bezier(.2,.9,.25,1);
   }
-  .portrait-outer:hover .portrait-img { transform: scale(1.02); }
+
+  /* Slight, subtle scale on hover but still keep the whole image visible */
+  .portrait-outer:hover .portrait-img {
+    transform: scale(1.02);
+  }
 
   /* --- leader card --- */
   .leader-card {

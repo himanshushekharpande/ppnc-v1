@@ -162,6 +162,70 @@
 }
 
 /* ---------------------------
+   Leadership page components
+--------------------------- */
+/* ---------- Leadership visual refinements (Tailwind-safe) ---------- */
+@layer components {
+  /* Section accent underline below heading */
+  .section-underline {
+    @apply w-24 h-1 rounded-full mx-auto mt-3;
+    background: linear-gradient(90deg, var(--ppnc-accent), var(--ppnc-primary));
+  }
+
+  /* Leader container spacing */
+  .leader-row { @apply mb-10; }
+
+  /* Card */
+  .leader-card {
+    @apply p-6 rounded-2xl shadow-card;
+    background-color: var(--ppnc-base-100);
+    border: 1px solid var(--ppnc-base-300);
+  }
+
+  /* Name & role */
+  .lead-name { @apply font-extrabold text-lg; color: var(--ppnc-primary); letter-spacing: -0.01em; }
+  .lead-role { @apply text-sm mt-1; color: #6b7280; }
+
+  /* Paragraphs */
+  .lead-body p { @apply text-gray-700 leading-relaxed mb-4; }
+  .lead-body p strong { color: var(--ppnc-primary); }
+
+  /* Portrait visuals */
+  .portrait-outer {
+    @apply overflow-hidden rounded-3xl shadow-md mx-auto;
+    /* keep a consistent max-width for layout control */
+    max-width: 480px;
+    width: 100%;
+    /* small transform smoothing for parallax */
+    will-change: transform;
+    transition: transform .48s cubic-bezier(.2,.9,.25,1);
+  }
+
+  .portrait-img {
+    display: block;
+    width: 100%;
+    height: auto;           /* important — preserves original aspect ratio and prevents cropping */
+    object-fit: none;       /* avoid cover/contain behaviour — rely on intrinsic image */
+    border-radius: inherit;
+    transition: transform .6s cubic-bezier(.2,.9,.25,1);
+  }
+
+  /* hover (subtle scale) — scale the image rather than cropping */
+  .portrait-outer:hover .portrait-img { transform: scale(1.03); }
+  .portrait-outer:focus { transform: translateY(-6px); outline: none; }
+
+  /* Accent background alternation helper */
+  .leader-bg-alt { background-color: color-mix(in srgb, var(--ppnc-base-200) 55%, white); }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2,.9,.25,1), transform .6s cubic-bezier(.2,.9,.25,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* small utility */
+  .shadow-card { box-shadow: 0 12px 40px rgba(16,24,40,0.06); }
+}
+
+/* ---------------------------
    Dropdown Styles
 --------------------------- */
 .nav-dropdown {
@@ -351,4 +415,30 @@
 /* keep the slider arrow rule you had (optional) */
 @media (max-width: 768px) {
   .slider-prev, .slider-next { display: none; }
+}
+
+/* ---------- Table refinements for fee structure ---------- */
+@layer components {
+  /* subtle vertical divider used to separate column groups */
+  .table-divider-col {
+    border-left: 1px solid rgba(15,23,42,0.06); /* thin subtle divider */
+  }
+
+  /* keep row separators subtle and soft */
+  .table-clean td,
+  .table-clean th {
+    border-bottom: 1px solid rgba(15,23,42,0.04);
+  }
+
+  /* slightly larger left padding for serial numbers */
+  .sl-col { padding-left: 1.25rem; }
+
+  /* stronger bold for totals row */
+  .table-clean .totals { font-weight: 700; }
+
+  /* responsive: increase spacing on larger screens */
+  @media (min-width: 768px) {
+    .sl-col { padding-left: 1.5rem; }
+    .table-clean td, .table-clean th { padding-top: .9rem; padding-bottom: .9rem; }
+  }
 }

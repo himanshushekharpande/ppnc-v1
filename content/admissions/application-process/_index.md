@@ -1,5 +1,4 @@
 ---
-title: "Application Process"
 description: "Step-by-step guide to apply for nursing and paramedical courses at Pranav College"
 date: 2024-01-15
 layout: "single"

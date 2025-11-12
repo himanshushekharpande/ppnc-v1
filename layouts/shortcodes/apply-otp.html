@@ -150,6 +150,15 @@
     </div>
 
     <div>
+      <label for="marksheet" class="block text-sm font-medium text-gray-700">
+        Upload Marksheet (PDF or Image, max 5 MB)
+      </label>
+      <input id="marksheet" name="marksheet" type="file" accept=".pdf,.jpg,.jpeg,.png"
+            class="mt-1 block w-full text-sm text-gray-700 border-gray-300 rounded-md shadow-sm
+                    focus:border-marian-blue focus:ring-marian-blue">
+    </div>
+
+    <div>
       <label for="message" class="block text-sm font-medium text-gray-700">Additional Information</label>
       <textarea id="message" name="message" rows="4"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-marian-blue focus:ring-marian-blue sm:text-sm"></textarea>
@@ -321,45 +330,29 @@
       });
 
       // Form submission: keep your existing GAS submission
+      // Form submission: enhanced version (duplicate-proof + file upload)
       if (applyForm) {
-        applyForm.addEventListener('submit', async function(e){
-          e.preventDefault();
-
-          // Ensure phone verified
-          const e164 = (document.getElementById(verifiedPhoneInputId).value||'').trim();
-          if (!e164.startsWith('+91')) { alert('Phone not verified.'); return; }
-
-          // Create FormData and submit to your Apps Script
-          const formData = new FormData(this);
-          try {
-            const res = await fetch('{{ .Site.Params.googleFormEndpoint }}', {
-            method: 'POST',
-            body: formData
-          });
-
-          // Always read text to handle JSON or plain text
-          const text = await res.text();
-          let data = null;
-          try { data = JSON.parse(text); } catch (_) {}
-
-          if (res.ok && data && data.ok) {
-            // ✅ Successful JSON response
-            const redirect = data.redirect || '{{ "admissions/thank-you/" | absURL }}';
-            window.location.href = redirect;
-          } else if (res.ok && !data) {
-            // Fallback: HTML success response (Apps Script older version)
-            window.location.href = '{{ "admissions/thank-you/" | absURL }}';
-          } else {
-            console.error('Submission failed', { status: res.status, body: text });
-            alert('Submission failed. Try again later.');
+        applyForm.addEventListener('submit', function(e) {
+          const e164 = (document.getElementById('verified-phone').value || '').trim();
+          if (!e164.startsWith('+91')) {
+            alert('Phone not verified.');
+            e.preventDefault();
+            return;
           }
-          } catch (err) {
-            console.error('Submission error', err);
-            alert('Submission failed. Try again later.');
+
+          // Disable submit button to prevent double click
+          const submitBtn = applyForm.querySelector('button[type="submit"]');
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting…';
           }
+
+          // Allow normal form submission to Apps Script (multipart form)
+          applyForm.action = '{{ .Site.Params.googleFormEndpoint }}';
+          applyForm.enctype = 'multipart/form-data';
+          applyForm.method = 'POST';
         });
       }
-
     }); // DOMContentLoaded end
 
   })(); // IIFE end

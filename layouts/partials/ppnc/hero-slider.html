@@ -1,27 +1,34 @@
 <section class="relative w-full overflow-hidden pt-20 md:pt-24">
-  <div class="relative w-full h-[50vh] md:h-hero min-h-[400px] md:min-h-hero max-h-[600px] md:max-h-hero">
-    
+  <div class="relative w-full h-[50vh] md:h-hero min-h-[400px] max-h-[600px] md:max-h-hero">
+
     <div class="hero-slider absolute inset-0 z-0">
       {{ $slides := site.Params.hero.slides }}
       {{ range $i, $slide := $slides }}
       <div class="hero-slide {{ if eq $i 0 }}active{{ end }}">
         <picture>
-          <source media="(max-width: 768px)" srcset="{{ $slide.mobile | relURL }}">
-          <source media="(max-width: 1024px)" srcset="{{ $slide.tablet | relURL }}">
+          <source media="(max-width: 768px)"
+                  srcset="{{ $slide.mobile | relURL }} 1x, {{ (replace $slide.mobile ".webp" "@2x.webp") | relURL }} 2x">
+          <source media="(max-width: 1024px)"
+                  srcset="{{ $slide.tablet | relURL }} 1x, {{ (replace $slide.tablet ".webp" "@2x.webp") | relURL }} 2x">
           <img src="{{ $slide.desktop | relURL }}"
-              alt="{{ $slide.title }}"
-              class="w-full h-full object-cover"
-              {{ if eq $i 0 }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}
-              decoding="async">
+               srcset="{{ $slide.desktop | relURL }} 1x, {{ (replace $slide.desktop ".webp" "@2x.webp") | relURL }} 2x"
+               alt="{{ $slide.title }}"
+               class="w-full h-full object-cover"
+               {{ if eq $i 0 }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}
+               decoding="async">
         </picture>
 
-        <!-- Content overlay -->
-        <div class="absolute inset-0 z-20 hidden md:flex items-end text-white">
+        <!-- Overlay specific to each slide -->
+        <div class="absolute inset-0 z-20 flex items-end text-white bg-black/30 md:bg-black/40">
           <div class="container-site pb-6 md:pb-10">
             <div class="max-w-2xl drop-shadow-lg">
-              <h1 class="mt-2 text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">{{ $slide.title }}</h1>
-              <p class="mt-3 text-base md:text-lg text-white/90 leading-relaxed">{{ $slide.text }}</p>
-              <a href="{{ $slide.ctaLink }}" class="btn btn-primary mt-4">{{ $slide.ctaText }}</a>
+              <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">{{ $slide.title }}</h1>
+              {{ with $slide.text }}
+              <p class="mt-3 text-base md:text-lg text-white/90 leading-relaxed">{{ . }}</p>
+              {{ end }}
+              {{ with $slide.ctaLink }}
+              <a href="{{ . }}" class="btn btn-primary mt-4">{{ $slide.ctaText }}</a>
+              {{ end }}
             </div>
           </div>
         </div>
@@ -29,112 +36,43 @@
       {{ end }}
     </div>
 
-    <!-- Slider Controls -->
-    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
+    <!-- Dots & Arrows -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
       {{ range $i, $_ := $slides }}
-      <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-colors {{ if eq $i 0 }}active{{ end }}" data-slide="{{ $i }}"></button>
+      <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-colors {{ if eq $i 0 }}active{{ end }}" data-slide="{{ $i }}" aria-label="Go to slide {{ add $i 1 }}"></button>
       {{ end }}
     </div>
 
-
-    <!-- Navigation Arrows -->
-    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-all slider-prev">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-      </svg>
+    <button class="slider-prev absolute left-4 top-1/2 -translate-y-1/2 z-30 text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-all" aria-label="Previous slide">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
     </button>
-    <button class="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-all slider-next">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-      </svg>
+    <button class="slider-next absolute right-4 top-1/2 -translate-y-1/2 z-30 text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-all" aria-label="Next slide">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
     </button>
-
-    <!-- Content overlay -->
-    <div class="absolute inset-0 z-20 flex items-end text-white">
-      <div class="container-site pb-6 md:pb-10">
-        <div class="max-w-2xl drop-shadow-lg">
-          <!-- <p class="kicker text-white/90 text-sm">Admissions Open!</p> -->
-
-          <!-- <h1 class="mt-2 text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">
-            General Nursing<br class="md:hidden">& Midwifery<br class="md:hidden">· B.Sc Nursing
-          </h1> -->
-
-          <!-- <p class="mt-3 text-base md:text-lg text-white/90 leading-relaxed">
-            Learn with real clinical exposure, compassionate training, and industry-ready skills.
-          </p> -->
-
-          <div class="mt-4 md:mt-6 flex flex-wrap gap-2 md:gap-3">
-            <a href="/admissions/apply/"
-               class="btn btn-primary shadow-btn text-sm px-4 py-2 md:px-6 md:py-3">
-              Apply Now
-            </a>
-            <a href="tel:+919050402070"
-               class="btn btn-primary text-sm px-4 py-2 md:px-6 md:py-3">
-              Call +91 9050 402 070
-            </a>
-            <a href="mailto:info@ppnc.in"
-               class="btn btn-ghost border border-white/30 text-white text-sm px-4 py-2 md:px-6 md:py-3">
-              Email
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.slider-dot');
-  const prevBtn = document.querySelector('.slider-prev');
-  const nextBtn = document.querySelector('.slider-next');
-  let currentSlide = 0;
-  let slideInterval;
-
-  function showSlide(n) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-    
-    currentSlide = (n + slides.length) % slides.length;
-    
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
-
-  function nextSlide() {
-    showSlide(currentSlide + 1);
-  }
-
-  function prevSlide() {
-    showSlide(currentSlide - 1);
-  }
-
-  // Event listeners
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtn.addEventListener('click', prevSlide);
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      showSlide(parseInt(dot.dataset.slide));
-    });
-  });
-
-  // Auto-advance slides every 5 seconds
-  function startSlider() {
-    slideInterval = setInterval(nextSlide, 5000);
-  }
-
-  function stopSlider() {
-    clearInterval(slideInterval);
-  }
-
-  // Pause on hover
-  const slider = document.querySelector('.hero-slider');
-  slider.addEventListener('mouseenter', stopSlider);
-  slider.addEventListener('mouseleave', startSlider);
-
-  // Start the slider
-  startSlider();
+document.addEventListener('DOMContentLoaded',()=>{
+  const slides=[...document.querySelectorAll('.hero-slide')],
+        dots=[...document.querySelectorAll('.slider-dot')],
+        prev=document.querySelector('.slider-prev'),
+        next=document.querySelector('.slider-next');
+  let i=0,timer;
+  const show=n=>{
+    slides.forEach(s=>s.classList.remove('active'));
+    dots.forEach(d=>d.classList.remove('active'));
+    i=(n+slides.length)%slides.length;
+    slides[i].classList.add('active');dots[i].classList.add('active');
+  };
+  const auto=()=>timer=setInterval(()=>show(i+1),5000);
+  const stop=()=>clearInterval(timer);
+  next.addEventListener('click',()=>show(i+1));
+  prev.addEventListener('click',()=>show(i-1));
+  dots.forEach((d,idx)=>d.addEventListener('click',()=>show(idx)));
+  const slider=document.querySelector('.hero-slider');
+  slider.addEventListener('mouseenter',stop);
+  slider.addEventListener('mouseleave',auto);
+  auto();
 });
 </script>

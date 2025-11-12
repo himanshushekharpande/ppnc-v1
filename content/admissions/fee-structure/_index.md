@@ -1,5 +1,4 @@
 ---
-title: "Fee Structure"
 description: "Complete fee details for B.Sc Nursing, GNM and paramedical courses"
 date: 2024-01-15
 layout: "single"
@@ -8,220 +7,184 @@ layout: "single"
 {{< raw >}}
 
 <div class="fee-structure-content">
-  <p class="text-lead mb-8">Transparent and affordable fee structure for quality nursing and paramedical education.</p>
 
-  <div class="section-spacing">
-    <h2 class="text-3xl font-bold text-marian-blue mb-6">💵 Program-wise Annual Fees</h2>
-    
-    <div class="overflow-x-auto mb-8">
-      <table class="table table-zebra w-full">
-        <thead>
-          <tr class="bg-marian-blue text-white">
-            <th>Program</th>
-            <th>Tuition Fee</th>
-            <th>Development Fee</th>
-            <th>Other Charges</th>
-            <th>Total Annual</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="font-bold">B.Sc Nursing (4 Years)</td>
-            <td>₹65,000</td>
-            <td>₹15,000</td>
-            <td>₹10,000</td>
-            <td class="font-bold">₹90,000</td>
-          </tr>
-          <tr>
-            <td class="font-bold">GNM (3 Years)</td>
-            <td>₹45,000</td>
-            <td>₹10,000</td>
-            <td>₹8,000</td>
-            <td class="font-bold">₹63,000</td>
-          </tr>
-          <tr>
-            <td class="font-bold">Diploma in MLT (2 Years)</td>
-            <td>₹35,000</td>
-            <td>₹8,000</td>
-            <td>₹7,000</td>
-            <td class="font-bold">₹50,000</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <p class="text-lead mb-6">Pranav Paramedical & Nursing College announces the approved annual fee structure for the following courses offered under the Tripura Nursing Council-approved programs for the session 2025–26.</p>
+
+  <div class="mb-6">
+    <p class="font-semibold text-marian-blue">Approved by Health & Family Welfare Department and Tripura Nursing Council, Govt. of Tripura</p>
   </div>
 
   <div class="section-spacing">
-    <h2 class="text-3xl font-bold text-marian-blue mb-6">🏠 Hostel Fees (Optional)</h2>
-    
-    <div class="grid md:grid-cols-2 gap-6 mb-8">
-      <div class="card card-padded">
-        <h3 class="text-xl font-bold text-marian-blue mb-4">Hostel Charges</h3>
-        <div class="space-y-3">
-          <div class="flex justify-between border-b pb-2">
-            <span>Hostel Rent</span>
-            <span class="font-bold">₹30,000/year</span>
-          </div>
-          <div class="flex justify-between border-b pb-2">
-            <span>Mess Charges</span>
-            <span class="font-bold">₹24,000/year</span>
-          </div>
-          <div class="flex justify-between border-b pb-2">
-            <span>Security Deposit</span>
-            <span class="font-bold">₹5,000 (refundable)</span>
-          </div>
-          <div class="flex justify-between pt-2">
-            <span class="font-bold">Total</span>
-            <span class="font-bold text-primary">₹59,000/year</span>
-          </div>
-        </div>
-      </div>
+    <h2 class="text-3xl font-bold text-marian-blue mb-4">📋 Approved Fee Structure (Academic Session 2025–26)</h2>
 
-      <div class="card card-padded">
-        <h3 class="text-xl font-bold text-marian-blue mb-4">Hostel Facilities</h3>
-        <ul class="space-y-3">
-          <li class="flex items-start">
-            <span class="text-primary mr-2 mt-1">•</span>
-            Spacious AC/Non-AC rooms
-          </li>
-          <li class="flex items-start">
-            <span class="text-primary mr-2 mt-1">•</span>
-            24/7 WiFi connectivity
-          </li>
-          <li class="flex items-start">
-            <span class="text-primary mr-2 mt-1">•</span>
-            Hygienic vegetarian mess
-          </li>
-          <li class="flex items-start">
-            <span class="text-primary mr-2 mt-1">•</span>
-            RO water purifiers
-          </li>
-          <li class="flex items-start">
-            <span class="text-primary mr-2 mt-1">•</span>
-            Common study rooms
-          </li>
-          <li class="flex items-start">
-            <span class="text-primary mr-2 mt-1">•</span>
-            24/7 security
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="overflow-x-auto mb-6">
+  <table class="table table-fixed min-w-[1000px] w-full table-clean">
+    <colgroup>
+      <col style="width:48px">          <!-- SL -->
+      <col style="width:30%">           <!-- Particulars -->
+      <col style="width:8%">            <!-- GNM I -->
+      <col style="width:8%">            <!-- GNM II -->
+      <col style="width:8%">            <!-- GNM III -->
+      <col style="width:9%">            <!-- BSc I -->
+      <col style="width:9%">            <!-- BSc II -->
+      <col style="width:9%">            <!-- BSc III -->
+      <col style="width:9%">            <!-- BSc IV -->
+    </colgroup>
+
+    <thead class="bg-marian-blue text-white">
+      <tr>
+        <th class="py-3 text-left sl-col" rowspan="2">SL.</th>
+        <th class="py-3 text-left" rowspan="2">Particulars</th>
+        <th class="py-3 text-center table-divider-col" colspan="3" scope="colgroup">General Nursing &amp; Midwifery (GNM)</th>
+        <th class="py-3 text-center table-divider-col" colspan="4" scope="colgroup">B.Sc Nursing</th>
+      </tr>
+
+      <tr class="bg-marian-blue/90">
+        <th class="py-2 text-center">I<sup>st</sup> Yr</th>
+        <th class="py-2 text-center">II<sup>nd</sup> Yr</th>
+        <th class="py-2 text-center">III<sup>rd</sup> Yr</th>
+
+        <!-- first BSc year column also carries divider class to create a vertical line between groups -->
+        <th class="py-2 text-center table-divider-col">I<sup>st</sup> Yr</th>
+        <th class="py-2 text-center">II<sup>nd</sup> Yr</th>
+        <th class="py-2 text-center">III<sup>rd</sup> Yr</th>
+        <th class="py-2 text-center">IV<sup>th</sup> Yr</th>
+      </tr>
+    </thead>
+
+    <tbody class="bg-white text-sm text-gray-800">
+      <tr>
+        <td class="py-3 sl-col">1</td>
+        <td class="py-3">Admission &amp; Kit Fee</td>
+        <td class="py-3 text-right table-divider-col">₹ 25,000</td>
+        <td class="py-3 text-center">-</td>
+        <td class="py-3 text-center">-</td>
+        <td class="py-3 text-right table-divider-col">₹ 30,000</td>
+        <td class="py-3 text-center">-</td>
+        <td class="py-3 text-center">-</td>
+        <td class="py-3 text-center">-</td>
+      </tr>
+
+      <tr>
+        <td class="py-3 sl-col">2</td>
+        <td class="py-3">Tuition Fee</td>
+        <td class="py-3 text-right table-divider-col font-medium">₹ 69,300</td>
+        <td class="py-3 text-right font-medium">₹ 69,300</td>
+        <td class="py-3 text-right font-medium">₹ 69,300</td>
+        <td class="py-3 text-right table-divider-col font-medium">₹ 71,000</td>
+        <td class="py-3 text-right font-medium">₹ 71,000</td>
+        <td class="py-3 text-right font-medium">₹ 71,000</td>
+        <td class="py-3 text-right font-medium">₹ 71,000</td>
+      </tr>
+
+      <tr>
+        <td class="py-3 sl-col">3</td>
+        <td class="py-3">Development Fee</td>
+        <td class="py-3 text-right table-divider-col">₹ 6,000</td>
+        <td class="py-3 text-right">₹ 6,000</td>
+        <td class="py-3 text-right">₹ 6,000</td>
+        <td class="py-3 text-right table-divider-col">₹ 6,200</td>
+        <td class="py-3 text-right">₹ 6,200</td>
+        <td class="py-3 text-right">₹ 6,200</td>
+        <td class="py-3 text-right">₹ 6,200</td>
+      </tr>
+
+      <tr>
+        <td class="py-3 sl-col">4</td>
+        <td class="py-3">Library Fee</td>
+        <td class="py-3 text-right table-divider-col">₹ 6,000</td>
+        <td class="py-3 text-right">₹ 6,000</td>
+        <td class="py-3 text-right">₹ 6,000</td>
+        <td class="py-3 text-right table-divider-col">₹ 6,200</td>
+        <td class="py-3 text-right">₹ 6,200</td>
+        <td class="py-3 text-right">₹ 6,200</td>
+        <td class="py-3 text-right">₹ 6,200</td>
+      </tr>
+
+      <tr>
+        <td class="py-3 sl-col">5</td>
+        <td class="py-3">Laboratory Fee</td>
+        <td class="py-3 text-right table-divider-col">₹ 12,000</td>
+        <td class="py-3 text-right">₹ 12,000</td>
+        <td class="py-3 text-right">₹ 12,000</td>
+        <td class="py-3 text-right table-divider-col">₹ 12,500</td>
+        <td class="py-3 text-right">₹ 12,500</td>
+        <td class="py-3 text-right">₹ 12,500</td>
+        <td class="py-3 text-right">₹ 12,500</td>
+      </tr>
+
+      <tr>
+        <td class="py-3 sl-col">6</td>
+        <td class="py-3">Annual Fee (Total for year)</td>
+        <td class="py-3 text-right table-divider-col font-medium">₹ 1,18,300</td>
+        <td class="py-3 text-right font-medium">₹ 93,300</td>
+        <td class="py-3 text-right font-medium">₹ 93,300</td>
+        <td class="py-3 text-right table-divider-col font-medium">₹ 1,25,900</td>
+        <td class="py-3 text-right font-medium">₹ 95,900</td>
+        <td class="py-3 text-right font-medium">₹ 95,900</td>
+        <td class="py-3 text-right font-medium">₹ 95,900</td>
+      </tr>
+
+      <tr class="bg-gray-50">
+        <td></td>
+        <td class="font-bold text-left">Total Course Fee</td>
+        <td colspan="3" class="text-center totals">₹ 3,04,900</td>
+        <td colspan="4" class="text-center totals">₹ 4,13,600</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
 
   </div>
 
-  <div class="section-spacing">
-    <h2 class="text-3xl font-bold text-marian-blue mb-6">💳 Payment Schedule</h2>
-    
-    <div class="card card-padded mb-8">
-      <h3 class="text-xl font-bold text-marian-blue mb-4">Installment Plan</h3>
-      
-      <div class="space-y-4">
-        <div class="flex items-center justify-between p-4 bg-base-200 rounded-lg">
-          <div>
-            <h4 class="font-bold">First Installment</h4>
-            <p class="text-sm text-gray-600">At the time of admission</p>
-          </div>
-          <span class="font-bold text-primary">60% of annual fees</span>
-        </div>
-        
-        <div class="flex items-center justify-between p-4 bg-base-200 rounded-lg">
-          <div>
-            <h4 class="font-bold">Second Installment</h4>
-            <p class="text-sm text-gray-600">Before December 31st</p>
-          </div>
-          <span class="font-bold text-primary">40% of annual fees</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-spacing">
-    <h2 class="text-3xl font-bold text-marian-blue mb-6">🎓 Scholarship Opportunities</h2>
-    
-    <div class="bg-base-100 rounded-lg p-6 border border-gray-200 mb-6">
-      <p class="text-lg text-gray-700 mb-4">We offer various scholarships to meritorious and deserving students:</p>
-      
-      <ul class="space-y-3">
-        <li class="flex items-start">
-          <span class="text-primary mr-3 mt-1 font-bold">•</span>
-          <div>
-            <span class="font-semibold text-gray-900">Merit Scholarship:</span>
-            <span class="text-gray-700"> 25% fee waiver for students with 90%+ in 12th</span>
-          </div>
-        </li>
-        <li class="flex items-start">
-          <span class="text-primary mr-3 mt-1 font-bold">•</span>
-          <div>
-            <span class="font-semibold text-gray-900">Sports Scholarship:</span>
-            <span class="text-gray-700"> For state/national level athletes</span>
-          </div>
-        </li>
-        <li class="flex items-start">
-          <span class="text-primary mr-3 mt-1 font-bold">•</span>
-          <div>
-            <span class="font-semibold text-gray-900">SC/ST Scholarship:</span>
-            <span class="text-gray-700"> As per government norms</span>
-          </div>
-        </li>
-        <li class="flex items-start">
-          <span class="text-primary mr-3 mt-1 font-bold">•</span>
-          <div>
-            <span class="font-semibold text-gray-900">Single Girl Child Scholarship:</span>
-            <span class="text-gray-700"> Special concession</span>
-          </div>
-        </li>
-        <li class="flex items-start">
-          <span class="text-primary mr-3 mt-1 font-bold">•</span>
-          <div>
-            <span class="font-semibold text-gray-900">Defense Quota:</span>
-            <span class="text-gray-700"> For children of armed forces personnel</span>
-          </div>
-        </li>
+  <!-- Important notes -->
+  <div class="section-spacing grid md:grid-cols-2 gap-6">
+    <div>
+      <h3 class="text-xl font-bold text-marian-blue mb-4">Important Notes</h3>
+      <ul class="list-inside list-disc space-y-2 text-gray-700">
+        <li>Fees are charged per academic year and are subject to change as per institute rules.</li>
+        <li>Hostel charges are ₹6,000 per month (including meals and transport), payable every six months.</li>
+        <li>Hostel stay is compulsory as per INC norms; day-scholar status may be allowed only by the Principal in special cases.</li>
+        <li>Penalties apply for unauthorized absence or violation of hostel/institute guidelines.</li>
+        <li>Other expenses such as Council/University fees, educational tours, books, and select activities are charged separately.</li>
+        <li>All fee payments are non-refundable and must be deposited either at the college admission section or in the approved college accounts only.</li>
       </ul>
     </div>
 
-    <div class="bg-warning/20 border border-warning/30 rounded-lg p-4 mb-6">
-      <p class="text-warning-content font-medium flex items-center">
-        <span class="mr-2">ℹ️</span>
-        <strong>Note:</strong> For detailed scholarship information, visit our
-        <a href="/admissions/scholarships/" class="text-primary hover:text-secondary font-semibold underline ml-1">
-          Scholarships page
-        </a>
-      </p>
+    <div>
+      <h3 class="text-xl font-bold text-marian-blue mb-4">Our Facilities</h3>
+      <ul class="list-inside list-disc space-y-2 text-gray-700">
+        <li>Apart from modern infrastructure, we have a nearby campus hospital for practicing nursing students.</li>
+        <li>Digital classrooms, experienced faculty, and hospital tie-ups for practical training.</li>
+        <li>100% placement assistance through industry partnerships and internships.</li>
+        <li>Transportation service, scholarship facility, loan facility, and free on-campus WiFi.</li>
+        <li>Comfortable A-Class hostel with hygienic mess and 24/7 security.</li>
+        <li>Our experienced faculty and A+ infrastructure are dedicated to quality education, training, and professional success.</li>
+      </ul>
     </div>
 
   </div>
 
-  <div class="section-spacing">
-    <h2 class="text-3xl font-bold text-marian-blue mb-6">📞 Fee Related Queries</h2>
-    
-    <div class="card card-padded bg-base-200">
-      <div class="grid md:grid-cols-2 gap-6">
+  <!-- Payment & contact -->
+  <div class="section-spacing mt-8">
+    <h3 class="text-xl font-bold text-marian-blue mb-4">Fee Related Queries</h3>
+    <div class="card card-padded bg-base-100 border border-base-300">
+      <div class="grid md:grid-cols-2 gap-6 items-center">
         <div>
-          <h3 class="font-bold text-lg text-gray-900 mb-3">Contact Information</h3>
-          <div class="space-y-2">
-            <p class="flex items-center">
-              <span class="font-semibold text-gray-700 mr-2">Accounts Office:</span>
-              <span class="text-primary font-medium">+91 9050 402 070</span>
-            </p>
-            <p class="flex items-center">
-              <span class="font-semibold text-gray-700 mr-2">Email:</span>
-              <span class="text-primary font-medium">accounts@ppnc.in</span>
-            </p>
-            <p class="flex items-center">
-              <span class="font-semibold text-gray-700 mr-2">Office Hours:</span>
-              <span class="text-gray-600">10:00 AM - 4:00 PM (Monday to Friday)</span>
-            </p>
-          </div>
+          <p class="mb-2"><strong>Admission Office:</strong> <span class="text-primary font-medium">+91 9050 402 070</span></p>
+          <p class="mb-2"><strong>Email:</strong> <span class="text-primary font-medium">admission@ppnc.in</span></p>
+          <p class="mb-0"><strong>Office Hours:</strong> 10:00 AM - 4:00 PM (Monday to Friday)</p>
         </div>
-        <div class="flex items-center justify-center">
-          <a href="/admissions/apply/" class="btn btn-primary text-lg px-8 py-3">
-            Apply Now
-          </a>
+
+        <div class="text-center">
+          <a href="/admissions/apply/" class="btn btn-primary text-lg px-8 py-3">Apply Now</a>
         </div>
       </div>
     </div>
+
   </div>
+
 </div>
+
 {{</ raw >}}

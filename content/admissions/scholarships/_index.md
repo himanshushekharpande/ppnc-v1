@@ -1,5 +1,4 @@
 ---
-title: "Scholarships"
 description: "Financial assistance and scholarship programs for deserving students"
 date: 2024-01-15
 layout: "single"

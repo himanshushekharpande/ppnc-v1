@@ -12,14 +12,14 @@ enableRobotsTXT = true
   showBlog = false                  # we’ll use News instead of “Blog”
   mainSections = ['news']           # tella uses this to pick list pages
   googleFonts = true                # turn off if you host fonts locally
-  googleFormEndpoint = "https://script.google.com/macros/s/AKfycbzbb0VR1M5qkkQwjRLPy9_hWS5WZCvqR6nUfDR98mJIDbZykMZxm7dCHXgHhctjNnMj/exec"
+  googleFormEndpoint = "https://script.google.com/macros/s/AKfycbzsvVri7qpr9y-lpIQJY2hMyUdmRUq81iYyFox7gmQrx0bKq8fAxh8kj2akLZgrK7E4/exec"
 
   # Turnstile + API for forms (Step 3 will use these)
   turnstileSiteKey = "YOUR_TURNSTILE_SITE_KEY"
   collegeApi = "https://your-api.example.com"   # e.g., Workers/Lambda URL
 
   [params.logo]
-    main = "img/logo/logo-1.webp"      # put your logo in /static/img/logo/logo.svg
+    main = "img/logo/PPNC_logo.webp"      # put your logo in /static/img/logo/logo.svg
     alt = "Pranav Paramedical and Nursing College"
     size = "h-10 md:h-12 w-auto object-contain"
 
@@ -42,90 +42,79 @@ enableRobotsTXT = true
 
   [params.hero]
 
-  # Homepage slider (story flow)
+  # --- Homepage slider: covers 01 → 03 ---
   [[params.hero.slides]]
-    desktop = "img/hero/cover_05_desktop.webp"
-    tablet  = "img/hero/cover_05_tablet.webp"
-    mobile  = "img/hero/cover_05_mobile.webp"
+    desktop = "img/hero/cover_01_desktop.webp"
+    tablet  = "img/hero/cover_01_tablet.webp"
+    mobile  = "img/hero/cover_01_mobile.webp"
     title   = "Admissions Open 2025"
     text    = "B.Sc Nursing & GNM · Apply Online Today"
     ctaText = "Apply Now"
     ctaLink = "/admissions/apply/"
 
   [[params.hero.slides]]
-    desktop = "img/hero/cover_06_desktop.webp"
-    tablet  = "img/hero/cover_06_tablet.webp"
-    mobile  = "img/hero/cover_06_mobile.webp"
+    desktop = "img/hero/cover_02_desktop.webp"
+    tablet  = "img/hero/cover_02_tablet.webp"
+    mobile  = "img/hero/cover_02_mobile.webp"
     title   = "Programs in Nursing & Paramedical"
     text    = "Build your career with B.Sc Nursing & GNM"
     ctaText = "Explore Programs"
     ctaLink = "/programs/"
 
   [[params.hero.slides]]
-    desktop = "img/hero/cover_07_desktop.webp"
-    tablet  = "img/hero/cover_07_tablet.webp"
-    mobile  = "img/hero/cover_07_mobile.webp"
+    desktop = "img/hero/cover_03_desktop.webp"
+    tablet  = "img/hero/cover_03_tablet.webp"
+    mobile  = "img/hero/cover_03_mobile.webp"
     title   = "Student-Friendly Campus"
     text    = "Safe, modern infrastructure with clinical training exposure"
     ctaText = "Campus Life"
     ctaLink = "/news/"
 
-  [[params.hero.slides]]
-    desktop = "img/hero/cover_08_desktop.webp"
-    tablet  = "img/hero/cover_08_tablet.webp"
-    mobile  = "img/hero/cover_08_mobile.webp"
-    title   = "Join the Future of Healthcare"
-    text    = "Get in touch for admissions, scholarships, and careers"
-    ctaText = "Contact Us"
-    ctaLink = "/contact/"
-
-  # Hero covers for individual menu pages
+  # --- Static page heroes ---
   [params.hero.pages]
 
-  [params.hero.pages.home]
-    desktop = "img/hero/cover_0801_desktop.webp"
-    tablet  = "img/hero/cover_0801_tablet.webp"
-    mobile  = "img/hero/cover_0801_mobile.webp"
-    title   = "Welcome to PPNC"
-    text    = "Nursing & Paramedical Education • Established 2025"
+    [params.hero.pages.home]
+      desktop = "img/hero/cover_01_desktop.webp"
+      tablet  = "img/hero/cover_01_tablet.webp"
+      mobile  = "img/hero/cover_01_mobile.webp"
+      title   = "Welcome to PPNC"
+      text    = "Nursing & Paramedical Education • Established 2025"
 
-  [params.hero.pages.about]
-    desktop = "img/hero/cover_0802_desktop.webp"
-    tablet  = "img/hero/cover_0802_tablet.webp"
-    mobile  = "img/hero/cover_0802_mobile.webp"
-    title   = "About PPNC"
-    text    = "Compassion • Competence • Community"
+    [params.hero.pages.about]
+      desktop = "img/hero/cover_04_desktop.webp"
+      tablet  = "img/hero/cover_04_tablet.webp"
+      mobile  = "img/hero/cover_04_mobile.webp"
+      title   = "About PPNC"
+      text    = "Compassion • Competence • Community"
 
-  [params.hero.pages.programs]
-    desktop = "img/hero/cover_06_desktop.webp"
-    tablet  = "img/hero/cover_06_tablet.webp"
-    mobile  = "img/hero/cover_06_mobile.webp"
-    title   = "Programs"
-    text    = "B.Sc Nursing · GNM"
+    [params.hero.pages.programs]
+      desktop = "img/hero/cover_05_desktop.webp"
+      tablet  = "img/hero/cover_05_tablet.webp"
+      mobile  = "img/hero/cover_05_mobile.webp"
+      title   = "Programs"
+      text    = "B.Sc Nursing · GNM"
 
-  [params.hero.pages.admissions]
-    desktop = "img/hero/cover_05_desktop.webp"
-    tablet  = "img/hero/cover_05_tablet.webp"
-    mobile  = "img/hero/cover_05_mobile.webp"
-    title   = "Admissions"
-    text    = "Apply for the Academic Session 2025"
+    # Other pages rotate reused covers 01 → 03
+    [params.hero.pages.admissions]
+      desktop = "img/hero/cover_01_desktop.webp"
+      tablet  = "img/hero/cover_01_tablet.webp"
+      mobile  = "img/hero/cover_01_mobile.webp"
+      title   = "Admissions"
+      text    = "Apply for Academic Session 2025"
 
-  [params.hero.pages.news]
-    desktop = "img/hero/cover_07_desktop.webp"
-    tablet  = "img/hero/cover_07_tablet.webp"
-    mobile  = "img/hero/cover_07_mobile.webp"
-    title   = "News & Updates"
-    text    = "Notices • Events • Career @ PPNC"
+    [params.hero.pages.news]
+      desktop = "img/hero/cover_02_desktop.webp"
+      tablet  = "img/hero/cover_02_tablet.webp"
+      mobile  = "img/hero/cover_02_mobile.webp"
+      title   = "News & Updates"
+      text    = "Notices • Events • Career @ PPNC"
 
-  [params.hero.pages.contact]
-    desktop = "img/hero/cover_08_desktop.webp"
-    tablet  = "img/hero/cover_08_tablet.webp"
-    mobile  = "img/hero/cover_08_mobile.webp"
-    title   = "Contact Us"
-    text    = "Get in touch for Admissions and Support"
-
-
-
+    [params.hero.pages.contact]
+      desktop = "img/hero/cover_03_desktop.webp"
+      tablet  = "img/hero/cover_03_tablet.webp"
+      mobile  = "img/hero/cover_03_mobile.webp"
+      title   = "Contact Us"
+      text    = "Get in touch for Admissions and Support"
 
 [menu]
   [[menu.main]]

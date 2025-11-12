@@ -1,55 +1,119 @@
 ---
-title: "Mission, Vision & Director's Message"
-description: "Where we are headed and how we plan to get there."
+description: "Leadership messages from the Chairman (CMD), CEO, and Principal — Pranav Paramedical & Nursing College, Agartala."
+type: "page"
+weight: 30
+keywords:
+  ["leadership", "chairman", "cmd", "principal", "CEO", "Pranav Paramedical"]
 ---
 
 {{< raw >}}
 
-<!-- Tabs -->
-<div role="tablist" class="tabs tabs-boxed tabs-ppnc overflow-x-auto" aria-label="Mission Vision Director tabs">
-  <button type="button" class="tab whitespace-nowrap" id="tab-mission" data-target="panel-mission" aria-selected="false">Mission</button>
-  <button type="button" class="tab whitespace-nowrap" id="tab-vision" data-target="panel-vision" aria-selected="false">Vision</button>
-  <button type="button" class="tab whitespace-nowrap" id="tab-director" data-target="panel-director" aria-selected="false">Director's Message</button>
-  <!-- indicator appended by JS -->
-</div>
+<div class="section">
+  <div class="container-site">
 
-<!-- Panels -->
-<div class="mt-6 space-y-6">
-
-  <div id="panel-mission" role="tabpanel" aria-labelledby="tab-mission" class="card">
-    <div class="card-body prose">
-      <h3>Mission</h3>
-      <p>Our mission is to prepare competent, compassionate, and confident nursing professionals who are equipped to meet the evolving healthcare needs of society. We aim to blend <strong>clinical excellence with human empathy</strong>, ensuring every student develops not only technical proficiency but also the moral and emotional intelligence to serve with dignity and dedication.</p>
-      <p>By providing hands-on learning through hospital collaborations and community-based experiences, we strive to create graduates who can <strong>deliver quality care, uphold patient safety, and promote public health</strong> in both urban and rural settings.</p>
+    <div class="text-center max-w-3xl mx-auto mb-6">
+      <span class="kicker">Leadership</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-marian-blue">Messages from Our Leadership</h1>
+      <div class="section-underline" aria-hidden="true"></div>
+      <p class="mt-4 text-lg text-gray-700">Our leadership team — their vision and mission for Tripura and the Northeast.</p>
     </div>
-  </div>
 
-  <div id="panel-vision" role="tabpanel" aria-labelledby="tab-vision" class="card hidden" aria-hidden="true">
-    <div class="card-body prose">
-      <h3>Vision</h3>
-      <p>To be a <strong>nationally recognized center of excellence</strong> in nursing and paramedical education that combines innovation, inclusivity, and social responsibility. We envision a future where our graduates stand at the forefront of healthcare transformation — advancing patient care standards, research, and professional ethics across India and beyond.</p>
-      <p>The college aspires to foster a <strong>student-centric learning environment</strong>, supported by modern infrastructure, digital learning tools, and a network of experienced healthcare mentors — helping every learner realize their full potential.</p>
-    </div>
-  </div>
+    <!-- Leader 1 (default bg) -->
+    <section class="leader-row reveal" aria-labelledby="cmd-heading" role="region">
+      <div class="grid md:grid-cols-2 gap-8 items-center md:gap-12">
 
-  <div id="panel-director" role="tabpanel" aria-labelledby="tab-director" class="card hidden" aria-hidden="true">
-    <div class="card-body">
-      <div class="flex flex-col md:flex-row gap-6 items-start">
-        <img src="/img/people/ayush-kumar-tiwari.jpg" alt="Ayush Kumar Tiwari" class="w-28 h-28 rounded-2xl object-cover border border-base-300" />
-        <div class="prose">
-          <h3>Director’s Message</h3>
-          <p><strong>Ayush Kumar Tiwari, Director — Pranav Welfare Trust</strong></p>
-          <p>It gives me immense pride to lead an institution that stands on the strong foundation of the <strong>Pranav Welfare Trust</strong> — a registered trust established in <strong>2010</strong>, employing thousands of skilled professionals from diverse sectors such as healthcare, education, administration, and social development.</p>
-          <p>Although I represent a younger generation of leadership, I am privileged to be guided by a team with deep institutional experience. Together, we are channeling over a decade of multidisciplinary expertise into the field of <strong>nursing and paramedical education</strong>, creating a model of training that is both technically robust and socially meaningful.</p>
-          <p class="mt-3 font-semibold">Welcome to a journey where learning meets purpose, and youth meets experience.</p>
+        <!-- Image column -->
+        <div class="w-full md:w-[480px] mx-auto">
+          <div class="portrait-outer" tabindex="0" aria-hidden="true" data-parallax data-depth="20">
+            <picture>
+              <source type="image/webp" srcset="/img/people/CMD-320.webp 320w, /img/people/CMD-640.webp 640w, /img/people/CMD-960.webp 960w, /img/people/CMD-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 480px">
+              <img class="portrait-img" src="/img/people/CMD-960.webp"
+                   alt="Ayush Kumar Tiwari — Chairman cum Managing Director, Pranav Welfare Trust"
+                   width="480" height="480" loading="lazy" decoding="async" data-layer>
+            </picture>
+          </div>
+        </div>
+
+        <!-- Text column -->
+        <div class="leader-card lead-body">
+          <h2 id="cmd-heading" class="lead-name">Ayush Kumar Tiwari</h2>
+          <div class="lead-role">President / Settlor of Trust — Chairman cum Managing Director</div>
+
+          <p>Welcome to Pranav Paramedical & Nursing College in Agartala, Tripura, where we are shaping the future of healthcare education with vision and dedication in the heart of Northeast India.</p>
+
+          <p><strong>Vision:</strong> To establish Pranav as a global beacon of healthcare education, producing innovative, ethical, and highly skilled professionals who transform lives through compassionate care, addressing the unique healthcare challenges of Tripura and the Northeast.</p>
+
+          <p><strong>Mission:</strong> I am committed to leading the institution toward excellence by fostering strategic growth, integrating advanced medical technologies, and nurturing a culture of research and innovation — while prioritizing community health initiatives for Tripura’s rural and tribal areas.</p>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
+    <!-- Leader 2 (alternate bg for subtle contrast) -->
+    <section class="leader-row reveal leader-bg-alt" aria-labelledby="ceo-heading" role="region">
+      <div class="grid md:grid-cols-2 gap-8 items-center md:gap-12 md:flex-row-reverse">
+
+        <div class="w-full md:w-[480px] mx-auto">
+          <div class="portrait-outer" tabindex="0" aria-hidden="true" data-parallax data-depth="16">
+            <picture>
+              <source type="image/webp" srcset="/img/people/CEO-320.webp 320w, /img/people/CEO-640.webp 640w, /img/people/CEO-960.webp 960w, /img/people/CEO-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 480px">
+              <img class="portrait-img" src="/img/people/CEO-960.webp"
+                   alt="Nihar Ranjan Das — CEO cum Administrative Officer, Pranav Paramedical & Nursing College"
+                   width="480" height="480" loading="lazy" decoding="async" data-layer>
+            </picture>
+          </div>
+        </div>
+
+        <div class="leader-card lead-body">
+          <h2 id="ceo-heading" class="lead-name">Nihar Ranjan Das</h2>
+          <div class="lead-role">Retired TCS Officer — CEO cum Administrative Officer</div>
+
+          <p>At PPNC we are dedicated to operational excellence, creating a nurturing environment for the next generation of healthcare leaders in Northeast India.</p>
+
+          <p><strong>Vision:</strong> To build a sustainable, inclusive institution that sets benchmarks in administrative efficiency and accessibility for Tripura's diverse communities.</p>
+
+          <p><strong>Mission:</strong> Leveraging my corporate experience to ensure seamless operations through strategic resource management, technology integration, and focused outreach to remote regions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leader 3 (default bg) -->
+    <section class="leader-row reveal" aria-labelledby="principal-heading" role="region">
+      <div class="grid md:grid-cols-2 gap-8 items-center md:gap-12">
+
+        <div class="w-full md:w-[480px] mx-auto">
+          <div class="portrait-outer" tabindex="0" aria-hidden="true" data-parallax data-depth="12">
+            <picture>
+              <source type="image/webp" srcset="/img/people/Principal-320.webp 320w, /img/people/Principal-640.webp 640w, /img/people/Principal-960.webp 960w, /img/people/Principal-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 480px">
+              <img class="portrait-img" src="/img/people/Principal-960.webp"
+                   alt="Alaka Saha — Principal, Pranav Paramedical & Nursing College"
+                   width="480" height="480" loading="lazy" decoding="async" data-layer>
+            </picture>
+          </div>
+        </div>
+
+        <div class="leader-card lead-body">
+          <h2 id="principal-heading" class="lead-name">Alaka Saha</h2>
+          <div class="lead-role">Retired Vice Principal, Agartala Government Nursing College — Principal</div>
+
+          <p>PPNC is committed to cultivating compassionate, skilled healthcare professionals who serve the unique needs of Northeast India.</p>
+
+          <p><strong>Vision:</strong> To be a premier institution redefining nursing and paramedical education through innovation, ethics, and holistic development.</p>
+
+          <p><strong>Mission:</strong> To foster an evidence-based, hands-on learning environment with strong community engagement and partnerships with local hospitals to prepare students for regional healthcare challenges.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="mt-8 text-center">
+      <a class="btn btn-primary inline-block px-6 py-3 rounded-xl" href="/admissions/apply/">Apply for 2025–26</a>
+      <a class="btn btn-soft ml-4 inline-block px-6 py-3 rounded-xl" href="/contact/">Contact Admissions</a>
+    </div>
+
+  </div>
 </div>
 
-<!-- Include external tabs script -->
-<script src="/js/tabs.js"></script>
+<!-- scripts -->
+<script src="/js/hover-parallax.js" defer></script>
 
 {{</ raw >}}

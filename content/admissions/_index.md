@@ -1,5 +1,4 @@
 ---
-title: "Admissions"
 description: "Admissions process, eligibility, fee structure, scholarships, key dates and application links for Pranav Paramedical & Nursing College."
 # Optional SEO helpers:
 # keywords: ["PPNC admissions", "nursing admissions", "paramedical admissions", "B.Sc. Nursing admissions", "GNM admissions"]

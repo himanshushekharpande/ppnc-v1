@@ -1,4 +1,4 @@
-{{/* Generic Hero: slider on homepage, single image elsewhere */}}
+{{/* Generic Hero: slider on homepage, single image elsewhere (retina-aware) */}}
 
 {{ if .IsHome }}
   {{ partial "ppnc/hero-slider.html" . }}
@@ -8,14 +8,23 @@
   <section class="relative w-full overflow-hidden pt-20 md:pt-24">
     <div class="relative w-full h-[40vh] md:h-[60vh] min-h-[300px] max-h-[500px]">
       <picture>
-        <source media="(max-width: 768px)" srcset="{{ $hero.mobile | relURL }}">
-        <source media="(max-width: 1024px)" srcset="{{ $hero.tablet | relURL }}">
+        <!-- mobile (1x, 2x) -->
+        <source media="(max-width: 768px)"
+                srcset="{{ $hero.mobile | relURL }} 1x, {{ (replace $hero.mobile ".webp" "@2x.webp") | relURL }} 2x"
+                sizes="(max-width: 768px) 100vw">
+        <!-- tablet (1x, 2x) -->
+        <source media="(max-width: 1024px)"
+                srcset="{{ $hero.tablet | relURL }} 1x, {{ (replace $hero.tablet ".webp" "@2x.webp") | relURL }} 2x"
+                sizes="(max-width: 1024px) 100vw">
+        <!-- desktop image fallback (1x, 2x) -->
         <img src="{{ $hero.desktop | relURL }}"
+             srcset="{{ $hero.desktop | relURL }} 1x, {{ (replace $hero.desktop ".webp" "@2x.webp") | relURL }} 2x"
              alt="{{ $hero.title }}"
              class="w-full h-full object-cover"
              loading="eager"
              decoding="async">
       </picture>
+
       <div class="absolute inset-0 bg-black/40 z-10"></div>
       <div class="absolute inset-0 z-20 flex items-center justify-center text-center text-white">
         <div class="max-w-2xl px-6">

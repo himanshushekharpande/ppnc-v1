@@ -1,5 +1,4 @@
 ---
-title: "About Us"
 description: "Who we are, how we began, and where we’re headed."
 type: "section"
 aliases: ["/about-us/"]

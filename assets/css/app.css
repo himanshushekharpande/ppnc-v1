@@ -162,114 +162,70 @@
 }
 
 /* ---------------------------
-   Leadership page components (clean, structured)
-   Replace the old leadership block with this modular version.
+   Leadership page components (consolidated, single source of truth)
 --------------------------- */
 
-@layer components {
-  /* --- color tokens specific to leadership (fallback to root variables) --- */
-  :root {
-    --lead-name-color: var(--ppnc-primary); /* 1C4383 */
-    --lead-designation-color: #2B6CB0;      /* reliable lighter blue for designations */
-    --lead-previous-color: #64748B;         /* muted slate */
-    --lead-card-bg: var(--ppnc-base-100);
-    --lead-card-border: var(--ppnc-base-300);
-    --lead-divider-opacity: 0.7;
-  }
+/* --- tokens for leadership visuals (keep near other :root tokens) --- */
+:root {
+  --lead-name-color: var(--ppnc-primary);
+  --lead-designation-color: #2B6CB0;
+  --lead-previous-color: #64748B;
+  --lead-card-bg: var(--ppnc-base-100);
+  --lead-card-border: var(--ppnc-base-300);
+  --lead-divider-opacity: 0.7;
+}
 
-  /* --- container & global layout --- */
+  /* container spacing */
   .leader-row {
     @apply py-10 md:py-14 relative;
   }
+  .leader-row + .leader-row { @apply mt-6; }
 
-  .leader-row + .leader-row {
-    @apply mt-6;
-  }
-
-  .leader-bg-alt {
-    @apply bg-white; /* keep it subtle; visual alternation is handled by card borders and divider */
-  }
-
-  /* --- heading underline (keeps original visual) --- */
+  /* subtle underline used at the top of the section */
   .section-underline {
     @apply w-24 h-1 rounded-full mx-auto mt-3;
     background: linear-gradient(90deg, var(--ppnc-accent), var(--ppnc-primary));
   }
 
-  /* --- portrait / image wrapper (preserves original Option A) --- */
+  /* --- portrait wrapper & image (preserve pre-cropped square) --- */
   .portrait-outer {
     @apply overflow-hidden rounded-3xl shadow-md mx-auto;
-    max-width: 480px;
+    box-sizing: border-box;
     width: 100%;
-    will-change: transform;
+    max-width: 480px;
     transition: transform .48s cubic-bezier(.2,.9,.25,1);
   }
   .portrait-img {
     display: block;
     width: 100%;
-    height: auto;
-    object-fit: none;
+    height: auto;               /* preserve intrinsic aspect */
+    object-fit: none;           /* respect pre-cropped image */
+    object-position: center;
     border-radius: inherit;
-    transition: transform .6s cubic-bezier(.2,.9,.25,1);
-    }
-    /* Portrait - ensure pre-cropped images are never cropped (mobile included) */
-  .leader-card .portrait-outer,
-  .portrait-outer {
-    width: 100%;
-    max-width: 480px;   /* keep your layout cap */
-    margin-left: auto;
-    margin-right: auto;
-    overflow: visible;  /* allow full image to show (no clipping) */
+    transition: transform .5s cubic-bezier(.2,.9,.25,1);
   }
+  .portrait-outer:hover .portrait-img { transform: scale(1.02); }
 
-  /* Force image to use intrinsic aspect ratio; never use object-cover */
-  .leader-card .portrait-img,
-  .portrait-img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;          /* <-- preserves original 1:1 ratio */
-    object-fit: none !important;      /* <-- don't crop / scale to cover */
-    object-position: center center;
-    border-radius: inherit;
-    max-width: 480px;
-  }
-
-  /* If any parent accidentally forces a fixed height on small screens, neutralize it */
-  .leader-card .portrait-outer[style],
-  .portrait-outer[style] {
-    height: auto !important;
-    min-height: 0 !important;
-  }
-
-  /* Small screens — small max-width and no cropping */
-  @media (max-width: 640px) {
-    .portrait-outer { max-width: 360px; }
-    .portrait-img { max-width: 360px; }
-  }
-
-    .portrait-outer:hover .portrait-img { transform: scale(1.03); }
-    .portrait-outer:focus { transform: translateY(-6px); outline: none; }
-
-  /* --- card --- */
+  /* --- leader card --- */
   .leader-card {
     @apply p-6 rounded-2xl;
     background-color: var(--lead-card-bg);
     border: 1px solid var(--lead-card-border);
     box-shadow: 0 12px 40px rgba(16,24,40,0.06);
+    position: relative;
+    z-index: 1;
   }
-
+  
   /* --- typographic hierarchy --- */
   .lead-name {
     @apply font-extrabold;
     color: var(--lead-name-color);
     letter-spacing: -0.01em;
-    font-size: 1.25rem; /* base 20px */
+    font-size: 1.25rem;
   }
-  @media (min-width: 768px) {
-    .lead-name { font-size: 1.625rem; } /* md: ~26px */
-  }
-
-  /* Designation (CMD / CEO / Principal) */
+  @media (min-width: 768px) { .lead-name { font-size: 1.625rem; } }
+  
+  /* Designation + previous post (single authoritative rules) */
   .lead-designation {
     @apply font-semibold;
     color: var(--lead-designation-color);
@@ -279,19 +235,16 @@
     margin-bottom: .25rem;
     font-size: 0.95rem;
   }
-  @media (min-width: 768px) {
-    .lead-designation { font-size: 1.05rem; }
-  }
-
-  /* Previous post (subtle, italic) */
+  @media (min-width: 768px) { .lead-designation { font-size: 1.05rem; } }
+  
   .lead-previous {
     @apply italic text-sm;
     color: var(--lead-previous-color);
     margin-top: 0;
     margin-bottom: 1rem;
   }
-
-    /* Leadership paragraphs — fully justified and optimized for all devices */
+  
+  /* --- paragraphs: justified but optimized for all sizes --- */
   .lead-body p {
     text-align: justify;
     text-justify: inter-word;
@@ -303,25 +256,24 @@
     margin-bottom: 1rem;
     text-indent: 0;
     color: #1f2937;
-    padding-right: 0.5rem;     /* soft right edge */
-    padding-left: 0.25rem;     /* subtle left rhythm */
-    max-width: 60ch;           /* balanced reading width on large screens */
+    padding-right: 0.5rem;
+    padding-left: 0.25rem;
+    max-width: 60ch;
     margin-left: auto;
     margin-right: auto;
   }
-
-  /* Responsive optimization — allow natural flow on smaller screens */
-  @media (max-width: 768px) {
+  
+  /* keep justification but allow more natural flow on smaller screens */
+  @media (max-width: 1024px) {
     .lead-body p {
-      max-width: 100%;         /* full width on mobile */
+      max-width: 100%;
       padding-right: 0.25rem;
       padding-left: 0.25rem;
-      text-align: justify;     /* still justified */
       text-justify: inter-word;
     }
   }
-
-  /* --- subtle gradient divider between sections (non-invasive) --- */
+  
+  /* subtle gradient divider between leader blocks */
   .leader-row:not(:last-of-type)::after {
     content: "";
     display: block;
@@ -337,22 +289,59 @@
     );
     opacity: var(--lead-divider-opacity);
   }
+  @media (max-width: 1024px) {
+    .leader-row:not(:last-of-type)::after { margin-top: 2rem; width: 92%; }
+  }
+  
+/* === Layout behaviour
+   - Desktop (>=1025px): keep original horizontal two-column grid if HTML uses .grid with md:grid-cols-2
+   - Tablet/mobile (<=1024px): stack vertically (image above card) for safety & readability
+*/
 
-  /* responsive adjustments for mobile */
-  @media (max-width: 768px) {
-    .leader-row:not(:last-of-type)::after { margin-top: 2rem; width: 90%; }
+/* Tablet & mobile: enforce vertical stacking */
+@media (max-width: 1024px) {
+  .leader-row > .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem 1.5rem;
+    align-items: start;
   }
 
-  /* --- accessibility / reveal animation (keeps previous behavior) --- */
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2,.9,.25,1), transform .6s cubic-bezier(.2,.9,.25,1); }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .leader-row .portrait-outer {
+    margin: 0 auto 1rem;
+    max-width: 440px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .leader-row .portrait-img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: none;
+    object-position: center;
+  }
 
-  /* Quick reliable override so designation reliably shows the blue */
-  .leader-card .lead-designation {
-    color: #2B6CB0; /* lighter blue for designation */
-    -webkit-text-fill-color: #2B6CB0;
+  .leader-row .leader-card {
+    margin-top: 0;
+    padding-top: 0.75rem;
   }
 }
+
+/* Desktop (>=1025px): assume page markup uses grid/columns — ensure portrait does not overflow */
+@media (min-width: 1025px) {
+  .leader-row > .grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 480px) 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .leader-row .portrait-outer {
+    max-width: 480px;
+    margin: 0;
+  }
+  .leader-row .portrait-img { max-height: 480px; }
+}
+
 
 /* ---------------------------
    Dropdown Styles

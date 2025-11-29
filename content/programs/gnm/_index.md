@@ -1,5 +1,4 @@
 ---
-title: "General Nursing & Midwifery (GNM)"
 type: "program"
 duration: "3 years (including internship)"
 eligibility: "10+2 in any stream with 40% aggregate and English"
@@ -7,6 +6,7 @@ age_limit: "17-27 years"
 recognition: "Tripura Nursing Council, Government of Tripura"
 intake: "As per regulatory norms"
 weight: 1
+hero: "pwt-logo-ver2Artboard-6"
 ---
 
 {{< raw >}}

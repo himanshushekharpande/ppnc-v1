@@ -4,7 +4,7 @@
     <div class="hero-slider absolute inset-0 z-0">
       {{ $slides := site.Params.hero.slides }}
       {{ range $i, $slide := $slides }}
-      <div class="hero-slide {{ if eq $i 0 }}active{{ end }}">
+      <div class="hero-slide absolute inset-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-500 {{ if eq $i 0 }}opacity-100 pointer-events-auto active{{ end }}">
         <picture>
           <source media="(max-width: 768px)"
                   srcset="{{ $slide.mobile | relURL }} 1x, {{ (replace $slide.mobile ".webp" "@2x.webp") | relURL }} 2x">
@@ -18,16 +18,17 @@
                decoding="async">
         </picture>
 
-        <!-- Overlay specific to each slide -->
-        <div class="absolute inset-0 z-20 flex items-end text-white bg-black/30 md:bg-black/40">
-          <div class="container-site pb-6 md:pb-10">
-            <div class="max-w-2xl drop-shadow-lg">
-              <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">{{ $slide.title }}</h1>
-              {{ with $slide.text }}
-              <p class="mt-3 text-base md:text-lg text-white/90 leading-relaxed">{{ . }}</p>
-              {{ end }}
+        <!-- Minimal overlay: only CTA button (no title/text/large overlay) -->
+        <div class="absolute inset-0 z-20 pointer-events-none">
+          <div class="container-site h-full flex items-end md:items-end pb-6 md:pb-10">
+            <div class="w-full flex justify-center md:justify-center">
               {{ with $slide.ctaLink }}
-              <a href="{{ . }}" class="btn btn-primary mt-4">{{ $slide.ctaText }}</a>
+              <a href="{{ . }}"
+                 class="pointer-events-auto inline-flex items-center justify-center px-5 py-2 rounded-full text-sm md:text-base font-semibold shadow-lg transition-transform transform hover:-translate-y-0.5
+                        bg-gradient-to-r from-[#ff6b35] to-[#ff8f5a] text-white
+                        backdrop-blur-sm bg-black/30">
+                {{ $slide.ctaText }}
+              </a>
               {{ end }}
             </div>
           </div>

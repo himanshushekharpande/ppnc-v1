@@ -1,11 +1,11 @@
 ---
-title: "B.Sc Nursing"
 type: "program"
 duration: "4 years"
 eligibility: "10+2 with Physics, Chemistry, Biology and English (45% aggregate)"
 selection: "Based on entrance examination and counseling"
 recognition: "Indian Nursing Council, Tripura Nursing Council"
 weight: 2
+hero: "pwt-logo-ver2Artboard-7"
 ---
 
 {{< raw >}}

@@ -44,27 +44,27 @@ enableRobotsTXT = true
 
   # --- Homepage slider: covers 01 → 03 ---
   [[params.hero.slides]]
-    desktop = "img/hero/cover_01_desktop.webp"
-    tablet  = "img/hero/cover_01_tablet.webp"
-    mobile  = "img/hero/cover_01_mobile.webp"
+    desktop = "img/hero/pwt-logo-ver2Artboard-1desktop-w.webp"
+    tablet  = "img/hero/pwt-logo-ver2Artboard-1tab-h.webp"
+    mobile  = "img/hero/pwt-logo-ver2Artboard-1.webp"
     title   = "Admissions Open 2025"
     text    = "B.Sc Nursing & GNM · Apply Online Today"
     ctaText = "Apply Now"
     ctaLink = "/admissions/apply/"
 
   [[params.hero.slides]]
-    desktop = "img/hero/cover_02_desktop.webp"
-    tablet  = "img/hero/cover_02_tablet.webp"
-    mobile  = "img/hero/cover_02_mobile.webp"
+    desktop = "img/hero/pwt-logo-ver2Artboard-2desktop-w.webp"
+    tablet  = "img/hero/pwt-logo-ver2Artboard-2tab-h.webp"
+    mobile  = "img/hero/pwt-logo-ver2Artboard-2.webp"
     title   = "Programs in Nursing & Paramedical"
     text    = "Build your career with B.Sc Nursing & GNM"
     ctaText = "Explore Programs"
     ctaLink = "/programs/"
 
   [[params.hero.slides]]
-    desktop = "img/hero/cover_03_desktop.webp"
-    tablet  = "img/hero/cover_03_tablet.webp"
-    mobile  = "img/hero/cover_03_mobile.webp"
+    desktop = "img/hero/pwt-logo-ver2Artboard-3desktop-w.webp"
+    tablet  = "img/hero/pwt-logo-ver2Artboard-3tab-h.webp"
+    mobile  = "img/hero/pwt-logo-ver2Artboard-3.webp"
     title   = "Student-Friendly Campus"
     text    = "Safe, modern infrastructure with clinical training exposure"
     ctaText = "Campus Life"
@@ -74,45 +74,49 @@ enableRobotsTXT = true
   [params.hero.pages]
 
     [params.hero.pages.home]
-      desktop = "img/hero/cover_01_desktop.webp"
-      tablet  = "img/hero/cover_01_tablet.webp"
-      mobile  = "img/hero/cover_01_mobile.webp"
+      desktop = "img/hero/pwt-logo-ver2Artboard-1desktop-w.webp"
+      tablet  = "img/hero/pwt-logo-ver2Artboard-1tab-h.webp"
+      mobile  = "img/hero/pwt-logo-ver2Artboard-1.webp"
       title   = "Welcome to PPNC"
       text    = "Nursing & Paramedical Education • Established 2025"
-
+  
     [params.hero.pages.about]
-      desktop = "img/hero/cover_04_desktop.webp"
-      tablet  = "img/hero/cover_04_tablet.webp"
-      mobile  = "img/hero/cover_04_mobile.webp"
+      desktop = "img/hero/pwt-logo-ver2Artboard-8desktop-w.webp"
+      tablet  = "img/hero/pwt-logo-ver2Artboard-8tab-h.webp"
+      mobile  = "img/hero/pwt-logo-ver2Artboard-8.webp"
       title   = "About PPNC"
       text    = "Compassion • Competence • Community"
 
     [params.hero.pages.programs]
-      desktop = "img/hero/cover_05_desktop.webp"
-      tablet  = "img/hero/cover_05_tablet.webp"
-      mobile  = "img/hero/cover_05_mobile.webp"
+      desktop = "img/hero/pwt-logo-ver2Artboard-5desktop-w.webp"
+      tablet  = "img/hero/pwt-logo-ver2Artboard-5tab-h.webp"
+      mobile  = "img/hero/pwt-logo-ver2Artboard-5.webp"
       title   = "Programs"
       text    = "B.Sc Nursing · GNM"
 
-    # Other pages rotate reused covers 01 → 03
+    [params.hero.program_heroes]
+      bsc-nursing = "pwt-logo-ver2Artboard-7"
+      gnm         = "pwt-logo-ver2Artboard-6"
+
     [params.hero.pages.admissions]
-      desktop = "img/hero/cover_01_desktop.webp"
-      tablet  = "img/hero/cover_01_tablet.webp"
-      mobile  = "img/hero/cover_01_mobile.webp"
+      desktop = "img/hero/pwt-logo-ver2Artboard-4desktop-w.webp"
+      tablet  = "img/hero/pwt-logo-ver2Artboard-4tab-h.webp"
+      mobile  = "img/hero/pwt-logo-ver2Artboard-4.webp"
       title   = "Admissions"
       text    = "Apply for Academic Session 2025"
 
+
     [params.hero.pages.news]
-      desktop = "img/hero/cover_02_desktop.webp"
-      tablet  = "img/hero/cover_02_tablet.webp"
-      mobile  = "img/hero/cover_02_mobile.webp"
+      desktop = "img/hero/pwt-logo-ver2Artboard-1desktop-w.webp"
+      tablet  = "img/hero/pwt-logo-ver2Artboard-1tab-h.webp"
+      mobile  = "img/hero/pwt-logo-ver2Artboard-1.webp"
       title   = "News & Updates"
       text    = "Notices • Events • Career @ PPNC"
 
     [params.hero.pages.contact]
-      desktop = "img/hero/cover_03_desktop.webp"
-      tablet  = "img/hero/cover_03_tablet.webp"
-      mobile  = "img/hero/cover_03_mobile.webp"
+      desktop = "img/hero/pwt-logo-ver2Artboard-4desktop-w.webp"
+      tablet  = "img/hero/pwt-logo-ver2Artboard-4tab-h.webp"
+      mobile  = "img/hero/pwt-logo-ver2Artboard-4.webp"
       title   = "Contact Us"
       text    = "Get in touch for Admissions and Support"
 

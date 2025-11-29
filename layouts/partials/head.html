@@ -25,13 +25,4 @@
 <link rel="stylesheet" href='{{ "/css/swiper-bundle.min.css" | absURL }}'>
 {{ end }}
 
-{{ if .IsHome }}
-<!-- Preload critical hero images for homepage slider -->
-<link rel="preload" href="{{ "img/hero/cover_01_mobile.webp" | relURL }}" as="image" media="(max-width: 768px)">
-<link rel="preload" href="{{ "img/hero/cover_01_tablet.webp" | relURL }}" as="image" media="(min-width: 769px) and (max-width: 1024px)">
-<link rel="preload" href="{{ "img/hero/cover_01_desktop.webp" | relURL }}" as="image" media="(min-width: 1025px)">
-<!-- Preload next slide images -->
-<link rel="preload" href="{{ "img/hero/cover_02_mobile.webp" | relURL }}" as="image" media="(max-width: 768px)" fetchpriority="low">
-<link rel="preload" href="{{ "img/hero/cover_02_tablet.webp" | relURL }}" as="image" media="(min-width: 769px) and (max-width: 1024px)" fetchpriority="low">
-<link rel="preload" href="{{ "img/hero/cover_02_desktop.webp" | relURL }}" as="image" media="(min-width: 1025px)" fetchpriority="low">
-{{ end }}
+{{/* No hero preloads on homepage */}}

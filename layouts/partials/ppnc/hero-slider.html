@@ -1,32 +1,51 @@
 <section class="relative w-full overflow-hidden pt-20 md:pt-24">
-  <div class="relative w-full h-[50vh] md:h-hero min-h-[400px] max-h-[600px] md:max-h-hero">
+  <div class="relative w-full h-[50vh] md:h-hero min-h-[400px] max-h-[600px]">
 
     <div class="hero-slider absolute inset-0 z-0">
       {{ $slides := site.Params.hero.slides }}
       {{ range $i, $slide := $slides }}
       <div class="hero-slide absolute inset-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-500 {{ if eq $i 0 }}opacity-100 pointer-events-auto active{{ end }}">
         <picture>
+          {{/* ---------- MOBILE ---------- */}}
+          {{ $m := $slide.mobile }}
+          {{ $m2 := replace $m ".webp" "@2x.webp" }}
+          {{ $m2Exists := fileExists (printf "static/%s" $m2) }}
+
           <source media="(max-width: 768px)"
-                  srcset="{{ $slide.mobile | relURL }} 1x, {{ (replace $slide.mobile ".webp" "@2x.webp") | relURL }} 2x">
-          <source media="(max-width: 1024px)"
-                  srcset="{{ $slide.tablet | relURL }} 1x, {{ (replace $slide.tablet ".webp" "@2x.webp") | relURL }} 2x">
-          <img src="{{ $slide.desktop | relURL }}"
-               srcset="{{ $slide.desktop | relURL }} 1x, {{ (replace $slide.desktop ".webp" "@2x.webp") | relURL }} 2x"
+                  srcset='{{ $m | relURL }}{{ if $m2Exists }}, {{ $m2 | relURL }} 2x{{ end }}'
+                  sizes="(max-width:768px) 100vw">
+
+          {{/* ---------- TABLET ---------- */}}
+          {{ $t := $slide.tablet }}
+          {{ $t2 := replace $t ".webp" "@2x.webp" }}
+          {{ $t2Exists := fileExists (printf "static/%s" $t2) }}
+
+          <source media="(min-width:769px) and (max-width:1024px)"
+                  srcset='{{ $t | relURL }}{{ if $t2Exists }}, {{ $t2 | relURL }} 2x{{ end }}'
+                  sizes="(min-width:769px) and (max-width:1024px) 100vw">
+
+          {{/* ---------- DESKTOP (fallback <img>) ---------- */}}
+          {{ $d := $slide.desktop }}
+          {{ $d2 := replace $d ".webp" "@2x.webp" }}
+          {{ $d2Exists := fileExists (printf "static/%s" $d2) }}
+
+          <img src="{{ $d | relURL }}"
+               srcset='{{ $d | relURL }}{{ if $d2Exists }}, {{ $d2 | relURL }} 2x{{ end }}'
+               sizes="100vw"
                alt="{{ $slide.title }}"
                class="w-full h-full object-cover"
                {{ if eq $i 0 }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}
                decoding="async">
         </picture>
 
-        <!-- Minimal overlay: only CTA button (no title/text/large overlay) -->
-        <div class="absolute inset-0 z-20 pointer-events-none">
-          <div class="container-site h-full flex items-end md:items-end pb-6 md:pb-10">
-            <div class="w-full flex justify-center md:justify-center">
+        <!-- Overlay specific to each slide (minimal CTA) -->
+        <div class="absolute inset-0 z-20 flex items-end text-white">
+          <div class="container-site pb-6 md:pb-10">
+            <div class="max-w-2xl drop-shadow-lg w-full flex justify-center">
               {{ with $slide.ctaLink }}
               <a href="{{ . }}"
-                 class="pointer-events-auto inline-flex items-center justify-center px-5 py-2 rounded-full text-sm md:text-base font-semibold shadow-lg transition-transform transform hover:-translate-y-0.5
-                        bg-gradient-to-r from-[#ff6b35] to-[#ff8f5a] text-white
-                        backdrop-blur-sm bg-black/30">
+                 class="inline-flex items-center justify-center px-5 py-2 rounded-full text-sm md:text-base font-semibold shadow-lg transition-transform transform hover:-translate-y-0.5
+                        bg-gradient-to-r from-[#ff6b35] to-[#ff8f5a] text-white hero-cta-bg pointer-events-auto">
                 {{ $slide.ctaText }}
               </a>
               {{ end }}
@@ -61,10 +80,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         next=document.querySelector('.slider-next');
   let i=0,timer;
   const show=n=>{
-    slides.forEach(s=>s.classList.remove('active'));
+    slides.forEach(s=>s.classList.remove('active','opacity-100','pointer-events-auto'));
     dots.forEach(d=>d.classList.remove('active'));
     i=(n+slides.length)%slides.length;
-    slides[i].classList.add('active');dots[i].classList.add('active');
+    slides[i].classList.add('active','opacity-100','pointer-events-auto');
+    dots[i].classList.add('active');
   };
   const auto=()=>timer=setInterval(()=>show(i+1),5000);
   const stop=()=>clearInterval(timer);
@@ -74,6 +94,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const slider=document.querySelector('.hero-slider');
   slider.addEventListener('mouseenter',stop);
   slider.addEventListener('mouseleave',auto);
+
+  show(0); // ensure starting slide is visible
   auto();
 });
 </script>

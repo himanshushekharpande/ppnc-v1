@@ -65,20 +65,31 @@
   <section class="relative w-full overflow-hidden pt-20 md:pt-24">
     <div class="relative w-full h-[40vh] md:h-[60vh] min-h-[300px] max-h-[500px]">
       <picture>
-        {{ with .mobile }}
+        {{/* ---------- MOBILE ---------- */}}
+        {{ $mobile := .mobile }}
+        {{ $mobile2 := replace $mobile ".webp" "@2x.webp" }}
+        {{ $mobile2Exists := fileExists (printf "static/%s" $mobile2) }}
+
         <source media="(max-width: 768px)"
-                srcset="{{ . | relURL }} 1x, {{ (replace . ".webp" "@2x.webp") | relURL }} 2x"
-                sizes="(max-width:768px) 100vw">
-        {{ end }}
+                srcset='{{ $mobile | relURL }}{{ if $mobile2Exists }}, {{ $mobile2 | relURL }} 2x{{ end }}'
+                sizes="100vw">
 
-        {{ with .tablet }}
+        {{/* ---------- TABLET ---------- */}}
+        {{ $tablet := .tablet }}
+        {{ $tablet2 := replace $tablet ".webp" "@2x.webp" }}
+        {{ $tablet2Exists := fileExists (printf "static/%s" $tablet2) }}
+
         <source media="(min-width:769px) and (max-width:1024px)"
-                srcset="{{ . | relURL }} 1x, {{ (replace . ".webp" "@2x.webp") | relURL }} 2x"
-                sizes="(min-width:769px) and (max-width:1024px) 100vw">
-        {{ end }}
+                srcset='{{ $tablet | relURL }}{{ if $tablet2Exists }}, {{ $tablet2 | relURL }} 2x{{ end }}'
+                sizes="100vw">
 
-        <img src="{{ .desktop | relURL }}"
-             srcset="{{ .desktop | relURL }} 1x, {{ (replace .desktop ".webp" "@2x.webp") | relURL }} 2x"
+        {{/* ---------- DESKTOP (fallback <img>) ---------- */}}
+        {{ $desk := .desktop }}
+        {{ $desk2 := replace $desk ".webp" "@2x.webp" }}
+        {{ $desk2Exists := fileExists (printf "static/%s" $desk2) }}
+
+        <img src="{{ $desk | relURL }}"
+             srcset='{{ $desk | relURL }}{{ if $desk2Exists }}, {{ $desk2 | relURL }} 2x{{ end }}'
              sizes="100vw"
              alt="{{ .title }}"
              class="w-full h-full object-cover"

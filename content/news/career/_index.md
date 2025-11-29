@@ -1,5 +1,4 @@
 ---
-title: "Career"
 description: "Join our team of dedicated educators and healthcare professionals at Pranav Paramedical and Nursing College"
 date: 2024-01-15
 layout: "single"
